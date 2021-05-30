@@ -9,9 +9,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html className="h-full m-0" >
-        <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-        </Head>
+        <Head />
         <body className="h-full bg-primary text-white m-0 p-0">
           <Main />
           <NextScript />
