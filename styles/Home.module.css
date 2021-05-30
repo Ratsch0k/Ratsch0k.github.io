@@ -8,6 +8,11 @@
   height: 100vh;
 }
 
+.centerroot {
+  display: flex;
+  justify-content: center;
+}
+
 .main {
   padding: 5rem 0;
   flex: 1;
