@@ -8,20 +8,11 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="h-full m-0" >
+      <Html className="h-full m-0 overflow-hidden" >
         <Head />
         <body className="h-full bg-primary text-white m-0 p-0">
           <Main />
           <NextScript />
-          <style jsx global>
-            {
-              `
-              #__next {
-                height: 100%;
-              }
-              `
-            }
-          </style>
         </body>
       </Html>
     )

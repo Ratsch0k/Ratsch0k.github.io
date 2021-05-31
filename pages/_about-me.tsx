@@ -12,7 +12,11 @@ function Block() {
   )
 }
 
-function AboutMe() {
+export interface AboutMeProps {
+  goBack(): void
+}
+
+function AboutMe({goBack}: AboutMeProps) {
   return (
     <div className="h-full">
       <div className="text-4xl w-full text-center md:text-6xl pt-4 absolute">
@@ -21,7 +25,7 @@ function AboutMe() {
         <Block />
       </div>
       <div className="flex h-full items-center justify-center">
-        <div><Link href='/'><a className="text-xl border-solid border-2 p-2 rounded-lg hover:bg-secondary transition-colors">GO BACK</a></Link></div>
+        <button className="text-xl border-solid border-2 p-2 rounded-lg hover:bg-secondary transition-colors uppercase" onClick={goBack}>Go back</button>
       </div>
     </div>
   );
