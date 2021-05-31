@@ -6,19 +6,33 @@ import Intro from './_intro'
 export default function Home() {
   const [page, setPage] = useState<string>('/')
   const [initialPos, setInitialPos] = useState<{x: Number, y: number}>();
+  const router = useRouter();
 
+  useEffect(() => {
+    setPage(router.asPath)
+  }, [router.asPath])
+
+  
   const navigate = useCallback((path: string, title: string) => {
     setPage(path)
     window.history.pushState(path, title, path)
   }, [page, setPage])
 
+  const toHome = useCallback(() => {
+    navigate('/', 'Portfolio')
+  }, [navigate])
+
+  const toAboutMe = useCallback(() => {
+    navigate('/about-me', 'About Me')
+  }, [navigate])
+
   const handleScroll = useCallback((event: WheelEvent) => {
     if (event.deltaY < 0) {
-      setPage('/')
+      toHome()
     } else if (event.deltaY > 0) {
-      setPage('/about-me')
+      toAboutMe()
     }
-  }, [setPage])
+  }, [navigate])
 
   const handleDragEnter = useCallback((event: TouchEvent) => {
     if (event.touches && event.touches.length === 1) {
@@ -34,9 +48,9 @@ export default function Home() {
       const touch = event.changedTouches.item(0);
       if (touch !== null) {
         if (initialPos.y - touch.screenY > 80) {
-          setPage('/about-me')
+          toAboutMe()
         } else if (initialPos.y - touch.screenY < -80) {
-          setPage('/')
+          toHome()
         }
       }
     }
@@ -67,7 +81,7 @@ export default function Home() {
           transform: page === '/' ? 'translateY(0)' : 'translateY(-100%)'
         }}
       >
-        <Intro toAboutMe={() => navigate('/about-me', 'About Me')} />
+        <Intro />
       </div>
       <div
         className='absolute h-full w-full overflow-hidden'
@@ -77,7 +91,7 @@ export default function Home() {
           transform: page === '/about-me' ? 'translateY(0)' : 'translateY(100%)'
         }}
       >
-        <AboutMe goBack={() => navigate('/', 'Portfolio')}/>
+        <AboutMe />
       </div>
     </div>
   )
