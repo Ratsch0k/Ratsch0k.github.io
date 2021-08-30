@@ -1,15 +1,17 @@
 import styles from '../styles/Home.module.css'
+import { useTranslation } from 'react-i18next';
 
 
-function Intro() {
+const Intro = () => {
+  const {t} = useTranslation();
   return (
     <div className='flex h-full justify-center items-center'>
       <div>
         <div className={`sm:text-6xl text-4xl text-center ${styles.appear}`}>
           Simon Kurz
         </div>
-        <div className={`sm:text-sm text-xs text-secondary sm:transform sm:translate-x-40 ${styles.appear} ${styles['appear-subtitle']}`}>
-          Student, Developer, Future IT-Security expert
+        <div className={`md:text-sm text-xs text-secondary md:transform md:translate-x-40 ${styles.appear} ${styles['appear-subtitle']}`}>
+          {t('intro.info')} 
         </div>
         <div
           className={`sm:text-6xl sm:mt-4 text-4xl text-center ${styles.appear}`}

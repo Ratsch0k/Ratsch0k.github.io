@@ -1,9 +1,10 @@
 import { useRouter } from 'next/dist/client/router'
 import { useCallback, useEffect, useState } from 'react'
+import LanguageSwitch from '../components/language-switch'
 import AboutMe from './_about-me'
 import Intro from './_intro'
 
-export default function Home() {
+const Home = () => {
   const [page, setPage] = useState<string>('/')
   const [initialPos, setInitialPos] = useState<{x: Number, y: number}>();
   const router = useRouter();
@@ -72,6 +73,10 @@ export default function Home() {
   }, [initialPos])
 
   return (
+    <>
+    <div className='absolute right-4 md:top-4 bottom-4 text-primary-dark z-20'>
+      <LanguageSwitch />
+    </div>
     <div className="overflow-auto">
       <div
         className='absolute h-full w-full overflow-hidden'
@@ -94,5 +99,8 @@ export default function Home() {
         <AboutMe />
       </div>
     </div>
+    </>
   )
 }
+
+export default Home;

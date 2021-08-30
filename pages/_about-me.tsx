@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 function Block() {
   return (
     <div
@@ -10,12 +12,14 @@ function Block() {
   )
 }
 
-function AboutMe() {
+const AboutMe = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="h-full">
       <div className="text-4xl w-full text-center md:text-6xl pt-4 absolute">
         <Block />
-        <span>About Me</span>
+        <span>{t('aboutme.title')}</span>
         <Block />
       </div>
     </div>
