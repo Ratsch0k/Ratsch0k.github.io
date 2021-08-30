@@ -4,7 +4,7 @@
   "private": false,
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "react-scripts start",
     "build": "next build",
     "start": "next start",
     "export": "next export -o docs"
@@ -12,13 +12,28 @@
   "dependencies": {
     "next": "10.2.3",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@types/react": "17.0.8",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
     "autoprefixer": "^10.2.6",
+    "create-react-scripts": "^0.1.6",
     "postcss": "^8.3.0",
+    "react-scripts": "^4.0.3",
     "tailwindcss": "^2.1.2",
     "typescript": "4.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,9 +1,8 @@
-import Link from 'next/link'
 import React from 'react'
 
 
 export interface LinkButtonProps {
-  href: string
+  href: string,
   children: React.ReactNode | React.ReactNode[]
 }
 
@@ -11,11 +10,11 @@ export interface LinkButtonProps {
 function LinkButton({href, children}: LinkButtonProps) {
   return (
     <div>
-      <Link href={href}>
+      <a href={href}>
         <a className="text-xl border-solid border-2 p-2 rounded-lg hover:bg-secondary transition-colors">
           {children}
         </a>
-      </Link>
+      </a>
     </div>
   )
 }
