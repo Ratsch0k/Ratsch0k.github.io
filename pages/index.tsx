@@ -2,6 +2,7 @@ import { useRouter } from 'next/dist/client/router'
 import { TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitch from '../components/language-switch'
+import PageIndicator from '../components/page-indicator'
 import AboutMe from './_about-me'
 import Intro from './_intro'
 import Projects from './_projects'
@@ -34,22 +35,26 @@ const initialState: Page[] = [
   },
 ];
 
-interface PageInfo {
-  current: number;
-  previous: number;
-}
-
 const Home = () => {
   const { t } = useTranslation();
-  const [page, setPage] = useState<string>('/')
   const [initialPos, setInitialPos] = useState<{x: Number, y: number}>();
   const router = useRouter();
   const [pages, setPages] = useState<Page[]>(initialState); 
-  const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const getPageIndex = useCallback((path) => {
+    for (let i = 0; i < pages.length; i++) {
+      if (pages[i].path === path) {
+        return i;
+      }
+    }
+    return 0;
+  }, [pages]);
+  
+  const [currentPage, setCurrentPage] = useState<number>(getPageIndex(router.asPath));
   const inTransition = useRef<boolean>(false);
 
   useEffect(() => {
-    setPage(router.asPath)
+    setCurrentPage(getPageIndex(router.asPath));
   }, [router.asPath])
 
   const toNextPage = useCallback(() => {
@@ -129,6 +134,9 @@ const Home = () => {
     <>
     <div className='absolute right-4 md:top-4 bottom-4 text-primary-dark z-20'>
       <LanguageSwitch />
+    </div>
+    <div className='absolute bottom-2 z-20 w-full'>
+      <PageIndicator len={pages.length} page={currentPage} changePage={(id) => setCurrentPage(id)}/>
     </div>
     <div className="overflow-auto">
       {
