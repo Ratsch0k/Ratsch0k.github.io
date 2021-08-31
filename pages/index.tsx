@@ -55,11 +55,11 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPage(getPageIndex(router.asPath));
-  }, [router.asPath])
+  }, [router.asPath]);
 
-  const toNextPage = useCallback(() => {
+  const toPage = useCallback((pageId: number) => {
     let transId: NodeJS.Timeout | undefined = undefined;
-    if (currentPage < pages.length - 1 && !inTransition.current) {
+    if (!inTransition.current && pageId >= 0 && pageId < pages.length) {
       inTransition.current = true;
       transId = setTimeout(() => {inTransition.current = false}, 500);
       setPages((prev) => {
@@ -67,36 +67,23 @@ const Home = () => {
         arr[currentPage].visited = true;
         return arr; 
       });
-      const nextIndex = currentPage + 1;
-      setCurrentPage((prev) => prev + 1);
-      const nextPage = pages[nextIndex];
+      setCurrentPage(pageId);
+      const nextPage = pages[pageId];
       window.history.pushState(nextPage.path, t(nextPage.titleKey), nextPage.path)
     }
 
     return () => {
       clearTimeout(transId as unknown as number);
     }
-  }, [currentPage, inTransition.current]);
+  }, [pages, currentPage])
+
+  const toNextPage = useCallback(() => {
+    toPage(currentPage + 1);
+  }, [currentPage, toPage]);
 
   const toPrevPage = useCallback(() => {
-    let transId: NodeJS.Timeout | undefined = undefined;
-    if (currentPage > 0 && !inTransition.current) {
-      inTransition.current = true;
-      transId = setTimeout(() => {inTransition.current = false}, 500);
-      setPages((prev) => {
-        const arr = Array.from(prev);
-        arr[currentPage].visited = true;
-        return arr; 
-      });
-      const nextIndex = currentPage - 1;
-      setCurrentPage((prev) => prev - 1);
-      const nextPage = pages[nextIndex];
-      window.history.pushState(nextPage.path, t(nextPage.titleKey), nextPage.path);
-    }
-    return () => {
-      clearTimeout(transId as unknown as number);
-    }
-  }, [currentPage, inTransition.current]);
+    toPage(currentPage - 1);
+  }, [currentPage, toPage]);
 
   const handleScroll: WheelEventHandler<HTMLDivElement> = useCallback((event) => {
     if (!inTransition.current) {
@@ -135,8 +122,8 @@ const Home = () => {
     <div className='absolute right-4 md:top-4 bottom-4 text-primary-dark z-20'>
       <LanguageSwitch />
     </div>
-    <div className='absolute bottom-2 z-20 w-full'>
-      <PageIndicator len={pages.length} page={currentPage} changePage={(id) => setCurrentPage(id)}/>
+    <div className='absolute bottom-2 z-20 w-full flex justify-center'>
+      <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
     </div>
     <div className="overflow-auto">
       {

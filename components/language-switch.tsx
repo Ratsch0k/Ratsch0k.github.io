@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import { DocumentProps } from 'next/document';
 import React, { useCallback, useRef, useState } from 'react';
 import TranslateIcon from './icons/translate-icon';
 import ClickAwayListener from 'react-click-away-listener';
