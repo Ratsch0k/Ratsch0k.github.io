@@ -34,7 +34,7 @@ const PageIndicator: NextPage<PageIndicatorProps> = (props) => {
                     for (let i = 0; i < len; i++) {
                         circles.push(
                             <div className='m-1 cursor-pointer' onClick={() => changePage(i)}>
-                                <Circle color={i === page ? 'white' : '#3B4368'} size='small'/>
+                                <Circle color={i === page ? 'white' : '#3B4368'}/>
                             </div>
                         )
                     }
