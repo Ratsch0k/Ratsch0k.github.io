@@ -1,5 +1,6 @@
+import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react'
+import { ReactNode, TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitch from '../components/language-switch'
 import PageIndicator from '../components/page-indicator'
@@ -7,31 +8,27 @@ import AboutMe from './_about-me'
 import Intro from './_intro'
 import Projects from './_projects'
 
-interface Page {
+interface PageInfo {
   component: () => JSX.Element,
   path: string;
   titleKey: string;
-  visited: boolean;
 }
 
-const initialState: Page[] = [
+const initialState: PageInfo[] = [
   {
     component: Intro,
     path: '/',
     titleKey: 'intro.pageTitle',
-    visited: false,
   },
   {
     component: AboutMe,
     path: '/about-me',
     titleKey: 'aboutme.pageTitle',
-    visited: false,
   },
   {
     component: Projects,
     path: '/projects',
     titleKey: 'projects.pageTitle',
-    visited: false,
   },
 ];
 
@@ -39,7 +36,7 @@ const Home = () => {
   const { t } = useTranslation();
   const [initialPos, setInitialPos] = useState<{x: Number, y: number}>();
   const router = useRouter();
-  const [pages, setPages] = useState<Page[]>(initialState); 
+  const [pages, setPages] = useState<PageInfo[]>(initialState); 
 
   const getPageIndex = useCallback((path) => {
     for (let i = 0; i < pages.length; i++) {
@@ -64,7 +61,6 @@ const Home = () => {
       transId = setTimeout(() => {inTransition.current = false}, 500);
       setPages((prev) => {
         const arr = Array.from(prev);
-        arr[currentPage].visited = true;
         return arr; 
       });
       setCurrentPage(pageId);
@@ -128,37 +124,18 @@ const Home = () => {
     <div className="overflow-auto">
       {
         pages.map((page, index) => {
-          const Page = page.component;
-          const current = currentPage;
-
-          // Determine how the animation should look
-          let pos = 0;
-
-          if (current === index) {
-            pos = 0;
-          } else {
-            if (index > current) {
-              pos = 100;
-            } else {
-              pos = -100;
-            }
-          }
+          const ThisPage = page.component;
 
           return (
-            <div
-              key={`page-${index}`}
-              className='absolute h-full w-full overflow-hidden'
-              style={{
-                transition: 'transform ease-out 500ms, opacity ease-in 250ms',
-                opacity: current === index ? 1 : 0,
-                transform: current === index ? 'translateY(0)' : `translateY(${pos}%)`,
-              }} 
-              onWheel={current === index ? handleScroll : undefined}
-              onTouchStart={current === index ? handleDragEnter : undefined}
-              onTouchEnd={current === index ? handleDragEnd : undefined}
+            <Page
+              handleDragEnd={handleDragEnd}
+              handleDragEnter={handleDragEnter}
+              handleScroll={handleScroll}
+              currentPage={currentPage}
+              id={index}
             >
-              <Page />
-            </div>
+              <ThisPage/>
+            </Page>
           );
         })
       }
@@ -166,5 +143,116 @@ const Home = () => {
     </>
   )
 }
+
+interface PageProps {
+  /**
+   * The components which should be used as a page.
+   */
+  children: ReactNode;
+
+  /**
+   * The currently displayed page.
+   */
+  currentPage: number;
+
+  /**
+   * Page id of this page.
+   */
+  id: number;
+
+  /**
+   * Wheel event handler.
+   */
+  handleScroll: WheelEventHandler<HTMLDivElement>;
+
+  /**
+   * TouchEventHandler for handling the start of a drag event.
+   */
+  handleDragEnter: TouchEventHandler<HTMLDivElement>;
+
+  /**
+   * TouchEventHandler for handling the end of a drag event.
+   */
+  handleDragEnd: TouchEventHandler<HTMLDivElement>;
+}
+
+/**
+ * Wrapper for pages.
+ * 
+ * Handles animation and loading of page.
+ * Implemented lazy loading, meaning, the page will only load
+ * if it is navigated to. This is to allow any animations to
+ * show on the first load. But it if it has been visited it will
+ * keep the component loaded to avoid animations to be shown more
+ * than two times.
+ * @param props Props.
+ * @returns The component
+ */
+const Page: NextPage<PageProps> = (props) => {
+  const {
+    children,
+    currentPage,
+    id,
+    handleDragEnter,
+    handleDragEnd,
+    handleScroll,
+  } = props;
+  /**
+   * Whether this page has already been visited. Defaults to `false`.
+   */
+  const [visited, setVisited] = useState<boolean>(false);
+
+  /**
+   * The position of this component for the transition animation.
+   * Used in the following css line `translate: transformY({pos}%)`.
+   */
+  const [pos, setPos] = useState<number>(0);
+
+  /**
+   * Set pos according to currentPage and id of this page.
+   * If the current page is above this page (it's id is lower),
+   * the position of this page should be below that (100%).
+   * Vice versa.
+   */
+  useEffect(() => {
+    if (currentPage === id) {
+      setPos(0);
+    } else {
+      if (id > currentPage) {
+        setPos(100);
+      } else {
+        setPos(-100);
+      }
+    }
+    
+  }, [currentPage, id]);
+
+  useEffect(() => {
+    if (currentPage === id) {
+      setVisited(true);
+    }
+  }, [currentPage, id])
+
+  return (
+    <div
+      key={`page-${id}`}
+      className='absolute h-full w-full overflow-hidden'
+      style={{
+        transition: 'transform ease-out 500ms, opacity ease-in 250ms',
+        opacity: currentPage === id ? 1 : 0,
+        transform: currentPage === id ? 'translateY(0)' : `translateY(${pos}%)`,
+      }} 
+      onWheel={currentPage === id ? handleScroll : undefined}
+      onTouchStart={currentPage === id ? handleDragEnter : undefined}
+      onTouchEnd={currentPage === id ? handleDragEnd : undefined}
+    >
+      {
+        visited || currentPage === id ?
+        children :
+        null  
+      }
+    </div>
+  );
+};
 
 export default Home;
