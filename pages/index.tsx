@@ -208,6 +208,8 @@ const Page: NextPage<PageProps> = (props) => {
    */
   const [pos, setPos] = useState<number>(0);
 
+  const [eventHandlersEnabled, setEventHandlersEnabled] = useState<boolean>(false);
+
   /**
    * Set pos according to currentPage and id of this page.
    * If the current page is above this page (it's id is lower),
@@ -228,6 +230,21 @@ const Page: NextPage<PageProps> = (props) => {
   }, [currentPage, id]);
 
   useEffect(() => {
+    let possibleTimeout: NodeJS.Timeout | undefined = undefined;
+    if (currentPage === id) {
+      possibleTimeout = setTimeout(() => {
+        setEventHandlersEnabled(true);
+      }, 1000);
+    } else {
+      setEventHandlersEnabled(false);
+    }
+
+    return () => {
+      clearTimeout(possibleTimeout as unknown as number);
+    }
+  }, [currentPage, id]);
+
+  useEffect(() => {
     if (currentPage === id) {
       setVisited(true);
     }
@@ -242,9 +259,9 @@ const Page: NextPage<PageProps> = (props) => {
         opacity: currentPage === id ? 1 : 0,
         transform: currentPage === id ? 'translateY(0)' : `translateY(${pos}%)`,
       }} 
-      onWheel={currentPage === id ? handleScroll : undefined}
-      onTouchStart={currentPage === id ? handleDragEnter : undefined}
-      onTouchEnd={currentPage === id ? handleDragEnd : undefined}
+      onWheel={eventHandlersEnabled ? handleScroll : undefined}
+      onTouchStart={eventHandlersEnabled ? handleDragEnter : undefined}
+      onTouchEnd={eventHandlersEnabled ? handleDragEnd : undefined}
     >
       {
         visited || currentPage === id ?
