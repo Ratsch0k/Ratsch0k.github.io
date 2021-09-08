@@ -1,10 +1,10 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { useRouter } from 'next/dist/client/router'
 import Home from './index'
 import { NextPage } from 'next'
 import '../i18n';
+import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react';
 
 const SafeHydrate: NextPage = ({children}) => {
   return (
@@ -15,6 +15,12 @@ const SafeHydrate: NextPage = ({children}) => {
 };
 
 const MyApp = () => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.setAttribute('lang', i18n.language);
+  }, [i18n.language])
+
   return (
     <>
     <Head>
