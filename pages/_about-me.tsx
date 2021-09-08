@@ -32,21 +32,21 @@ const AboutMe = () => {
         <span>{t('aboutme.title')}</span>
         <Block />
       </div>
-      <div className='h-full overflow-y-auto overflow-x-hidden'>
-        <div className='w-full flex flex-row items-stretch overflow-visible justify-between p-8'>
+      <div className='h-full overflow-hidden'>
+        <div className='w-full h-full flex flex-row items-stretch overflow-hidden justify-between pt-8'>
           <div
-            className='w-full overflow-visible'
+            className='w-full overflow-auto pr-4 pl-8'
           >
             <Trans i18nKey='aboutme.myinfo' t={t}>
               Hi...
               <ul i18nIsDynamicList className='list-disc pl-8'>
-                {LANGUAGES.map((el) => <li>{t(`aboutme.langlist.${el}`)}</li>)}
+                {LANGUAGES.map((el) => <li key={`language-${el}`}>{t(`aboutme.langlist.${el}`)}</li>)}
               </ul>
               ...
             </Trans>
           </div>
           <div className='hidden md:block md:flex-initial'>
-                <img alt={t('aboutme.picturealt')} className='hidden md:block h-full w-auto pl-4 object-cover' src='/images/personal_photo.jpg' />
+                <img alt={t('aboutme.picturealt')} className='hidden md:block h-full w-auto pl-4 pr-8 object-cover' src='/images/personal_photo.jpg' />
           </div>
         </div>
       </div>
