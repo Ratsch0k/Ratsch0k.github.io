@@ -34,7 +34,7 @@ const initialState: PageInfo[] = [
 
 const Home = () => {
   const { t } = useTranslation();
-  const [initialPos, setInitialPos] = useState<{x: Number, y: number}>();
+  const [initialPos, setInitialPos] = useState<{x: number, y: number}>();
   const router = useRouter();
   const [pages, setPages] = useState<PageInfo[]>(initialState); 
 
@@ -83,9 +83,9 @@ const Home = () => {
 
   const handleScroll: WheelEventHandler<HTMLDivElement> = useCallback((event) => {
     if (!inTransition.current) {
-      if (event.deltaY < 0) {
+      if (event.deltaX < -100) {
         toPrevPage()
-      } else if (event.deltaY > 0) {
+      } else if (event.deltaX > 100) {
         toNextPage();
       }
     }
@@ -104,9 +104,9 @@ const Home = () => {
     if (initialPos !== undefined && event.changedTouches && event.changedTouches.length === 1) {
       const touch = event.changedTouches.item(0);
       if (touch !== null) {
-        if (initialPos.y - touch.screenY > 80) {
+        if (initialPos.x - touch.screenX > 80) {
           toNextPage()
-        } else if (initialPos.y - touch.screenY < -80) {
+        } else if (initialPos.x - touch.screenX < -80) {
           toPrevPage()
         }
       }
@@ -114,33 +114,35 @@ const Home = () => {
   }, [initialPos, toNextPage, toPrevPage])
 
   return (
-    <>
-    <div className='absolute right-4 md:top-4 bottom-4 text-primary-dark z-20'>
-      <LanguageSwitch />
-    </div>
-    <div className='absolute bottom-2 z-20 w-full flex justify-center'>
-      <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
-    </div>
-    <div className="overflow-auto">
-      {
-        pages.map((page, index) => {
-          const ThisPage = page.component;
+    <div>
+        <div className='fixed right-4 z-30 md:top-4 bottom-0 text-primary-dark'>
+          <LanguageSwitch />
+        </div>
+        <div className='fixed bottom-0 z-20 w-full bg-primary'>
+          <div className='p-4 flex justify-center'>
+            <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
+          </div>
+        </div>
+      <div className='overflow-hidden'>
+        {
+          pages.map((page, index) => {
+            const ThisPage = page.component;
 
-          return (
-            <Page
-              handleDragEnd={handleDragEnd}
-              handleDragEnter={handleDragEnter}
-              handleScroll={handleScroll}
-              currentPage={currentPage}
-              id={index}
-            >
-              <ThisPage/>
-            </Page>
-          );
-        })
-      }
+            return (
+              <Page
+                handleDragEnd={handleDragEnd}
+                handleDragEnter={handleDragEnter}
+                handleScroll={handleScroll}
+                currentPage={currentPage}
+                id={index}
+              >
+                <ThisPage/>
+              </Page>
+            );
+          })
+        }
+      </div>
     </div>
-    </>
   )
 }
 
@@ -234,7 +236,7 @@ const Page: NextPage<PageProps> = (props) => {
     if (currentPage === id) {
       possibleTimeout = setTimeout(() => {
         setEventHandlersEnabled(true);
-      }, 1000);
+      }, 750);
     } else {
       setEventHandlersEnabled(false);
     }
@@ -252,22 +254,30 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <div
-      key={`page-${id}`}
-      className='absolute h-full w-full overflow-hidden'
+      className='absolute w-full overflow-hidden'
       style={{
-        transition: 'transform ease-out 500ms, opacity ease-in 250ms',
-        opacity: currentPage === id ? 1 : 0,
-        transform: currentPage === id ? 'translateY(0)' : `translateY(${pos}%)`,
-      }} 
-      onWheel={eventHandlersEnabled ? handleScroll : undefined}
-      onTouchStart={eventHandlersEnabled ? handleDragEnter : undefined}
-      onTouchEnd={eventHandlersEnabled ? handleDragEnd : undefined}
+        zIndex: currentPage === id ? 10 : 0,
+        height: 'calc(100% - 55px)',
+      }}
     >
-      {
-        visited || currentPage === id ?
-        children :
-        null  
-      }
+      <div
+        key={`page-${id}`}
+        className='h-full w-full overflow-y-auto overflow-x-hidden'
+        style={{
+          transition: 'transform ease-out 500ms, opacity ease-in 250ms',
+          opacity: currentPage === id ? 1 : 0,
+          transform: currentPage === id ? 'translateX(0)' : `translateX(${pos}%)`,
+        }} 
+        onWheel={eventHandlersEnabled ? handleScroll : undefined}
+        onTouchStart={eventHandlersEnabled ? handleDragEnter : undefined}
+        onTouchEnd={eventHandlersEnabled ? handleDragEnd : undefined}
+      >
+        {
+          visited || currentPage === id ?
+          children :
+          null  
+        }
+      </div>
     </div>
   );
 };
