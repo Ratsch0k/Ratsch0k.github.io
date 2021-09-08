@@ -39,7 +39,7 @@ const AboutMe = () => {
           >
             <Trans i18nKey='aboutme.myinfo' t={t}>
               Hi...
-              <ul i18nIsDynamicList className='list-disc pl-8'>
+              <ul className='list-disc pl-8'>
                 {LANGUAGES.map((el) => <li key={`language-${el}`}>{t(`aboutme.langlist.${el}`)}</li>)}
               </ul>
               ...
