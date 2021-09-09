@@ -115,10 +115,10 @@ const Home = () => {
 
   return (
     <div>
-        <div className='fixed right-4 z-30 md:top-4 bottom-0 text-primary-dark'>
+        <div className='absolute right-4 z-30 md:top-4 bottom-0 text-primary-dark'>
           <LanguageSwitch />
         </div>
-        <div className='fixed bottom-0 z-20 w-full bg-primary'>
+        <div className='absolute bottom-0 z-20 w-full bg-primary'>
           <div className='p-4 flex justify-center'>
             <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
           </div>
