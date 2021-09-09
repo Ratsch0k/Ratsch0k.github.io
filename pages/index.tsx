@@ -2,11 +2,11 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { ReactNode, TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react'
 import { useTranslation } from 'react-i18next'
-import LanguageSwitch from '../components/language-switch'
-import PageIndicator from '../components/page-indicator'
-import AboutMe from './_about-me'
-import Intro from './_intro'
-import Projects from './_projects'
+import LanguageSwitch from '../components/language_switch'
+import PageIndicator from '../components/page_indicator'
+import AboutMe from './about_me'
+import Intro from './intro'
+import Projects from './projects'
 
 interface PageInfo {
   component: () => JSX.Element,
