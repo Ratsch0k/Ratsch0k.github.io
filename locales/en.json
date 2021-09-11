@@ -14,5 +14,8 @@
             "bash": "Bash",
             "brainfuck": "Brainfuck"
         }
+    },
+    "misc": {
+        "swipe": "Swipe to the next page"
     }
 }
