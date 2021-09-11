@@ -7,6 +7,8 @@ import PageIndicator from '../components/page_indicator'
 import AboutMe from './about_me'
 import Intro from './intro'
 import Projects from './projects'
+import tailwindConfig from '../components/tailwind-config';
+import IndicateSwipeMotion from '../components/indicate-swipe-motion'
 
 interface PageInfo {
   component: () => JSX.Element,
@@ -37,6 +39,7 @@ const Home = () => {
   const [initialPos, setInitialPos] = useState<{x: number, y: number}>();
   const router = useRouter();
   const [pages, setPages] = useState<PageInfo[]>(initialState); 
+  const [hasNavigated, setHasNavigated] = useState<boolean>(sessionStorage.getItem('hasNavigated') === 'true' || false);
 
   const getPageIndex = useCallback((path) => {
     for (let i = 0; i < pages.length; i++) {
@@ -57,8 +60,10 @@ const Home = () => {
   const toPage = useCallback((pageId: number) => {
     let transId: NodeJS.Timeout | undefined = undefined;
     if (!inTransition.current && pageId >= 0 && pageId < pages.length) {
+      setHasNavigated(true);
+      sessionStorage.setItem('hasNavigated', 'true');
       inTransition.current = true;
-      transId = setTimeout(() => {inTransition.current = false}, 500);
+      transId = setTimeout(() => {inTransition.current = false}, 0);
       setPages((prev) => {
         const arr = Array.from(prev);
         return arr; 
@@ -120,7 +125,13 @@ const Home = () => {
         </div>
         <div className='absolute bottom-0 z-20 w-full bg-primary'>
           <div className='p-4 flex justify-center'>
-            <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
+            <div className='flex flex-col items-center'>
+              {
+                (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
+                <IndicateSwipeMotion />
+              }
+              <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
+            </div>
           </div>
         </div>
       <div className='overflow-hidden'>
