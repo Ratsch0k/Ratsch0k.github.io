@@ -1,5 +1,8 @@
 import { NextPage } from 'next';
 import React from 'react';
+import IconButton from './icon-button';
+import ArrowLeftIcon from './icons/arrow-left';
+import ArrowRightIcon from './icons/arrow-right';
 
 interface PageIndicatorProps {
     len: number;
@@ -13,7 +16,7 @@ interface CircleProps {
 
 const CIRCLE_SIZE = 10;
 
-const Circle: NextPage<CircleProps> = ({color}) => {
+const Circle = ({color}: CircleProps) => {
     
     return (
         <svg width={CIRCLE_SIZE} height={CIRCLE_SIZE}>
@@ -22,11 +25,17 @@ const Circle: NextPage<CircleProps> = ({color}) => {
     );
 };
 
-const PageIndicator: NextPage<PageIndicatorProps> = (props) => {
+const PageIndicator = (props: PageIndicatorProps) => {
     const {len, page, changePage} = props;
 
     return (
-        <div className='flex flex-row'>
+        <div className='flex flex-row items-center'>
+            <IconButton
+                onClick={() => changePage(page - 1)}
+                className='mr-2'
+            >
+                <ArrowLeftIcon />
+            </IconButton>
             {
                 (() => {
                     const circles = [];
@@ -42,6 +51,12 @@ const PageIndicator: NextPage<PageIndicatorProps> = (props) => {
                     return circles;
                 })()
             }
+            <IconButton
+                onClick={() => changePage(page + 1)}
+                className='ml-2'
+            >
+                <ArrowRightIcon />
+            </IconButton>
         </div>
     ); 
 };

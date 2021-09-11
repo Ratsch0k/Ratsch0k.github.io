@@ -3,6 +3,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import TranslateIcon from './icons/translate-icon';
 import ClickAwayListener from 'react-click-away-listener';
 import { useTranslation } from 'react-i18next';
+import IconButton from './icon-button';
 
 interface LanguageItemProps {
     onClick(): void;
@@ -51,12 +52,12 @@ const LanguageSwitch = () => {
 
     return (
         <div className='flex md:flex-col flex-col-reverse items-end'>
-            <button
+            <IconButton
                 onClick={() => open ? closePopup() : openPopup()} 
-                className='transition-colors p-2 m-2 rounded hover:bg-primary-dark hover:text-white'
+                className='p-2 m-2 rounded'
             >
                 <TranslateIcon/>
-            </button>
+            </IconButton>
             <ClickAwayListener onClickAway={() => open && closePopup()}>
                 <div ref={popUpRef} className={`transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}>
                     <div className=' rounded-lg shadow-xl bg-primary-light p-2'>
