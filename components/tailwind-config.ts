@@ -1,3 +1,5 @@
+import preval from 'babel-plugin-preval';
+
 /**
  * Complete tailwindcss config.
  * 

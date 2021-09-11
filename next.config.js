@@ -8,5 +8,13 @@ module.exports = {
       },
     ];
   },
+  webpack: (config, options) => {
+    config.node = {
+      fs: 'empty',
+      module: 'empty',
+    };
+
+    return config;
+  },
   useFileSystemPublicRoutes: false,
 }
