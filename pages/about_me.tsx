@@ -37,13 +37,15 @@ const AboutMe = () => {
           <div
             className='w-full overflow-auto pr-4 pl-8'
           >
-            <Trans i18nKey='aboutme.myinfo' t={t}>
-              Hi...
-              <ul className='list-disc pl-8'>
-                {LANGUAGES.map((el) => <li key={`language-${el}`}>{t(`aboutme.langlist.${el}`)}</li>)}
-              </ul>
-              ...
-            </Trans>
+            <div className='max-w-3xl m-auto'>
+              <Trans i18nKey='aboutme.myinfo' t={t}>
+                Hi...
+                <ul className='list-disc pl-8'>
+                  {LANGUAGES.map((el) => <li key={`language-${el}`}>{t(`aboutme.langlist.${el}`)}</li>)}
+                </ul>
+                ...
+              </Trans>
+            </div>
           </div>
           <div className='hidden md:block md:flex-initial'>
                 <img alt={t('aboutme.picturealt')} className='hidden md:block h-full w-auto pl-4 pr-8 object-cover' src='/images/personal_photo.jpg' />
