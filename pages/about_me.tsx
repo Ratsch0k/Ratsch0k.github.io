@@ -19,12 +19,14 @@ const AboutMe = () => {
       <PageTitle>
         {t('aboutme.title')}
       </PageTitle>
-      <div className='h-full overflow-hidden'>
-        <div className='w-full h-full flex flex-row items-stretch overflow-hidden justify-between pt-8'>
-          <div
-            className='w-full overflow-auto pr-4 pl-8 pb-4'
+      <div className='h-full overflow-auto mt-4 max-w-4xl mx-auto'>
+        <div
+            className='w-full overflow-auto pl-8 pr-8 pb-4'
           >
-            <div className='max-w-3xl m-auto'>
+            <div className='h-96 md:h-60 md:float-left md:mb-2 md:mr-2'>
+              <img alt={t('aboutme.picturealt')} className='h-full w-auto object-cover' src='/images/personal_photo.jpg' />
+            </div>
+            <div className='max-w-3xl m-auto md:mt-0 mt-4'>
               <Trans i18nKey='aboutme.myinfo' t={t}>
                 Hi...
                 <ul className='list-disc pl-8'>
@@ -34,10 +36,6 @@ const AboutMe = () => {
               </Trans>
             </div>
           </div>
-          <div className='hidden md:block md:flex-initial'>
-                <img alt={t('aboutme.picturealt')} className='hidden md:block h-full w-auto pl-4 pr-8 object-cover' src='/images/personal_photo.jpg' />
-          </div>
-        </div>
       </div>
     </div>
   );
