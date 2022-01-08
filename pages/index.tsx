@@ -152,6 +152,7 @@ const Home = () => {
                 handleScroll={handleScroll}
                 currentPage={currentPage}
                 id={index}
+                key={`page-${index}`}
               >
                 <ThisPage/>
               </Page>
