@@ -22,28 +22,32 @@ const TopicContainerAlt: React.FC<TopicContainerProps> = ({children, title, icon
   return (
     <div
       ref={ref}
-      className={`mt-32 flex justify-start items-center w-full ${pos % 2 === 1 ? 'flex-row-reverse' : 'flex-row'}`}
+      className={`${pos > 0 && 'mt-16'} p-6 border rounded-md border-primary-light flex flex-col justify-start items-center w-full ${pos % 2 === 1 ? 'sm:flex-row-reverse' : 'sm:flex-row'} bg-primary-dark`}
       style={{
         animation: `appear-from-below 500ms ease-in-out ${pos * 200}ms both`,
       }}
     >
       <div
-        className='flex-grow-0 flex-shrink-0 mr-4 text-2xl'
+        className='flex-grow-0 flex-shrink-0 mr-4 text-1xl text-primary-light'
         style={{
           maxWidth: 200
         }}
       >
-        {title} 
+        <b>
+          {title}
+        </b>
       </div> 
       <div className='h-full'>
-        <div className='bg-white w-1 h-full mr-4' />
+        <div className='bg-primary-light w-full h-px left-0 mt-4 sm:w-px sm:h-full sm:mr-4 sm:left-auto sm:mt-0 sm:top-0 absolute' />
+        <div className='justify-center flex items-center h-full'>
         <div
-          className='relative bg-primary p-1'
+          className='bg-primary-dark p-1 text-primary-light'
           style={{
-            transform: `translate(-14px, -${ref.current ? ref.current.clientHeight / 2 + 16: 14}px)`
+            transform: `translateX(-14px)`
           }}
         >
           {icon}
+        </div>
         </div>
       </div>
       <div className='flex-1 p-2'>
@@ -107,12 +111,11 @@ export const SkillsPage = () => {
   return (
     <div className='h-full flex flex-col'>
       <PageTitle>
-        {t('skill.title')}
+        {t('skills.title')}
       </PageTitle>
-      <div className='flex justify-center items-center overflow-y-auto w-full'>
-        <div className='flex self-center items-stretch w-full max-w-3xl'>
+        <div className='h-full overflow-auto mt-4 max-w-4xl mx-auto'>
           <div
-            className='flex flex-col p-8 items-center justify-center w-full'
+            className='flex flex-col p-8 pt-0 items-center justify-center w-full'
           >
             <TopicContainerAlt pos={0} icon={<InformationIcon />} title={t('skills.general.title')}>
               <GeneralSkills /> 
@@ -128,7 +131,6 @@ export const SkillsPage = () => {
             </TopicContainerAlt>
           </div>
         </div>
-      </div>
     </div>
   );
 };
