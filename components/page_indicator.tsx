@@ -42,7 +42,7 @@ const PageIndicator = (props: PageIndicatorProps) => {
 
                     for (let i = 0; i < len; i++) {
                         circles.push(
-                            <div className='m-1 cursor-pointer' onClick={() => changePage(i)}>
+                            <div key={`indicator-${i}`} className='m-1 cursor-pointer' onClick={() => changePage(i)}>
                                 <Circle color={i === page ? 'white' : '#3B4368'}/>
                             </div>
                         )
