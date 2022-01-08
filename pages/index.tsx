@@ -9,6 +9,7 @@ import Intro from './intro'
 import Projects from './projects'
 import tailwindConfig from '../components/tailwind-config';
 import IndicateSwipeMotion from '../components/indicate-swipe-motion'
+import SkillsPage from './skills'
 
 interface PageInfo {
   component: () => JSX.Element,
@@ -26,6 +27,11 @@ const initialState: PageInfo[] = [
     component: AboutMe,
     path: '/about-me',
     titleKey: 'aboutme.pageTitle',
+  },
+  {
+    component: SkillsPage,
+    path: '/skills',
+    titleKey: 'skills.pageTitle',
   },
   {
     component: Projects,
@@ -268,7 +274,7 @@ const Page: NextPage<PageProps> = (props) => {
       className='absolute w-full overflow-hidden'
       style={{
         zIndex: currentPage === id ? 10 : 0,
-        height: 'calc(100% - 55px)',
+        height: 'calc(100% - 64px)',
       }}
     >
       <div

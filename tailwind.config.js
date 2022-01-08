@@ -31,6 +31,16 @@ module.exports = {
             transform: 'translateX(-100%)',
             opacity: 0,
           }
+        },
+        'appear-from-below': {
+          '0%': {
+            transform: 'translateY(200px)',
+            opacity: 0,
+          },
+          '100%': {
+            transform: 'translateY(0px)',
+            opacity: 1,
+          }
         }
       },
       animation: {

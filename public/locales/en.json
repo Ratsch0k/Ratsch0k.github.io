@@ -4,15 +4,32 @@
     },
     "aboutme": {
         "title": "About me",
-        "myinfo": "Hello there,<br/>I'm Simon, 23 and currently studying IT-Security at the Technical University Darmstadt.<br/>Computer science and generally computers have been a passion of mine for a long time, sitting on my fathers lap to watch him game, and in 5th grade programming my first little program with Visual Basic. Over the years my main interest became cybersecurity, especially web security and network security, but I also very much continue to enjoy software development. I programmed my fair share of programs and websites over the years and I'm always eager to learn the next framework or language. From machine learning to game engines, I've tried many subjects. I've learned the following programming languages (decreasing level of expertise): <br/><br/> <1></1> <br/>You can view my projects on the next page. <br/><br/>While I enjoy working alone in my own pace, I also like to work in motivated groups and I'm not shy to take over the leadership role if no one is up for it. <br/>I hope my achievements will interest you",
-        "langlist": {
-            "javascript": "JavaScript (plain, Reactjs, Nodejs)",
-            "python": "Python (used in my Bachelorthesis)",
-            "c++": "C++ (tutored this)",
-            "java": "Java",
-            "rust": "Rust",
-            "bash": "Bash",
-            "brainfuck": "Brainfuck"
+        "myinfo": "Hello there,<br/>I'm Simon, 23 and currently studying IT-Security at the Technical University Darmstadt.<br/>Computer science and generally computers have been a passion of mine for a long time, sitting on my fathers lap to watch him game, and in 5th grade programming my first little program with Visual Basic. Over the years my main interest became cybersecurity, especially web security and network security, but I also very much continue to enjoy software development. I programmed my fair share of programs and websites over the years and I'm always eager to learn the next framework or language. From machine learning to game engines, I've tried many subjects. I've learned the following programming languages (decreasing level of expertise): <br/><br/>You can view my projects on the next page. <br/><br/>While I enjoy working alone in my own pace, I also like to work in motivated groups and I'm not shy to take over the leadership role if no one is up for it. <br/>I hope my achievements will interest you"
+    },
+    "skills": {
+        "title": "Skills",
+        "general": {
+            "title": "General",
+            "content": "I just finished my bachelor thesis.<br/>Worked as a front-end developer for Comidio Gmbh. and wrote their entire front-end"
+        },
+        "experience": {
+            "title": "Experience",
+            "content": "During my studies and personal projects I learned many languages, framework and design architectures<br/>"
+        },
+        "coding": {
+            "title": "Programming languages",
+            "content": "The list contains all languages I learned in decreasing order of expertise",
+            "langlist": {
+                "javascript": "JavaScript (plain, Reactjs, Nodejs)",
+                "python": "Python (used in my Bachelorthesis)",
+                "c++": "C++ (tutored this)",
+                "java": "Java",
+                "rust": "Rust",
+                "bash": "Bash",
+                "brainfuck": "Brainfuck"
+            }
+        },
+        "languages": {
         }
     },
     "misc": {

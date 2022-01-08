@@ -1,16 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next';
-
-function Block() {
-  return (
-    <div
-      className='bg-white inline-block h-full ml-2 mr-2 align-middle'
-      style={{
-        width: '15%',
-        height: '0.25rem'
-      }}
-    ></div>
-  )
-}
+import PageTitle from '../components/page-title';
 
 const LANGUAGES = [
   'javascript',
@@ -27,15 +16,13 @@ const AboutMe = () => {
 
   return (
     <div className='h-full overflow-hidden flex flex-col'>
-      <div className='text-4xl w-full text-center md:text-6xl pt-4'>
-        <Block />
-        <span>{t('aboutme.title')}</span>
-        <Block />
-      </div>
+      <PageTitle>
+        {t('aboutme.title')}
+      </PageTitle>
       <div className='h-full overflow-hidden'>
         <div className='w-full h-full flex flex-row items-stretch overflow-hidden justify-between pt-8'>
           <div
-            className='w-full overflow-auto pr-4 pl-8'
+            className='w-full overflow-auto pr-4 pl-8 pb-4'
           >
             <div className='max-w-3xl m-auto'>
               <Trans i18nKey='aboutme.myinfo' t={t}>
