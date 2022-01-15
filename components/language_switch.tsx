@@ -54,13 +54,13 @@ const LanguageSwitch = () => {
         <div className='flex md:flex-col flex-col-reverse items-end'>
             <IconButton
                 onClick={() => open ? closePopup() : openPopup()} 
-                className='p-2 m-2 rounded'
+                className='p-2 m-2 rounded-lg bg-primary border border-white'
             >
                 <TranslateIcon/>
             </IconButton>
             <ClickAwayListener onClickAway={() => open && closePopup()}>
                 <div ref={popUpRef} className={`transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className=' rounded-lg shadow-xl bg-primary-light p-2'>
+                    <div className='rounded-lg shadow-xl bg-primary-light p-2'>
                         <ol>
                             <LanguageItem
                                 onClick={() => changeLanguage('en')}

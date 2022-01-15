@@ -22,13 +22,13 @@ const TopicContainerAlt: React.FC<TopicContainerProps> = ({children, title, icon
   return (
     <div
       ref={ref}
-      className={`${pos > 0 && 'mt-16'} p-6 border rounded-md border-primary-light flex flex-col justify-start items-center w-full ${pos % 2 === 1 ? 'sm:flex-row-reverse' : 'sm:flex-row'} bg-primary-dark`}
+      className={`${pos > 0 && 'mt-16'} p-6 border rounded-md border-secondary flex flex-col justify-start items-center w-full ${pos % 2 === 1 ? 'sm:flex-row-reverse' : 'sm:flex-row'} bg-primary-dark`}
       style={{
         animation: `appear-from-below 500ms ease-in-out ${pos * 200}ms both`,
       }}
     >
       <div
-        className='flex-grow-0 flex-shrink-0 mr-4 text-1xl text-primary-light'
+        className='flex-grow-0 flex-shrink-0 mr-4 text-1xl text-secondary'
         style={{
           maxWidth: 200
         }}
@@ -38,10 +38,10 @@ const TopicContainerAlt: React.FC<TopicContainerProps> = ({children, title, icon
         </b>
       </div> 
       <div className='h-full'>
-        <div className='bg-primary-light w-full h-px left-0 mt-4 sm:w-px sm:h-full sm:mr-4 sm:left-auto sm:mt-0 sm:top-0 absolute' />
+        <div className='bg-secondary w-full h-px left-0 mt-4 sm:w-px sm:h-full sm:mr-4 sm:left-auto sm:mt-0 sm:top-0 absolute' />
         <div className='justify-center flex items-center h-full'>
         <div
-          className='bg-primary-dark p-1 text-primary-light'
+          className='bg-primary-dark p-1 text-secondary'
           style={{
             transform: `translateX(-14px)`
           }}

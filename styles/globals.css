@@ -5,3 +5,107 @@
 #__next {
   height: 100%;
 }
+
+@media screen and (min-width: 640px) {
+  .scrollbar::-webkit-scrollbar-button:end {
+    border-bottom: solid 66px #4E598C;
+    height: 66px;
+  }
+
+  .scrollbar::-webkit-scrollbar-button:start {
+    border-top: solid 72px #4E598C;
+    height: 72px;
+  }
+}
+
+.scrollbar::-webkit-scrollbar {
+  height: 0.7rem;
+  width: 0.7rem;
+  background-color: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  box-shadow: inset 0 0 14px 14px #3B4368;
+  border: solid 2px transparent;
+}
+
+@keyframes bounce-up {
+  from {
+    r: 0;
+  }
+}
+
+.lvl-0 {
+  --i: 0;
+}
+
+.lvl-1 {
+  --i: 1;
+}
+
+.lvl-2 {
+  --i: 2;
+}
+
+.lvl-3 {
+  --i: 3;
+}
+
+.lvl-4 {
+  --i: 4;
+}
+
+.lvl-5 {
+  --i: 5;
+}
+
+.lvl-6 {
+  --i: 6;
+}
+
+.lvl-7 {
+  --i: 7;
+}
+
+.lvl-8 {
+  --i: 8;
+}
+
+.lvl-9 {
+  --i: 9;
+}
+
+.lvl-10 {
+  --i: 10;
+}
+
+.lvl-11 {
+  --i: 11;
+}
+
+:root {
+  --bounce-duration: 200ms;
+  --bounce-delay: 50ms;
+  --unfold-duration: 250ms;
+  --unfold-delay: var(--bounce-delay) + var(--bounce-duration);
+  --base-delay: 50ms;
+}
+
+@keyframes unfold {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.unfold {
+  animation: unfold var(--unfold-duration) ease-out calc(var(--unfold-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
+}
+
+.bounce-up {
+  animation: bounce-up var(--bounce-duration) ease-out calc(var(--bounce-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
+}
+
+.bounce-up-delayed {
+  animation: bounce-up var(--bounce-duration) ease-out calc(var(--bounce-delay) + var(--bounce-delay) * ( var(--i) + 5 ) + var(--base-delay)) 1 both;
+}

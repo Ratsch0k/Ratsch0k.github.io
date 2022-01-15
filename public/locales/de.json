@@ -1,6 +1,8 @@
 {
     "intro": {
-        "info": "Student, Entwickler, Zukünftiger IT-Sicherheit Experte"
+        "info": "Student, Entwickler, Zukünftiger IT-Sicherheit Experte",
+        "skip": "Überspringen",
+        "hintClick": "Klick mich!"
     },
     "aboutme": {
         "title": "Über mich",

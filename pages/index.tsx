@@ -10,6 +10,9 @@ import Projects from './projects'
 import tailwindConfig from '../components/tailwind-config';
 import IndicateSwipeMotion from '../components/indicate-swipe-motion'
 import SkillsPage from './skills'
+import convert from 'color-convert';
+
+const primaryDark = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
 
 interface PageInfo {
   component: () => JSX.Element,
@@ -126,17 +129,29 @@ const Home = () => {
 
   return (
     <div>
-        <div className='absolute right-4 z-30 md:top-4 bottom-0 text-primary-dark'>
+        <div id='modal-root'/>
+        <div
+          className='absolute right-4 z-30 md:top-4 bottom-0 text-primary-dark'
+        >
           <LanguageSwitch />
         </div>
-        <div className='absolute bottom-0 z-20 w-full bg-primary'>
-          <div className='p-4 flex justify-center'>
-            <div className='flex flex-col items-center'>
-              {
-                (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
-                <IndicateSwipeMotion />
-              }
-              <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
+        <div
+          className='absolute bottom-0 z-20 w-full pr-3 sm:pr-0'
+        >
+          <div
+            style={{
+              backdropFilter: 'blur(8px)',
+              backgroundColor: `rgba(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}, 0.5)`,
+            }}
+          >
+            <div className='p-4 flex justify-center  border-gray-700 border-t'>
+              <div className='flex flex-col items-center bg-primary px-2 rounded-lg border border-white'>
+                {
+                  (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
+                  <IndicateSwipeMotion />
+                }
+                <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
+              </div>
             </div>
           </div>
         </div>
@@ -274,8 +289,8 @@ const Page: NextPage<PageProps> = (props) => {
     <div
       className='absolute w-full overflow-hidden'
       style={{
+        height: '100%',
         zIndex: currentPage === id ? 10 : 0,
-        height: 'calc(100% - 64px)',
       }}
     >
       <div

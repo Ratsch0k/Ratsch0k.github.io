@@ -1,6 +1,8 @@
 {
     "intro": {
-        "info": "Student, Developer, Future IT-Security expert"
+        "info": "Student, Developer, Future IT-Security expert",
+        "skip": "Skip",
+        "hintClick": "Click me!"
     },
     "aboutme": {
         "title": "About me",
