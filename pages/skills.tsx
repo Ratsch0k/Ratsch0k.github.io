@@ -1,14 +1,15 @@
-import { Trans, useTranslation } from "react-i18next";
-import PageTitle from "../components/page-title";
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
-import CodeIcon from "../components/icons/code";
-import InformationIcon from "../components/icons/information";
-import CodingSkills from "./skills/coding";
-import GeneralSkills from "./skills/general";
-import AcademicIcon from "../components/icons/academic";
-import TranslateIcon from "../components/icons/translate-icon";
-import ExperienceSkills from "./skills/experience";
-import LanguagesSkills from "./skills/languages";
+import {useTranslation} from 'react-i18next';
+import PageTitle from '../components/page-title';
+import {ReactElement, useEffect, useRef, useState} from 'react';
+import CodeIcon from '../components/icons/code';
+import InformationIcon from '../components/icons/information';
+import CodingSkills from './skills/coding';
+import GeneralSkills from './skills/general';
+import AcademicIcon from '../components/icons/academic';
+import TranslateIcon from '../components/icons/translate-icon';
+import ExperienceSkills from './skills/experience';
+import LanguagesSkills from './skills/languages';
+import {PageComponent} from '../components/Page';
 
 interface TopicContainerProps {
   title: string;
@@ -43,7 +44,7 @@ const TopicContainerAlt: React.FC<TopicContainerProps> = ({children, title, icon
         <div
           className='bg-primary-dark p-1 text-secondary'
           style={{
-            transform: `translateX(-14px)`
+            transform: 'translateX(-14px)'
           }}
         >
           {icon}
@@ -57,6 +58,7 @@ const TopicContainerAlt: React.FC<TopicContainerProps> = ({children, title, icon
   );
 };
 
+// eslint-disable-next-line
 const TopicContainer: React.FC<TopicContainerProps> = ({children, title, icon}) => {
   const [open, setOpen] = useState<boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -106,16 +108,38 @@ const TopicContainer: React.FC<TopicContainerProps> = ({children, title, icon}) 
   );
 };
 
-export const SkillsPage = () => {
-  const { t } = useTranslation();
+export const SkillsPage: PageComponent = ({setScrollable}) => {
+  const {t} = useTranslation();
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [border, setBorder] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (contentRef.current !== null) {
+      const windowHeight = window.innerHeight;
+      const componentHeight = contentRef.current?.scrollHeight;
+
+      console.log(`window: ${windowHeight} | component: ${componentHeight}`)
+
+      if (componentHeight && componentHeight > windowHeight) {
+        setScrollable(true);
+        setBorder(true);
+      }
+    }
+
+    return () => {
+      setScrollable(false);
+    }
+  }, [contentRef.current]);
+
   return (
     <div className='h-full flex flex-col'>
-      <PageTitle>
+      <PageTitle border={border}>
         {t('skills.title')}
       </PageTitle>
-        <div className='h-full overflow-auto mt-4 max-w-4xl mx-auto'>
+        <div className='h-full overflow-auto pt-20 pb-12 md:pt-24 max-w-4xl mx-auto'>
           <div
             className='flex flex-col p-8 pt-0 items-center justify-center w-full'
+            ref={(ref) => contentRef.current = ref}
           >
             <TopicContainerAlt pos={0} icon={<InformationIcon />} title={t('skills.general.title')}>
               <GeneralSkills /> 

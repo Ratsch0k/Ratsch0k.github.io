@@ -1,4 +1,4 @@
-import {Component} from "../Component";
+import {Component} from '../Component';
 
 const Logo: Component = ({className, id, style}) => {
   return (

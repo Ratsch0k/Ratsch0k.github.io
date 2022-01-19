@@ -1,4 +1,4 @@
-import {Component} from "../Component";
+import {Component} from '../Component';
 
 
 const CircuitBoard: Component = ({className, id}) => {
@@ -7,7 +7,7 @@ const CircuitBoard: Component = ({className, id}) => {
       className={className}
       id={id}
       stroke="currentColor"
-      stroke-width="3.7042"
+      strokeWidth="3.7042"
       width="1e3mm"
       height="1e3mm"
       version="1.1"

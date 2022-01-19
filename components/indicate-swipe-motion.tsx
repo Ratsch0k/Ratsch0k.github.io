@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
+import {useTranslation} from 'react-i18next';
 
 const SIZE = 24;
 
 const IndicateSwipeMotion = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <div className='flex justify-center'>

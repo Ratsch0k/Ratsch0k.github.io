@@ -1,8 +1,7 @@
-import React from "react";
 import tailwindConfig from '../components/tailwind-config';
 import convert from 'color-convert';
 
-const primaryDark = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
+const primary = convert.hex.rgb(tailwindConfig.theme.colors.primary.DEFAULT);
 
 const Block = () => {
   return (
@@ -13,17 +12,22 @@ const Block = () => {
         height: '0.25rem',
         transform: 'translateY(4px)'
       }}
-    ></div>
+    />
   )
 };
 
-const PageTitle: React.FC = ({children}) => {
+export interface PageTitleProps {
+  border?: boolean;
+}
+
+const PageTitle: React.FC<PageTitleProps> = ({children, border}) => {
+
   return (
     <div className='z-20 absolute top-0 pr-3 sm:pr-0 w-full'>
-      <div className='text-4xl w-full text-center md:text-6xl pt-4 pb-4 flex items-center justify-center border-b border-gray-700'
+      <div className={`text-4xl w-full text-center md:text-6xl pt-4 pb-4 flex items-center justify-center ${border && 'border-b'} border-primary-dark`}
         style={{
           backdropFilter: 'blur(8px)',
-          backgroundColor: `rgba(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}, 0.5)`,
+          backgroundColor: `rgba(${primary[0]}, ${primary[1]}, ${primary[2]}, 0.5)`,
         }}
       >
         <Block />

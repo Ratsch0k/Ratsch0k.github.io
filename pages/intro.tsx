@@ -1,18 +1,22 @@
 import styles from '../styles/Home.module.css'
-import { useTranslation } from 'react-i18next';
-import {useCallback, useRef, useState, MouseEvent, useEffect} from "react";
+import {useTranslation} from 'react-i18next';
+import {useCallback, useRef, useState, useEffect} from 'react';
 import Logo from '../components/icons/Logo';
-import Modal from "../components/Modal";
-import logo from "../components/icons/Logo";
-import CircuitBoard from "../components/icons/CircuitBoard";
+import Modal from '../components/Modal';
+import CircuitBoard from '../components/icons/CircuitBoard';
+import {PageComponent} from '../components/Page';
 
-const Intro = () => {
+const Intro: PageComponent = ({setScrollable, firstPage}) => {
   const {t} = useTranslation();
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(firstPage);
   const hoverRef = useRef<HTMLDivElement | null>();
   const [mouseDown, setMouseDown] = useState<boolean>(false);
   const [clicked, setClicked] = useState<boolean>(false);
   const [hintClick, setHintClick] = useState<boolean>(false);
+
+  useEffect(() => {
+    setScrollable(false);
+  }, []);
 
   // After 2 seconds. Hint that the user can click
   useEffect(() => {
@@ -23,6 +27,7 @@ const Intro = () => {
 
   const handleMouseDown = useCallback(() => {
     if (hoverRef.current) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       hoverRef.current!.style.animationPlayState = 'paused';
     }
     setMouseDown(true);
@@ -102,14 +107,14 @@ const Intro = () => {
     </Modal>
       <div className='flex h-full justify-center items-center'>
         <div>
-          <div className={`sm:text-6xl text-4xl text-center ${styles.appear}`}>
+          <div className={`sm:text-6xl text-4xl text-center opacity-0 ${clicked ? styles['appear']: !open ? styles['appear-now'] : ''}`}>
             Simon Kurz
           </div>
-          <div className={`md:text-sm text-xs text-secondary md:transform md:translate-x-40 ${styles.appear} ${styles['appear-subtitle']}`}>
+          <div className={`md:text-sm text-xs text-secondary md:transform md:translate-x-40 opacity-0 ${clicked ? styles['appear'] : !open ? styles['appear-now'] : ''} ${clicked ? styles['appear-subtitle'] : !open ? styles['appear-subtitle-now'] : ''}`}>
             {t('intro.info')}
           </div>
           <div
-            className={`sm:text-6xl sm:mt-4 text-4xl text-center ${styles.appear}`}
+            className={`sm:text-6xl sm:mt-4 text-4xl text-center opacity-0 ${clicked ? styles['appear'] : !open ? styles['appear-now'] : ''}`}
             style={{
               transform: 'scaleY(-1)',
               background: 'linear-gradient(0deg, rgba(255,255,255,0.32) 0%, rgba(0,0,0,0) 60%)',

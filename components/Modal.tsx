@@ -1,5 +1,5 @@
-import ReactDOM from "react-dom";
-import {FC, useEffect, useRef} from "react";
+import ReactDOM from 'react-dom';
+import {FC, useEffect, useRef} from 'react';
 
 export interface ModalProps {
   open: boolean;
@@ -10,6 +10,7 @@ export const Modal: FC<ModalProps> = (props) => {
   const modalEl = useRef(document.createElement('div'));
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const root = document.getElementById('modal-root')!;
 
     if (open) {

@@ -1,7 +1,8 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+import {PageComponent} from '../components/Page';
 
-const Projects = () => {
-    const { t } = useTranslation();
+const Projects: PageComponent = () => {
+    const {t} = useTranslation();
 
     return (
        <div>

@@ -1,5 +1,3 @@
-import { NextPage } from 'next';
-import React from 'react';
 import IconButton from './icon-button';
 import ArrowLeftIcon from './icons/arrow-left';
 import ArrowRightIcon from './icons/arrow-right';

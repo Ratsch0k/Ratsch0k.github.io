@@ -1,7 +1,8 @@
-import { useTranslation } from "react-i18next"
+import React from 'react';
+import {useTranslation} from 'react-i18next'
 
 const ExperienceSkills = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <div>

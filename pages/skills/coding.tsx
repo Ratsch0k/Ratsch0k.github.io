@@ -1,4 +1,5 @@
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import {useTranslation} from 'react-i18next';
 
 const languages = [
   {
@@ -28,7 +29,7 @@ const languages = [
 ]
 
 const CodingSkills = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <>
@@ -39,7 +40,7 @@ const CodingSkills = () => {
         {
           languages.map(({name}) => {
             return (
-              <li>{t(`skills.coding.langlist.${name}`)}</li>
+              <li key={`coding-${name}`}>{t(`skills.coding.langlist.${name}`)}</li>
             );
           })
         }

@@ -1,8 +1,8 @@
-import { NextPage } from 'next';
-import React, { useCallback, useRef, useState } from 'react';
+import {NextPage} from 'next';
+import {useCallback, useRef, useState} from 'react';
 import TranslateIcon from './icons/translate-icon';
 import ClickAwayListener from 'react-click-away-listener';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import IconButton from './icon-button';
 
 interface LanguageItemProps {

@@ -1,7 +1,7 @@
-import { NextPage } from 'next'
-import { useRouter } from 'next/dist/client/router'
-import { ReactNode, TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react'
-import { useTranslation } from 'react-i18next'
+import {NextPage} from 'next'
+import {useRouter} from 'next/dist/client/router'
+import {ReactNode, TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler} from 'react'
+import {useTranslation} from 'react-i18next'
 import LanguageSwitch from '../components/language_switch'
 import PageIndicator from '../components/page_indicator'
 import AboutMe from './about_me'
@@ -11,11 +11,12 @@ import tailwindConfig from '../components/tailwind-config';
 import IndicateSwipeMotion from '../components/indicate-swipe-motion'
 import SkillsPage from './skills'
 import convert from 'color-convert';
+import {PageComponent} from '../components/Page';
 
-const primaryDark = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
+const primaryColor = convert.hex.rgb(tailwindConfig.theme.colors.primary.DEFAULT);
 
 interface PageInfo {
-  component: () => JSX.Element,
+  component: PageComponent,
   path: string;
   titleKey: string;
 }
@@ -44,11 +45,13 @@ const initialState: PageInfo[] = [
 ];
 
 const Home = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const [initialPos, setInitialPos] = useState<{x: number, y: number}>();
   const router = useRouter();
   const [pages, setPages] = useState<PageInfo[]>(initialState); 
   const [hasNavigated, setHasNavigated] = useState<boolean>(sessionStorage.getItem('hasNavigated') === 'true' || false);
+  const [firstPage, setFirstPage] = useState<boolean>(true);
+  const inTransition = useRef<boolean>(false);
 
   const getPageIndex = useCallback((path) => {
     for (let i = 0; i < pages.length; i++) {
@@ -58,9 +61,30 @@ const Home = () => {
     }
     return 0;
   }, [pages]);
-  
   const [currentPage, setCurrentPage] = useState<number>(getPageIndex(router.asPath));
-  const inTransition = useRef<boolean>(false);
+
+  /**
+   * Indicates whether the page is bigger than the screen and thus scrollable.
+   *
+   * Should be set from the page. If true, the footer will have a top border
+   */
+  const [scrollable, setScrollable] = useState<boolean>(false);
+
+  /**
+   * Keeps track of the scrollable value of each page.
+   */
+  const [scrollMap, setScrollMap] = useState<{[index: number]: boolean}>({});
+
+  const handleSetScrollable = useCallback((page: number) => (value: boolean) => {
+    setScrollMap((prev) => ({
+      ...prev,
+      [page]: value,
+    }));
+
+    if (currentPage === page) {
+      setScrollable(value);
+    }
+  }, [currentPage]);
 
   useEffect(() => {
     setCurrentPage(getPageIndex(router.asPath));
@@ -70,6 +94,7 @@ const Home = () => {
     let transId: NodeJS.Timeout | undefined = undefined;
     if (!inTransition.current && pageId >= 0 && pageId < pages.length) {
       setHasNavigated(true);
+      setFirstPage(false);
       sessionStorage.setItem('hasNavigated', 'true');
       inTransition.current = true;
       transId = setTimeout(() => {inTransition.current = false}, 0);
@@ -78,6 +103,11 @@ const Home = () => {
         return arr; 
       });
       setCurrentPage(pageId);
+
+      if (scrollMap[pageId] !== undefined) {
+        setScrollable(scrollMap[pageId]);
+      }
+
       const nextPage = pages[pageId];
       window.history.pushState(nextPage.path, t(nextPage.titleKey), nextPage.path)
     }
@@ -85,7 +115,7 @@ const Home = () => {
     return () => {
       clearTimeout(transId as unknown as number);
     }
-  }, [pages, currentPage])
+  }, [pages, currentPage, scrollMap])
 
   const toNextPage = useCallback(() => {
     toPage(currentPage + 1);
@@ -141,10 +171,10 @@ const Home = () => {
           <div
             style={{
               backdropFilter: 'blur(8px)',
-              backgroundColor: `rgba(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}, 0.5)`,
+              backgroundColor: `rgba(${primaryColor[0]}, ${primaryColor[1]}, ${primaryColor[2]}, 0.5)`,
             }}
           >
-            <div className='p-4 flex justify-center  border-gray-700 border-t'>
+            <div className={`p-4 flex justify-center  border-primary-dark ${scrollable && 'border-t'}`}>
               <div className='flex flex-col items-center bg-primary px-2 rounded-lg border border-white'>
                 {
                   (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
@@ -169,7 +199,7 @@ const Home = () => {
                 id={index}
                 key={`page-${index}`}
               >
-                <ThisPage/>
+                <ThisPage setScrollable={handleSetScrollable(index)} firstPage={firstPage}/>
               </Page>
             );
           })

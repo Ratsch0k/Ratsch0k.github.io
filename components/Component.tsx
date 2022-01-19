@@ -1,4 +1,4 @@
-import React, {CSSProperties} from "react";
+import React, {CSSProperties} from 'react';
 
 export interface ComponentProps {
   className?: string;
@@ -6,4 +6,4 @@ export interface ComponentProps {
   style?: CSSProperties;
 }
 
-export type Component<T = {}> = React.FC<T & ComponentProps>;
+export type Component<T = Record<string, unknown>> = React.FC<T & ComponentProps>;

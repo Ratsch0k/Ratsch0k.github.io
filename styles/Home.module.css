@@ -6,10 +6,21 @@
 .appear {
   animation-name: appear;
   animation-duration: 500ms;
+  animation-delay: 3s;
+  animation-fill-mode: both;
+}
+
+.appear-now {
+  animation-name: appear;
+  animation-duration: 500ms;
   animation-delay: 250ms;
   animation-fill-mode: both;
 }
 
 .appear-subtitle {
+  animation-delay: 4s;
+}
+
+.appear-subtitle-now {
   animation-delay: 1s;
 }
