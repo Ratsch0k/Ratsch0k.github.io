@@ -166,7 +166,7 @@ const Home = () => {
           <LanguageSwitch />
         </div>
         <div
-          className='absolute bottom-0 z-20 w-full pr-3 sm:pr-0'
+          className='absolute bottom-0 z-20 w-full pr-2 sm:pr-0'
         >
           <div
             style={{
@@ -174,7 +174,7 @@ const Home = () => {
               backgroundColor: `rgba(${primaryColor[0]}, ${primaryColor[1]}, ${primaryColor[2]}, 0.5)`,
             }}
           >
-            <div className={`p-4 flex justify-center  border-primary-dark ${scrollable && 'border-t'}`}>
+            <div className={`p-4 flex justify-center border-primary-dark ${scrollable && 'border-t'}`}>
               <div className='flex flex-col items-center bg-primary px-2 rounded-lg border border-white'>
                 {
                   (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&

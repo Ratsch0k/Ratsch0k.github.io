@@ -20,10 +20,16 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
 
   // After 2 seconds. Hint that the user can click
   useEffect(() => {
-    setTimeout(() => {
-      setHintClick(true);
+    const id = setTimeout(() => {
+      if (!mouseDown && !clicked) {
+        setHintClick(true);
+      }
     }, 2000);
-  }, []);
+
+    return () => {
+      clearTimeout(id);
+    }
+  }, [mouseDown, clicked]);
 
   const handleMouseDown = useCallback(() => {
     if (hoverRef.current) {
