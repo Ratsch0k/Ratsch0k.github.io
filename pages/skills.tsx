@@ -10,6 +10,7 @@ import TranslateIcon from '../components/icons/translate-icon';
 import ExperienceSkills from './skills/experience';
 import LanguagesSkills from './skills/languages';
 import {PageComponent} from '../components/Page';
+import PageContent from '../components/PageContent';
 
 interface TopicContainerProps {
   title: string;
@@ -136,7 +137,7 @@ export const SkillsPage: PageComponent = ({setScrollable}) => {
       <PageTitle border={border}>
         {t('skills.title')}
       </PageTitle>
-        <div className='h-full overflow-auto pt-20 pb-12 md:pt-24 max-w-4xl mx-auto'>
+        <PageContent>
           <div
             className='flex flex-col p-8 pt-0 items-center justify-center w-full'
             ref={(ref) => contentRef.current = ref}
@@ -154,7 +155,7 @@ export const SkillsPage: PageComponent = ({setScrollable}) => {
               <LanguagesSkills />
             </TopicContainerAlt>
           </div>
-        </div>
+        </PageContent>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import {Trans, useTranslation} from 'react-i18next';
 import PageTitle from '../components/page-title';
 import {useEffect, useRef, useState} from 'react';
 import {PageComponent} from '../components/Page';
+import PageContent from '../components/PageContent';
 
 const LANGUAGES = [
   'javascript',
@@ -41,8 +42,7 @@ const AboutMe: PageComponent = ({setScrollable}) => {
       <PageTitle border={border}>
         {t('aboutme.title')}
       </PageTitle>
-      <div className='h-full overflow-auto max-w-4xl pt-20 md:pt-24 mx-auto scrollbar'
-      >
+      <PageContent>
         <div
             className='w-full overflow-auto pl-8 pr-8 pb-4'
             ref={(ref) => contentRef.current = ref}
@@ -60,7 +60,7 @@ const AboutMe: PageComponent = ({setScrollable}) => {
               </Trans>
             </div>
           </div>
-      </div>
+      </PageContent>
     </div>
   );
 };
