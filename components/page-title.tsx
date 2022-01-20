@@ -23,7 +23,7 @@ export interface PageTitleProps {
 const PageTitle: React.FC<PageTitleProps> = ({children, border}) => {
 
   return (
-    <div className='z-20 absolute top-0 pr-3 sm:pr-0 w-full'>
+    <div className='z-20 absolute top-0 pr-2 sm:pr-0 w-full'>
       <div className={`text-4xl w-full text-center md:text-6xl pt-4 pb-4 flex items-center justify-center ${border && 'border-b'} border-primary-dark`}
         style={{
           backdropFilter: 'blur(8px)',
