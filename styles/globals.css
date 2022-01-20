@@ -19,8 +19,8 @@
 }
 
 .scrollbar::-webkit-scrollbar {
-  height: 0.7rem;
-  width: 0.7rem;
+  height: 0.55rem;
+  width: 0.55rem;
   background-color: transparent;
 }
 
