@@ -1,6 +1,7 @@
 import IconButton from './icon-button';
 import ArrowLeftIcon from './icons/arrow-left';
 import ArrowRightIcon from './icons/arrow-right';
+import Logo from './icons/Logo';
 
 interface PageIndicatorProps {
     len: number;
@@ -28,6 +29,9 @@ const PageIndicator = (props: PageIndicatorProps) => {
 
     return (
         <div className='flex flex-row items-center'>
+          <div className='absolute bottom-3 left-4 h-10 w-10'>
+            <Logo />
+          </div>
             <IconButton
                 onClick={() => changePage(page - 1)}
                 className='mr-2'
