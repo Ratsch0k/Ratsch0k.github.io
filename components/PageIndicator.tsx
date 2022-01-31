@@ -1,6 +1,6 @@
-import IconButton from './icon-button';
-import ArrowLeftIcon from './icons/arrow-left';
-import ArrowRightIcon from './icons/arrow-right';
+import IconButton from './IconButton';
+import ArrowLeftIcon from './icons/ArrowLeftIcon';
+import ArrowRightIcon from './icons/ArrowRightIcon';
 import Logo from './icons/Logo';
 
 interface PageIndicatorProps {
@@ -9,17 +9,13 @@ interface PageIndicatorProps {
     changePage(page: number): void;
 }
 
-interface CircleProps {
-    color: string;
-}
-
 const CIRCLE_SIZE = 10;
 
-const Circle = ({color}: CircleProps) => {
+const Circle = () => {
     
     return (
-        <svg width={CIRCLE_SIZE} height={CIRCLE_SIZE}>
-            <circle cx={CIRCLE_SIZE / 2} cy={CIRCLE_SIZE / 2} r={CIRCLE_SIZE / 2} fill={color} className='transition-colors duration-500'/>
+        <svg width={CIRCLE_SIZE} height={CIRCLE_SIZE} fill='currentColor'>
+            <circle cx={CIRCLE_SIZE / 2} cy={CIRCLE_SIZE / 2} r={CIRCLE_SIZE / 2} className='transition-colors duration-500'/>
         </svg>
     );
 };
@@ -30,7 +26,7 @@ const PageIndicator = (props: PageIndicatorProps) => {
     return (
         <div className='flex flex-row items-center'>
           <div className='absolute bottom-3 left-4 h-10 w-10'>
-            <Logo />
+            <Logo strokeWidth={40}/>
           </div>
             <IconButton
                 onClick={() => changePage(page - 1)}
@@ -44,8 +40,12 @@ const PageIndicator = (props: PageIndicatorProps) => {
 
                     for (let i = 0; i < len; i++) {
                         circles.push(
-                            <div key={`indicator-${i}`} className='m-1 cursor-pointer' onClick={() => changePage(i)}>
-                                <Circle color={i === page ? 'white' : '#3B4368'}/>
+                            <div
+                              key={`indicator-${i}`}
+                              className={`m-1 cursor-pointer ${i === page ? 'text-secondary' : 'text-primary-lightest hover:text-primary-contrast'}`}
+                              onClick={() => changePage(i)}
+                            >
+                                <Circle />
                             </div>
                         )
                     }

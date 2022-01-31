@@ -1,9 +1,9 @@
 import {NextPage} from 'next';
 import {useCallback, useRef, useState} from 'react';
-import TranslateIcon from './icons/translate-icon';
+import TranslateIcon from './icons/TranslateIcon';
 import ClickAwayListener from 'react-click-away-listener';
 import {useTranslation} from 'react-i18next';
-import IconButton from './icon-button';
+import IconButton from './IconButton';
 
 interface LanguageItemProps {
     onClick(): void;
@@ -51,16 +51,16 @@ const LanguageSwitch = () => {
     }, [i18n]);
 
     return (
-        <div className='flex md:flex-col flex-col-reverse items-end'>
+        <div className='flex flex-col-reverse items-end'>
             <IconButton
                 onClick={() => open ? closePopup() : openPopup()} 
-                className='p-2 m-2 rounded-lg bg-primary border border-white'
+                className='p-2 m-2 rounded-lg text-primary-contrast'
             >
                 <TranslateIcon/>
             </IconButton>
             <ClickAwayListener onClickAway={() => open && closePopup()}>
                 <div ref={popUpRef} className={`transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className='rounded-lg shadow-xl bg-primary-light p-2'>
+                    <div className='rounded-lg shadow-xl bg-primary-lightest p-2'>
                         <ol>
                             <LanguageItem
                                 onClick={() => changeLanguage('en')}

@@ -1,15 +1,14 @@
-import tailwindConfig from '../components/tailwind-config';
+import tailwindConfig from '../components/TailwindConfig';
 import convert from 'color-convert';
+import {FC} from 'react';
 
 const primary = convert.hex.rgb(tailwindConfig.theme.colors.primary.DEFAULT);
 
 const Block = () => {
   return (
     <div
-      className='bg-white inline-block h-full ml-2 mr-2 align-middle'
+      className='bg-white inline-block h-full ml-2 mr-2 align-middle w-[15%] h-[0.25rem]'
       style={{
-        width: '15%',
-        height: '0.25rem',
         transform: 'translateY(4px)'
       }}
     />
@@ -20,7 +19,7 @@ export interface PageTitleProps {
   border?: boolean;
 }
 
-const PageTitle: React.FC<PageTitleProps> = ({children, border}) => {
+const PageTitle: FC<PageTitleProps> = ({children, border}) => {
 
   return (
     <div className='z-20 absolute top-0 pr-2 sm:pr-0 w-full'>
