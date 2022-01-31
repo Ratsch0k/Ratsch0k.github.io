@@ -34,6 +34,28 @@
         "languages": {
         }
     },
+    "projects": {
+        "title": "Projects",
+        "type": {
+            "title": "Project scope",
+            "app": "App",
+            "server": "Server",
+            "website": "Website"
+        }
+    },
+    "legal": {
+        "title": "Legal"
+    },
+    "imprint": {
+        "title": "Imprint",
+        "phone": "Phone",
+        "telefax": "Telefax",
+        "mail": "Email",
+        "contact": "Contact"
+    },
+    "privacyPolicy": {
+        "title": "Privacy policy"
+    },
     "misc": {
         "swipe": "Swipe to the next page"
     }
