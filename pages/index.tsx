@@ -1,17 +1,18 @@
-import {NextPage} from 'next'
-import {useRouter} from 'next/dist/client/router'
-import {ReactNode, TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler} from 'react'
-import {useTranslation} from 'react-i18next'
-import LanguageSwitch from '../components/language_switch'
-import PageIndicator from '../components/page_indicator'
-import AboutMe from './about_me'
-import Intro from './intro'
-import Projects from './projects'
-import tailwindConfig from '../components/tailwind-config';
-import IndicateSwipeMotion from '../components/indicate-swipe-motion'
-import SkillsPage from './skills'
+import {NextPage} from 'next';
+import {useRouter} from 'next/dist/client/router';
+import {ReactNode, TouchEventHandler, useCallback, useEffect, useRef, useState, WheelEventHandler} from 'react';
+import {useTranslation} from 'react-i18next';
+import LanguageSwitch from '../components/LanguageSwitch';
+import PageIndicator from '../components/PageIndicator';
+import AboutMe from './about_me';
+import Intro from './intro';
+import Projects from './projects';
+import tailwindConfig from '../components/TailwindConfig';
+import IndicateSwipeMotion from '../components/IndicateSwipeMotion';
+import Skills from './skills';
 import convert from 'color-convert';
 import {PageComponent} from '../components/Page';
+import Legal from './legal';
 
 const primaryColor = convert.hex.rgb(tailwindConfig.theme.colors.primary.DEFAULT);
 
@@ -33,7 +34,7 @@ const initialState: PageInfo[] = [
     titleKey: 'aboutme.pageTitle',
   },
   {
-    component: SkillsPage,
+    component: Skills,
     path: '/skills',
     titleKey: 'skills.pageTitle',
   },
@@ -42,6 +43,11 @@ const initialState: PageInfo[] = [
     path: '/projects',
     titleKey: 'projects.pageTitle',
   },
+  {
+    component: Legal,
+    path: '/legal',
+    titleKey: 'legal.pageTitle',
+  }
 ];
 
 const Home = () => {
@@ -161,7 +167,7 @@ const Home = () => {
     <div>
         <div id='modal-root'/>
         <div
-          className='absolute right-4 z-30 md:top-4 bottom-0 text-primary-dark'
+          className='absolute right-4 z-30 bottom-2 text-primary-dark'
         >
           <LanguageSwitch />
         </div>
@@ -175,7 +181,7 @@ const Home = () => {
             }}
           >
             <div className={`p-4 flex justify-center border-primary-dark ${scrollable && 'border-t'}`}>
-              <div className='flex flex-col items-center bg-primary px-2 rounded-lg border border-white'>
+              <div className='flex flex-col items-center px-2'>
                 {
                   (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
                   <IndicateSwipeMotion />
@@ -317,17 +323,13 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <div
-      className='absolute w-full overflow-hidden'
-      style={{
-        height: '100%',
-        zIndex: currentPage === id ? 10 : 0,
-      }}
+      className={`absolute w-full overflow-hidden h-full ${currentPage === id ? 'z-10' : 'z-0'}`}
     >
       <div
         key={`page-${id}`}
         className='h-full w-full overflow-y-auto overflow-x-hidden'
         style={{
-          transition: 'transform ease-out 500ms, opacity ease-in 250ms',
+          transition: 'transform cubic-bezier(0.65, 0, 0.35, 1) 500ms, opacity linear 250ms',
           opacity: currentPage === id ? 1 : 0,
           transform: currentPage === id ? 'translateX(0)' : `translateX(${pos}%)`,
         }} 

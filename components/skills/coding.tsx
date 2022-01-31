@@ -1,5 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {Skill} from './index';
+import CodeIcon from '../icons/CodeIcon';
 
 const languages = [
   {
@@ -28,7 +30,7 @@ const languages = [
   }
 ]
 
-const CodingSkills = () => {
+const CodingSkill = () => {
   const {t} = useTranslation();
 
   return (
@@ -49,4 +51,10 @@ const CodingSkills = () => {
   );
 };
 
-export default CodingSkills;
+const coding: Skill = {
+  name: 'skills.coding.title',
+  icon: <CodeIcon />,
+  content: <CodingSkill />,
+};
+
+export default coding;

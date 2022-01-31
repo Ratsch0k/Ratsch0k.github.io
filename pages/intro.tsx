@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useCallback, useRef, useState, useEffect} from 'react';
 import Logo from '../components/icons/Logo';
 import Modal from '../components/Modal';
-import CircuitBoard from '../components/icons/CircuitBoard';
+import CircuitBoardIcon from '../components/icons/CircuitBoardIcon';
 import {PageComponent} from '../components/Page';
 
 const Intro: PageComponent = ({setScrollable, firstPage}) => {
@@ -71,9 +71,8 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
         <div className={`transition-all duration-250 transform ${mouseDown ? 'scale-90' : 'scale-1'}`}>
           <div
             key='logo-div'
+            className='w-[20vw] h-[20vh]'
             style={{
-              width: '20vw',
-              height: '20vh',
               animationName: 'hover',
               animationDuration: '4s',
               animationTimingFunction: 'ease-in-out',
@@ -96,7 +95,7 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
         <div className='h-full w-full absolute flex justify-center items-center text-white'>
           {
             clicked &&
-            <CircuitBoard className='h-full w-full' />
+            <CircuitBoardIcon className='h-full w-full' />
           }
         </div>
         <button
