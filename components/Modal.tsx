@@ -1,12 +1,18 @@
 import ReactDOM from 'react-dom';
-import {FC, useEffect, useRef} from 'react';
+import {PropsWithChildren, useEffect, useRef} from 'react';
 
 export interface ModalProps {
   open: boolean;
+  noFullscreen?: boolean;
+  zIndex?: number | undefined;
 }
 
-export const Modal: FC<ModalProps> = (props) => {
-  const {children, open} = props;
+const defaultProps = {
+  zIndex: 40,
+};
+
+const Modal = (props: PropsWithChildren<ModalProps & typeof defaultProps>) => {
+  const {children, open, noFullscreen, zIndex} = props;
   const modalEl = useRef(document.createElement('div'));
 
   useEffect(() => {
@@ -32,7 +38,18 @@ export const Modal: FC<ModalProps> = (props) => {
     }
   }, [open]);
 
-  return ReactDOM.createPortal(children, modalEl.current);
-}
+  return ReactDOM.createPortal(
+    <div className={`absolute ${!noFullscreen ? 'h-full w-full': 'none'}`}
+      style={{
+        zIndex: zIndex,
+      }}
+    >
+      {children}
+    </div>,
+    modalEl.current,
+  );
+};
+
+Modal.defaultProps = defaultProps;
 
 export default Modal;
