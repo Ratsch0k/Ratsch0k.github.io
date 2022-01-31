@@ -33,6 +33,28 @@
             "title": "Sprachen"
         }
     },
+    "projects": {
+        "title": "Projekte",
+        "type": {
+            "title": "Projektumfang",
+            "app": "App",
+            "server": "Server",
+            "website": "Webseite"
+        }
+    },
+    "legal": {
+        "title": "Legales"
+    },
+    "imprint": {
+        "title": "Impressum",
+        "phone": "Telefon",
+        "telefax": "Telefax",
+        "mail": "E-Mail",
+        "contact": "Kontakt"
+    },
+    "privacyPolicy": {
+        "title": "Datenschutzerklärung"
+    },
     "misc": {
         "swipe": "Wische zur nächsten Seite"
     }
