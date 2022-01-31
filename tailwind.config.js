@@ -1,6 +1,8 @@
 module.exports = {
+  mode: 'jit',
   purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   darkMode: false, // or 'media' or 'class'
+  important: true,
   theme: {
     extend: {
       colors: {
@@ -8,14 +10,19 @@ module.exports = {
           lightest: '#BEC3DA',
           light: '#8A94BC',
           DEFAULT: '#4E598C',
-          dark: '#3B4368'
+          dark: '#3B4368',
+          contrast: '#FFFFFF',
         },
         secondary: {
           lightest: '#F9C784',
           light: '#FCAF58',
           DEFAULT: '#FF8C42',
-          dark: '#E05600'
+          dark: '#E05600',
+          contrast: '#FFFFFF',
         }
+      },
+      spacing: {
+        '100-8': 'calc(100% - 2rem)',
       },
       keyframes: {
         swipe: {

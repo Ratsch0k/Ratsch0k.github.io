@@ -17,4 +17,5 @@ module.exports = {
     return config;
   },
   useFileSystemPublicRoutes: false,
+  important: true,
 }
