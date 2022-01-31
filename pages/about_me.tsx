@@ -1,5 +1,5 @@
 import {Trans, useTranslation} from 'react-i18next';
-import PageTitle from '../components/page-title';
+import PageTitle from '../components/PageTitle';
 import {useEffect, useRef, useState} from 'react';
 import {PageComponent} from '../components/Page';
 import PageContent from '../components/PageContent';
@@ -19,16 +19,20 @@ const AboutMe: PageComponent = ({setScrollable}) => {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [border, setBorder] = useState<boolean>(false);
 
+  /*
+   * Check size of content and set borders of header / footer appropriately
+   */
   useEffect(() => {
     if (contentRef.current !== null) {
       const windowHeight = window.innerHeight;
       const componentHeight = contentRef.current?.scrollHeight;
 
-      console.log(`window: ${windowHeight} | component: ${componentHeight}`)
-
-      if (componentHeight && componentHeight > windowHeight) {
+      if (componentHeight && componentHeight + 80 > windowHeight) {
         setScrollable(true);
         setBorder(true);
+      } else {
+        setScrollable(false);
+        setBorder(false);
       }
     }
 
