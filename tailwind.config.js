@@ -2,7 +2,6 @@ module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   darkMode: false, // or 'media' or 'class'
-  important: true,
   theme: {
     extend: {
       colors: {
@@ -80,14 +79,17 @@ module.exports = {
       animation: {
         'swipe-left': 'swipe 4s ease-in 500ms infinite',
         'hover': 'hover 4s ease-in-out infinite',
-        'ball-shrink': 'ball-shrink 1s ease-out 2s',
+        'ball-shrink': 'ball-shrink 0.8s ease-out 1.2s',
       }
     }
   },
   variants: {
     borderWidth: ['responsive', 'hover'],
     fontWeight: ['responsive', 'hover'],
-    extend: {},
+    extend: {
+      textColor: ['disabled'],
+      borderColor: ['disabled'],
+    },
   },
   plugins: [],
 }

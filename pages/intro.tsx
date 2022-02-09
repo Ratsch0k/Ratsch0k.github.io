@@ -4,7 +4,7 @@ import {useCallback, useRef, useState, useEffect} from 'react';
 import Logo from '../components/icons/Logo';
 import Modal from '../components/Modal';
 import CircuitBoardIcon from '../components/icons/CircuitBoardIcon';
-import {PageComponent} from '../components/Page';
+import {PageComponent} from '../components/PageComponent';
 
 const Intro: PageComponent = ({setScrollable, firstPage}) => {
   const {t} = useTranslation();
@@ -49,7 +49,7 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
     setClicked(true);
     setTimeout(() => {
       setOpen(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
@@ -60,8 +60,8 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
           `absolute inset-0 bg-primary-dark flex justify-center items-center z-40 text-white transition-opacity ${clicked && 'opacity-0 animate-ball-shrink'}`
         }
         style={{
-          transitionDelay: '2s',
-          transitionDuration: '1s',
+          transitionDelay: '1.2s',
+          transitionDuration: '0.8s',
         }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -99,12 +99,13 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
           }
         </div>
         <button
-          className="absolute p-4 pb-0 right-8 bottom-8 text-xs border-b-2 md:text-xl xl:text-2xl transition-all hover:border-b-8"
+          className='absolute p-4 pb-0 right-8 bottom-8 text-xs border-b-2 md:text-xl xl:text-2xl transition-all hover:border-b-8 disabled:opacity-0'
           onClick={handleSkip}
           onMouseUp={handleSkip}
           onMouseDown={handleSkip}
           onTouchStart={handleSkip}
           onTouchEnd={handleSkip}
+          disabled={clicked}
         >
           {t('intro.skip')}
         </button>
@@ -112,14 +113,14 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
     </Modal>
       <div className='flex h-full justify-center items-center'>
         <div>
-          <div className={`sm:text-6xl text-4xl text-center opacity-0 ${clicked ? styles['appear']: !open ? styles['appear-now'] : ''}`}>
+          <div className={`sm:text-6xl text-4xl text-center ${clicked ? styles['appear']: !open ? styles['appear-now'] : ''}`}>
             Simon Kurz
           </div>
-          <div className={`md:text-sm text-xs text-secondary md:transform md:translate-x-40 opacity-0 ${clicked ? styles['appear'] : !open ? styles['appear-now'] : ''} ${clicked ? styles['appear-subtitle'] : !open ? styles['appear-subtitle-now'] : ''}`}>
+          <div className={`md:text-sm text-xs text-secondary md:transform md:translate-x-40 ${clicked ? styles['appear'] : !open ? styles['appear-now'] : ''} ${clicked ? styles['appear-subtitle'] : !open ? styles['appear-subtitle-now'] : ''}`}>
             {t('intro.info')}
           </div>
           <div
-            className={`sm:text-6xl sm:mt-4 text-4xl text-center opacity-0 ${clicked ? styles['appear'] : !open ? styles['appear-now'] : ''}`}
+            className={`sm:text-6xl sm:mt-4 text-4xl text-center ${clicked ? styles['appear'] : !open ? styles['appear-now'] : ''}`}
             style={{
               transform: 'scaleY(-1)',
               background: 'linear-gradient(0deg, rgba(255,255,255,0.32) 0%, rgba(0,0,0,0) 60%)',
