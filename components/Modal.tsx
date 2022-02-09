@@ -1,10 +1,12 @@
 import ReactDOM from 'react-dom';
-import {PropsWithChildren, useEffect, useRef} from 'react';
+import {CSSProperties, PropsWithChildren, useEffect, useRef} from 'react';
 
 export interface ModalProps {
   open: boolean;
   noFullscreen?: boolean;
   zIndex?: number | undefined;
+  style?: CSSProperties;
+  className?: string;
 }
 
 const defaultProps = {
@@ -12,7 +14,7 @@ const defaultProps = {
 };
 
 const Modal = (props: PropsWithChildren<ModalProps & typeof defaultProps>) => {
-  const {children, open, noFullscreen, zIndex} = props;
+  const {children, open, noFullscreen, zIndex, className, style} = props;
   const modalEl = useRef(document.createElement('div'));
 
   useEffect(() => {
@@ -39,9 +41,10 @@ const Modal = (props: PropsWithChildren<ModalProps & typeof defaultProps>) => {
   }, [open]);
 
   return ReactDOM.createPortal(
-    <div className={`absolute ${!noFullscreen ? 'h-full w-full': 'none'}`}
+    <div className={`absolute ${!noFullscreen ? 'h-full w-full': ''} ${className ? className : ''}`}
       style={{
         zIndex: zIndex,
+        ...style,
       }}
     >
       {children}
