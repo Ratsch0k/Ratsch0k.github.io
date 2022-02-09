@@ -1,7 +1,7 @@
 import {useTranslation} from 'react-i18next';
 import PageTitle from '../components/PageTitle';
 import {useEffect, useRef, useState} from 'react';
-import {PageComponent} from '../components/Page';
+import {PageComponent} from '../components/PageComponent';
 import PageContent from '../components/PageContent';
 import SkillContainer from '../components/SkillContainer';
 import skills from '../components/skills';

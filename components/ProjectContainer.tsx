@@ -38,14 +38,15 @@ export interface ProjectContainer {
   scrollTop: number;
   animationIndex?: number;
   types: ProjectType[];
+  open: boolean;
+  setOpen(value: boolean): void;
 }
 
 export const BASE_OFFSET = '7rem';
 export const OFFSET = '7rem';
 
 const ProjectContainer: FC<ProjectContainer> = (props) => {
-  const {children, index, title, flags, scrollTop, animationIndex, types} = props;
-  const [open, setOpen] = useState<boolean>(false);
+  const {children, index, title, flags, scrollTop, animationIndex, types, open, setOpen} = props;
   const [closing, setClosing] = useState<boolean>(false);
   const {t} = useTranslation();
 
@@ -61,7 +62,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
     return () => {
       clearTimeout(timeout);
     }
-  }, []);
+  }, [setOpen]);
 
   return (
     <div
@@ -85,7 +86,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
           transitionDuration: '500ms, 500ms',
           filter: `drop-shadow(0 0 0.2rem rgb(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}))`,
         }}
-        onClick={() => setOpen((prev) => !prev ? true : prev)}
+        onClick={() => !open && setOpen(true)}
       >
         <Tooltip
           className='h-20 w-20 bg-secondary rounded-xl absolute mr-4'
@@ -118,7 +119,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
               <div
                 className={`transition-all whitespace-nowrap duration-500 font-bold ${open ? 'text-xl md:text-3xl overflow-hidden' : 'text-md md:text-xl'}`}
                 style={{
-                  width: open ? 'calc(100% - 30px - 6rem)' : 'unset'
+                  width: open ? 'calc(100% - 30px - 6rem)' : 'unset',
                 }}
               >
                 {title}

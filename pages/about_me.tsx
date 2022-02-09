@@ -1,7 +1,7 @@
 import {Trans, useTranslation} from 'react-i18next';
 import PageTitle from '../components/PageTitle';
 import {useEffect, useRef, useState} from 'react';
-import {PageComponent} from '../components/Page';
+import {PageComponent} from '../components/PageComponent';
 import PageContent from '../components/PageContent';
 
 const LANGUAGES = [

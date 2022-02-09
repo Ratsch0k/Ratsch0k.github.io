@@ -1,4 +1,4 @@
-import {PageComponent} from '../components/Page';
+import {PageComponent} from '../components/PageComponent';
 import {useTranslation} from 'react-i18next';
 import PageTitle from '../components/PageTitle';
 import PageContent from '../components/PageContent';
@@ -16,6 +16,15 @@ const Projects: PageComponent = (props) => {
   const [maxElement, setMaxElement] = useState<number | null>(null);
   const [initialMaxElement, setInitialMaxElement] = useState<number | null>(null);
   const [border, setBorder] = useState(false);
+  const [open, setOpen] = useState<number | null>(null);
+
+  const handleSetOpen = useCallback((index: number, value: boolean) => {
+    if (open !== null && open === index && !value) {
+      setOpen(null);
+    } else if (open === null && value) {
+      setOpen(index);
+    }
+  }, [open]);
 
   useEffect(() => {
     if (height) {
@@ -93,6 +102,8 @@ const Projects: PageComponent = (props) => {
                   scrollTop={top}
                   animationIndex={animationIndex}
                   types={project.types}
+                  open={open === index}
+                  setOpen={(value) => handleSetOpen(index, value)}
                 >
                   <Project />
                 </ProjectContainer>
