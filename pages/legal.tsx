@@ -24,7 +24,7 @@ const Legal = () => {
         {t('legal.title')}
       </PageTitle>
       <PageContent>
-        <div className='flex flex-col justify-center m-auto w-96 items-stretch'>
+        <div className='flex flex-col justify-center m-auto max-w-xl items-stretch'>
           <Button fullWidth onClick={() => setOpenedDialog(Dialog.IMPRINT)}>
             {t('imprint.title')}
           </Button>
