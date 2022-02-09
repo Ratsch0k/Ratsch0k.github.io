@@ -1,4 +1,4 @@
-import {ComponentProps, createRef, useCallback, useEffect, useRef, useState} from 'react';
+import React, {ComponentProps, createRef, useCallback, useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 export type Position = 'top' | 'bottom' | 'right' | 'left';
@@ -29,13 +29,14 @@ const defaultProps = {
 };
 
 const Tooltip = (props: TooltipProps & typeof defaultProps) => {
-  const {children, label, position, spacing, disappearTimeout, ...rest} = props;
+  const {children, label, position, spacing, disappearTimeout, style, ...rest} = props;
   // Visibility states
   const [open, setOpen] = useState(true);
   const [show, setShow] = useState(false);
 
   // Timeouts
-  const [, setShowTimeoutID] = useState<NodeJS.Timeout | null>(null);
+  const [showID, setShowID] = useState<NodeJS.Timeout | null>(null);
+  const [, setHideID] = useState<NodeJS.Timeout | null>(null);
   const [, setOpenTimeoutID] = useState<NodeJS.Timeout | null>(null);
 
   // Position
@@ -77,9 +78,12 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
    * Clears timeouts which hide the tooltip and
    * shows it.
    */
-  const handleMouseEnter = useCallback(() => {
+  const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     // Remove disappear timeouts if set
-    setShowTimeoutID((prev) => {
+    setHideID((prev) => {
       if (prev) {
         clearTimeout(prev);
       }
@@ -97,9 +101,10 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 
     // Set open and immediately show
     setOpen(true);
-    setTimeout(() => {
+    setShowID(setTimeout(() => {
       setShow(true);
-    }, 1);
+      setShowID(null);
+    }, 10));
   }, []);
 
   /**
@@ -107,13 +112,22 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
    * Sets timeouts which will hide the tooltip
    */
   const handleMouseLeave = useCallback(() => {
-    setShowTimeoutID(setTimeout(() => {
+    setHideID(setTimeout(() => {
       setShow(false);
     }, disappearTimeout));
     setOpenTimeoutID(setTimeout(() => {
       setOpen(false);
     }, disappearTimeout + 250));
   }, [disappearTimeout]);
+
+  const handleMouseDown = useCallback(() => {
+    if (open && showID) {
+      clearTimeout(showID);
+      setOpen(false);
+      setShow(false);
+      setShowID(null);
+    }
+  }, [open, showID]);
 
   /**
    * Calculates the position of the given tooltip based on its given child component.
@@ -170,13 +184,13 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
   /**
    * Set event listeners and calculate position of tooltip
    */
+
+
   useEffect(() => {
     if (ref.current && tooltipRef.current) {
-      ref.current.addEventListener('mouseenter', handleMouseEnter);
-      ref.current.addEventListener('mouseleave', handleMouseLeave);
       setPos(calculatePosition(tooltipRef.current, ref.current));
     }
-  }, [ref.current, tooltipRef.current, open, calculatePosition]);
+  }, [open, calculatePosition]);
 
   /**
    * The tooltip component.
@@ -201,10 +215,24 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 
   return (
     <>
-      <div ref={ref} {...rest}>
+      <div
+        ref={ref}
+
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onSelect={(e) => console.dir(e)}
+        onSelectCapture={(e) => console.dir(e)}
+        style={{
+          userSelect: 'all',
+          ...style,
+        }}
+        {...rest}
+      >
         {children}
       </div>
       {ReactDOM.createPortal(tooltip, tooltipRoot.current)}
+
     </>
   );
 };
