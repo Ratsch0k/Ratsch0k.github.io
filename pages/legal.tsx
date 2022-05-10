@@ -1,5 +1,4 @@
 import {useTranslation} from 'react-i18next';
-import PageTitle from '../components/PageTitle';
 import PageContent from '../components/PageContent';
 import {useCallback, useState} from 'react';
 import Imprint from '../components/Imprint';
@@ -20,9 +19,6 @@ const Legal = () => {
 
   return (
     <div>
-      <PageTitle>
-        {t('legal.title')}
-      </PageTitle>
       <PageContent>
         <div className='flex flex-col justify-center m-auto max-w-xl items-stretch'>
           <Button fullWidth onClick={() => setOpenedDialog(Dialog.IMPRINT)}>

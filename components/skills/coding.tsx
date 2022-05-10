@@ -2,6 +2,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Skill} from './index';
 import CodeIcon from '../icons/CodeIcon';
+import Progress from '../Progress';
 
 const languages = [
   {
@@ -38,11 +39,24 @@ const CodingSkill = () => {
       <div>
       {t('skills.coding.content')}
       </div>
-      <ul className='list-disc ml-8'>
+      <ul className='list-disc ml-8 mr-2 space-y-2'>
         {
-          languages.map(({name}) => {
+          languages.map(({name, rating}, index) => {
             return (
-              <li key={`coding-${name}`}>{t(`skills.coding.langlist.${name}`)}</li>
+              <div key={`coding-${name}`}>
+                <li>{t(`skills.coding.langlist.${name}`)}</li>
+                <Progress
+                  value={rating / 5}
+                  animated
+                  xs={{
+                    progress: {
+                      transitionDelay: index * 100 + 500 + 'ms',
+                    }
+                  }}
+                  leftLabel={t('skills.coding.langlist.lowest')}
+                  rightLabel={t('skills.coding.langlist.highest')}
+                />
+              </div>
             );
           })
         }

@@ -1,5 +1,6 @@
 {
     "intro": {
+        "title": "Start",
         "info": "Student, Entwickler, Zukünftiger IT-Sicherheit Experte",
         "skip": "Überspringen",
         "hintClick": "Klick mich!"
@@ -11,7 +12,15 @@
     "skills": {
         "title": "Fähigkeiten",
         "general": {
-            "title": "Allgemein"
+            "title": "Allgemein",
+            "content": [
+                "Mit einer großen Begeisterung für die Informatik und vorallem für Software Entwicklung ",
+                "und Sicherheit habe ich mit viel Enthusiasmus mein Studium an der TU Darmstadt angefangen.<br/><br/>",
+                "Seitdem habe ich viel Wissen in den unterschiedlichen Bereichen der Informatik gelernt und ein Vielzahl",
+                " von Projekten, sowohl in der Uni, also auch persönliche, gemeistert. ",
+                "Durch diese Projekte habe ich außerdem viel Erfahrung in Themen wie <strong>git</strong>, ",
+                "<strong>Agile Entwicklung</strong>, <strong>Teamarbeit</strong> und unterschiedlichen Programmiersprachen gesammelt."
+            ]
         },
         "coding": {
             "title": "Programmiersprachen",
@@ -23,14 +32,48 @@
                 "java": "Java",
                 "rust": "Rust",
                 "bash": "Bash",
-                "brainfuck": "Brainfuck"
+                "brainfuck": "Brainfuck",
+                "lowest": "Anfänger",
+                "highest": "Profi"
             }
         },
         "experience": {
-            "title": "Erfahrung"
+            "title": "Erfahrung",
+            "introduction": [
+                "Durch Projekte in der Uni, aber vor allem durch eigene Projekte habe ich in vielen Programmiersprachen, Frameworks und Themen Erfahrung gesammelt<br/>",
+                "Eine komplette Liste mit allen nennenswerten Projekten befinden sich auf der Seite <strong>Projekte</strong>.<br/><br/>"
+            ],
+            "projectTopics": {
+                "introduction": "Durch diese Projekte, habe ich viel Erfahrung in den folgenden Bereichen gemacht:",
+                "topics": [
+                    "Docker",
+                    "Continuous Integration",
+                    "Agile Entwicklung"
+                ]
+            },
+            "uniTopics": {
+                "introduction": "Außerhalb dieser Projekte habe ich durch mein Studium auch Erfahrung in den folgenden Themen gesammelt:",
+                "topics": [
+                    "Algorithmen",
+                    "Robotik",
+                    "Kryptographie",
+                    "Hardware Programmierung (System Verilog & Bluespec Verilog)",
+                    "Compilerbau",
+                    "Informationssicherheitsmanagement",
+                    "Parallelisierung",
+                    "Visual Computing",
+                    "Künstliche Intelligenz",
+                    "Blockchain und Smart Contract Entwicklung"
+                ]
+            }
         },
         "languages":  {
-            "title": "Sprachen"
+            "title": "Sprachen",
+            "content": [
+                "<strong>Deutsch</strong>: Muttersprachlich<br/>",
+                "<strong>Englisch</strong>: Fliesend (Leistungskurs im Gymnasium)<br/>",
+                "<strong>Japanisch</strong>: Anfänger (Zwei Sprachkurse in der Uni belegt)"
+            ]
         }
     },
     "projects": {
@@ -40,6 +83,85 @@
             "app": "App",
             "server": "Server",
             "website": "Webseite"
+        },
+        "portfolio": {
+            "title": "Portfolio",
+            "intro": {
+                "title": "Kurze Beschreibung",
+                "content": [
+                    "Dieses Projekt betrachtest du gerade. Dieses Projekt war eine Portfolio Webseite zubauen in der ich mich, meine Erfahrungen und Projekte vorstelle.",
+                    "Diese Webseite ist sowohl in Deutsch als auch in Englisch verfügbar und wurde mit einem <strong>Responsive</strong> Layout designt."
+                ]
+            },
+            "structure": {
+                "title": "Aufbau",
+                "content": [
+                    "<p>Gebaut habe ich diese Webseite mithilfe von <strong>NextJS (ReactJS)</strong>, <strong>Typescript</strong> und <strong>TailwindCSS</strong>. ",
+                    "Alle Komponenten, Animationen, Icons und Designs sind von mir selbst entworfen und implementiert. ",
+                    "Meist mit standardisierten Interfaces versehen um diese wiederverwendbar zu gestalten.</p>",
+                    "<p>Um diese Webseite zu hosten benutze ich eine <strong>Droplet (Server)</strong> von <0>DigitalOcean</0>, auf der ich alle meine öffentlichen Webseiten verwalte. ",
+                    "Auf diesem Server war anfänglich nur Ubuntu drauf und wurde von mir soweit konfiguriert, dass ich darüber mehrere Webseite auf unterschiedlichen Domains und Subdomains hosten kann.",
+                    "Das Haupttool hierfür war <1>NGINX</1>. Mehr zu diesem Thema habe ich in dem Projekt \"Group Car\" erklärt.</p>"
+                ]
+            }
+        },
+        "groupcar": {
+            "title": "My Group Car",
+            "intro": {
+                "title": "Beschreibung",
+                "content": [
+                    "Wer sich schonmal ein Auto mit vielen Personen ohne festen Parkplatz teilen musste, ",
+                    "kennt diese nervige ständige Frage vielleicht: <strong>„Wo steht das Auto??“</strong><br/>",
+                    "Da ich diese Frage jedes mal stellen musste, wenn ich in meiner Familie das Auto benutzen wollte, ",
+                    "habe ich die Webseite <i>„My Group Car“</i> entwickelt mit der man das gemeinsame Auto verwalten kann.",
+                    "Mit <i>„My Group Car“</i> kann man Gruppen erstellen, die Familie oder Freunde einladen, ",
+                    "die gemeinsamen Autos hinzufügen und den Standort der Autos verwalten. Mithilfe von Echtzeit-Updates ",
+                    "kann man den neuen Standort eines Autos sofort einsehen, sobald dieser eingetragen wurde."
+                ]
+            },
+            "technologies": {
+                "title": "Benutze Technologien",
+                "introduction": [
+                    "<p><i>„My Group Car“</i> ist neben TrutzBox wohl das größte Projekt das ich alleine gebaut habe. ",
+                    "Das liegt daran, dass ich hierfür sowohl eine Webseite als auch einen Server bauen musste. ",
+                    "Um die Codebase konsistent zu halten habe ich mich dafür entschieden dass Frontend mit ",
+                    "<0>ReactJS</0> und das Backend mit <1>ExpressJS (auf NodeJS basierend)</1> zubauen."
+                ],
+                "frontend": {
+                    "title": "Das Frontend",
+                    "content": [
+                        "Das Frontend habe ich mithilfe von <strong>ReactJS</strong> gebaut ",
+                        "und die Bibliothek <2>MUI</2> für das Design genutzt. <2>MUI</2> bietet eine Vielzahl ",
+                        "von Komponenten an, die sich das <strong>Material</strong> Designkonzept orientieren. ",
+                        "Für einen angenehmeres Navigieren benutze ich hier <3>React Router</3>. Zum verwalten von ",
+                        "globalen Zuständen, wie z.B. ob der Benutzer angemeldet ist, benutze ich <4>React Redux</4>. ",
+                        "Außerdem habe ich <5>Sentry</5> integriert um das Frontend auf mögliche Fehler überwachen zu können. ",
+                        "Wie in der Einleitung erwähnt, werden Echtzeit-Updates benutzt um Änderungen von Autos direkt ",
+                        "sehen zu können. Hierfür benutze ich <6>Socket.IO</6>."
+                    ]
+                },
+                "backend": {
+                    "title": "Das Backend",
+                    "content": [
+
+                    ]
+                }
+            },
+            "structure": {
+                "title": "Aufbau und Entwicklungsfluss",
+                "content": [
+                    "<p>In diesem Projekt habe ich viel Mühe in einen sauberen Projektfluss gesteckt. Der Code wird ",
+                    "intensiv getestet, sowohl mit Unit- als auch mit Integrationtests, und mithilfe einer ",
+                    "<i>Continuous Integration Pipeline</i> wird sicher gestellt, dass der Code die definierten ",
+                    "Standards einhält. Zusätzlich dazu können neue Versionen automatisch eingespielt werden. ",
+                    "Um hier einen flüssigen Übergang zu gewährleisten, werden neue Funktionalitäten erstmal",
+                    "als <i>Alpha</i> und <i>Beta</i> Version getestet bevor sie endgültig veröffentlicht wird. ",
+                    "Außerdem werden durch Migrationen sicher gestellt, dass Benutzerdaten beim Versionswechsel nicht ",
+                    "verloren gehen und sich automatisch Änderungen an der Datenbankstruktur anpassen.</p>",
+                    "<p>Für diese Projekt habe ich eine <strong>Droplet (Server)</strong> von <3>DigitalOcean</3>, ",
+                    "auf der anfänglich nur Ubuntu ist, von Grund auf aufgebaut. "
+                ]
+            }
         }
     },
     "legal": {

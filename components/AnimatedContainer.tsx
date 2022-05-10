@@ -1,4 +1,4 @@
-import {createRef, CSSProperties, PropsWithChildren, useEffect, useRef, useState} from 'react';
+import {CSSProperties, PropsWithChildren, useEffect, useRef, useState} from 'react';
 import Modal from './Modal';
 
 export interface GrowableContainerProps {
@@ -13,7 +13,7 @@ const defaultProps = {
 
 const AnimatedContainer = (props: PropsWithChildren<GrowableContainerProps & typeof defaultProps>) => {
   const {children, open, newStyle, duration} = props;
-  const normalRef = createRef<HTMLDivElement>();
+  const normalRef = useRef<HTMLDivElement | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [state, setState] = useState<'closed' | 'beforeopening' | 'opening' | 'open' | 'closing'>('closed');
 

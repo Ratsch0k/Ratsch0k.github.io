@@ -1,4 +1,4 @@
-import React, {ComponentProps, createRef, useCallback, useEffect, useRef, useState} from 'react';
+import React, {ComponentProps, useCallback, useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 export type Position = 'top' | 'bottom' | 'right' | 'left';
@@ -31,7 +31,7 @@ const defaultProps = {
 const Tooltip = (props: TooltipProps & typeof defaultProps) => {
   const {children, label, position, spacing, disappearTimeout, style, ...rest} = props;
   // Visibility states
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   // Timeouts
@@ -43,11 +43,11 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
   const [pos, setPos] = useState<[number, number]>([0, 0]);
 
   // Create element to use as a portal
-  const tooltipRoot = useRef(document.createElement('div'));
+  const tooltipRoot = useRef<HTMLDivElement>(document.createElement('div'));
   // Ref of the children (the components to which the tooltip belongs)
-  const ref = createRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
   // Ref of the tooltip component itself
-  const tooltipRef = createRef<HTMLDivElement>();
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   /**
    * Handle adding and removing the tooltip to the DOM
@@ -221,8 +221,6 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseDown={handleMouseDown}
-        onSelect={(e) => console.dir(e)}
-        onSelectCapture={(e) => console.dir(e)}
         style={{
           userSelect: 'all',
           ...style,
@@ -231,8 +229,7 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
       >
         {children}
       </div>
-      {ReactDOM.createPortal(tooltip, tooltipRoot.current)}
-
+      {tooltipRoot.current && ReactDOM.createPortal(tooltip, tooltipRoot.current)}
     </>
   );
 };

@@ -1,13 +1,11 @@
-import {FC, MouseEventHandler, useCallback, useState} from 'react';
+import {FC, RefObject, useCallback, useEffect, useRef, useState} from 'react';
 import CloseIcon from './icons/CloseIcon';
-import tailwindConfig from './TailwindConfig';
-import convert from 'color-convert';
 import Chip from './Chip';
 import ProjectTypeIndicator, {ProjectType} from './ProjectTypeIndicator';
 import Tooltip from './Tooltip';
 import {useTranslation} from 'react-i18next';
+import AnimatedDialog, {DialogState} from './AnimatedDialog';
 
-const primaryDark = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
 
 export const projectFlags = [
   'Javascript',
@@ -36,122 +34,177 @@ export interface ProjectContainer {
   title: string | JSX.Element;
   flags: ProjectFlag[];
   scrollTop: number;
-  animationIndex?: number;
   types: ProjectType[];
   open: boolean;
   setOpen(value: boolean): void;
+  scrollRef: RefObject<HTMLDivElement>;
 }
 
 export const BASE_OFFSET = '7rem';
-export const OFFSET = '7rem';
+export const OFFSET = '8rem';
 
 const ProjectContainer: FC<ProjectContainer> = (props) => {
-  const {children, index, title, flags, scrollTop, animationIndex, types, open, setOpen} = props;
-  const [closing, setClosing] = useState<boolean>(false);
+  const {children, index, title, flags, types, open, setOpen, scrollRef} = props;
   const {t} = useTranslation();
+  const root = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState<boolean | null>(null);
+  const [initialVisibility, setInitialVisibility] = useState<boolean | null>(null);
+  const [wasVisible, setWasVisible] = useState<boolean>(false);
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+  const [dialogState, setDialogState] = useState<DialogState>('closed');
 
-  const handleClose: MouseEventHandler<HTMLButtonElement> = useCallback((event) => {
-    event.stopPropagation();
-
-    setClosing(true);
-    setOpen(false);
-    const timeout = setTimeout(() => {
-      setClosing(false);
-    }, 500);
-
-    return () => {
-      clearTimeout(timeout);
+  useEffect(() => {
+    if (dialogState === 'opening') {
+      setOpen(true);
+    } else if (dialogState === 'closing') {
+      setOpen(false);
     }
-  }, [setOpen]);
+  }, [dialogState]);
+
+  const handleIntersect: IntersectionObserverCallback = useCallback((entries) => {
+    const isIntersecting = entries[0].isIntersecting;
+
+    setVisible((visible) => {
+      if (visible === null) {
+        setInitialVisibility(isIntersecting);
+        return isIntersecting;
+      } else if (!visible) {
+        return isIntersecting;
+      }
+
+      return visible;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (visible) {
+      setTimeout(() => {
+        setWasVisible(true)
+      }, ((initialVisibility ? index : 0) * 200) + 500);
+    }
+  }, [visible]);
+
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    if(root.current && scrollRef.current) {
+      observer.current = new IntersectionObserver(handleIntersect, {
+        threshold: 1.0,
+        root: scrollRef.current,
+      })
+      observer.current.observe(root.current);
+    }
+    return () => {
+      if(observer.current) {
+        observer.current.disconnect();
+      }
+    }
+  }, [root.current, scrollRef]);
 
   return (
-    <div
-      className='w-full absolute max-h-[80%]'
-      style={{
-        top: open ? `calc(${scrollTop}px + 6rem)` : `calc(${BASE_OFFSET} + ${index} * ${OFFSET})`,
-        zIndex: open || closing ? 40 : 10,
-        transition: 'top, height',
-        height: open ? 'calc(100% - 12rem)' : '4rem',
-        transitionDuration: '500ms, 500ms',
-        animation: `appear-from-below 500ms ease-in-out ${(animationIndex || index) * 200}ms both`,
+    <AnimatedDialog
+      ref={root}
+      closeStyle={{
+        zIndex: 10,
+        height: '6.1rem',
+        transitionDuration: '500ms, 500ms, 500ms',
+        width: '90%',
       }}
+      openStyle={{
+        height: '95%',
+        width: 'min(95%, 1000px)',
+        top: '2.5%',
+        left: 'calc((100% - min(95%, 1000px)) / 2)',
+      }}
+      open={dialogOpen}
+      onStateChange={setDialogState}
     >
-      <div
-        className='bg-primary-dark p-2 pb-0 rounded-xl mx-auto min-w-[300px]'
-        style={{
-          cursor: open ? 'unset' : 'pointer',
-          height: open ? '100%' : '4rem',
-          width: open ? 'calc(100% - 2rem)' : '65%',
-          transition: 'height, width',
-          transitionDuration: '500ms, 500ms',
-          filter: `drop-shadow(0 0 0.2rem rgb(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}))`,
-        }}
-        onClick={() => !open && setOpen(true)}
-      >
-        <Tooltip
-          className='h-20 w-20 bg-secondary rounded-xl absolute mr-4'
-          style={{
-            marginLeft: open ? 0 : '-1rem',
-            marginTop: open ? 0: '-1rem',
-            transition: 'margin-left 500ms, margin-top 500ms',
-            filter: `drop-shadow(0 0 0.4rem rgb(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}))`,
-          }}
-          label={
-            t('projects.type.title') +
-            ': ' +
-            types.map((type) =>
-                t('projects.type.' + type.toLowerCase())).join(', ')
-          }
-        >
-          <ProjectTypeIndicator types={types} />
-        </Tooltip>
-
-        <div
-          className='overflow-hidden h-full w-full mr-[-4rem]'
-        >
-          <button className={`text-white float-right transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={handleClose}>
-            <CloseIcon />
-          </button>
+      {
+        visible &&
           <div
-            className='h-14 mb-10'
+              className='w-full h-full'
+              style={{
+                animation: !wasVisible ? `appear-from-below 500ms ease-in-out ${(initialVisibility ? index : 0) * 200}ms both` : undefined,
+              }}
           >
-            <div className={`transition-all duration-500 w-full ${open ? 'ml-24' : 'ml-20'}`}>
               <div
-                className={`transition-all whitespace-nowrap duration-500 font-bold ${open ? 'text-xl md:text-3xl overflow-hidden' : 'text-md md:text-xl'}`}
-                style={{
-                  width: open ? 'calc(100% - 30px - 6rem)' : 'unset',
-                }}
+                  className='bg-primary border border-primary-light p-2 pb-0 rounded-2xl mx-auto min-w-[300px]'
+                  style={{
+                    cursor: open ? 'unset' : 'pointer',
+                    height: open ? '100%' : '6.1rem',
+                    width: '100%',
+                    transition: 'height, width',
+                    transitionDuration: '500ms, 500ms',
+                  }}
+                  onClick={() => !dialogOpen && setDialogOpen(true)}
               >
-                {title}
+                  <Tooltip
+                      className='h-20 w-20 bg-secondary rounded-xl absolute'
+                      style={{
+                        transition: 'margin-left 500ms, margin-top 500ms',
+                      }}
+                      label={
+                        t('projects.type.title') +
+                        ': ' +
+                        types.map((type) =>
+                          t('projects.type.' + type.toLowerCase())).join(', ')
+                      }
+                  >
+                      <ProjectTypeIndicator types={types} />
+                  </Tooltip>
+
+                  <div
+                      className='overflow-hidden h-full w-full mr-[-4rem]'
+                  >
+                      <button className={`text-white float-right transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setDialogOpen(false)}>
+                          <CloseIcon />
+                      </button>
+                      <div
+                          className='h-14 mb-10'
+                      >
+                          <div className={`w-full ml-24 transition-all duration-500 ${open ? 'mt-0' : 'mt-3'}`}>
+                              <div
+                                  className={`transition-all whitespace-nowrap duration-500 font-bold ${open ? 'text-xl md:text-3xl overflow-hidden' : 'text-md md:text-xl'}`}
+                                  style={{
+                                    width: open ? 'calc(100% - 30px - 6rem)' : 'unset',
+                                  }}
+                              >
+                                {title}
+                              </div>
+                              <div className='scrollbar-light h-[2rem] overflow-x-auto overflow-y-hidden'
+                                   style={{
+                                     transition: 'margin-top 500ms, width 500ms',
+                                     marginTop: open ? '0.25rem' : '-0.25rem',
+                                     width: `calc(100% - ${open ? '6rem' : '5rem'}`
+                                   }}
+                                   onTouchStart={(event) => event.stopPropagation()}
+                                   onTouchEnd={(event) => event.stopPropagation()}
+                              >
+                                {flags.map((flag) => (
+                                    <Chip
+                                      key={`project-${index}-flag-${flag}`}
+                                      size={'small'}
+                                      className={'mx-0.5'}
+                                    >
+                                      {flag}
+                                    </Chip>
+                                  )
+                                )}
+                              </div>
+                          </div>
+                      </div>
+                      <div className='px-4 overflow-y-auto scrollbar-light'
+                           style={{
+                             height: 'calc(100% - 3.5rem - 2.5rem - 1rem)'
+                           }}
+                      >
+                        {children}
+                      </div>
+                  </div>
               </div>
-              <div className='scrollbar-light h-[2rem] overflow-x-auto overflow-y-hidden'
-                style={{
-                  transition: 'margin-top 500ms, width 500ms',
-                  marginTop: open ? '0.25rem' : '-0.25rem',
-                  width: `calc(100% - ${open ? '6rem' : '5rem'}`
-                }}
-                onTouchStart={(event) => event.stopPropagation()}
-                onTouchEnd={(event) => event.stopPropagation()}
-              >
-                {flags.map((flag) => (
-                    <Chip
-                      key={`project-${index}-flag-${flag}`}
-                      size={'small'}
-                      className={'mx-0.5'}
-                    >
-                      {flag}
-                    </Chip>
-                  )
-                )}
-              </div>
-            </div>
           </div>
-          <div className='px-2'>
-            {children}
-          </div>
-        </div>
-      </div>
-    </div>
+      }
+    </AnimatedDialog>
   );
 };
 

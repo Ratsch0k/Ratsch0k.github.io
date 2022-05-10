@@ -3,13 +3,16 @@ module.exports = {
   purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      sans: ['Arial'],
+    },
     extend: {
       colors: {
         primary: {
-          lightest: '#BEC3DA',
-          light: '#8A94BC',
-          DEFAULT: '#4E598C',
-          dark: '#3B4368',
+          lightest: '#cbe0f2',
+          light: '#6f98ba',
+          DEFAULT: '#1b3347',
+          dark: '#121f30',
           contrast: '#FFFFFF',
         },
         secondary: {

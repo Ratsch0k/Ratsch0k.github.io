@@ -1,8 +1,4 @@
 import {FC, ReactElement, useRef} from 'react';
-import tailwindConfig from './TailwindConfig';
-import convert from 'color-convert';
-
-const primaryDark = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
 
 export interface TopicContainerProps {
   title: string;
@@ -17,10 +13,9 @@ const SkillContainer: FC<TopicContainerProps> = (props) => {
   return (
     <div
       ref={ref}
-      className={`${pos > 0 && 'mt-16'} relative p-6 rounded-md flex flex-col justify-start items-center w-full ${pos % 2 === 1 ? 'sm:flex-row-reverse' : 'sm:flex-row'} bg-primary-dark`}
+      className={`${pos > 0 && 'mt-10'} border border-primary-light relative p-2 sm:p-6 rounded-2xl flex flex-col justify-start items-center w-full bg-primary`}
       style={{
         animation: `appear-from-below 500ms ease-in-out ${pos * 200}ms both`,
-        filter: `drop-shadow(0 0 0.4rem rgb(${primaryDark[0]}, ${primaryDark[1]}, ${primaryDark[2]}))`
       }}
     >
       <div
@@ -32,11 +27,11 @@ const SkillContainer: FC<TopicContainerProps> = (props) => {
       </div>
       <div className='h-full'>
         <div
-          className='bg-secondary w-100-8 h-px left-0 mt-4 ml-4 sm:w-px sm:mr-4 sm:left-auto sm:mt-4 sm:h-100-8 sm:ml-0 sm:top-0 absolute'
+          className='bg-secondary w-100-8 h-px left-0 mt-4 ml-4 absolute'
         />
         <div className='justify-center flex items-center h-full'>
           <div
-            className='bg-primary-dark p-1 text-secondary'
+            className='bg-primary p-1 text-secondary'
             style={{
               transform: 'translateX(-14px)'
             }}

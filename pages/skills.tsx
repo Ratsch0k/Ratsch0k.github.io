@@ -1,6 +1,5 @@
 import {useTranslation} from 'react-i18next';
-import PageTitle from '../components/PageTitle';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef} from 'react';
 import {PageComponent} from '../components/PageComponent';
 import PageContent from '../components/PageContent';
 import SkillContainer from '../components/SkillContainer';
@@ -10,7 +9,6 @@ import skills from '../components/skills';
 export const Skills: PageComponent = ({setScrollable}) => {
   const {t} = useTranslation();
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const [border, setBorder] = useState<boolean>(false);
 
   /*
    * Check size of content and set border of header / footer appropriately
@@ -22,10 +20,8 @@ export const Skills: PageComponent = ({setScrollable}) => {
 
       if (componentHeight && componentHeight > windowHeight) {
         setScrollable(true);
-        setBorder(true);
       } else {
         setScrollable(false);
-        setBorder(false);
       }
     }
 
@@ -36,9 +32,6 @@ export const Skills: PageComponent = ({setScrollable}) => {
 
   return (
     <div className='h-full flex flex-col'>
-      <PageTitle border={border}>
-        {t('skills.title')}
-      </PageTitle>
       <PageContent>
         <div
           className='flex flex-col p-8 pt-0 items-center justify-center w-full mb-16'

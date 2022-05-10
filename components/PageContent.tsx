@@ -7,11 +7,13 @@ const PageContent = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'>>(
   const {children, className, ...rest} = props;
 
   return (
-    <div className={`h-full overflow-auto max-w-4xl pt-20 md:pt-28 mx-auto scrollbar ${className !== undefined ? className : ''}`}
+    <div className={`h-full w-full overflow-auto pt-20 md:pt-28 scrollbar ${className !== undefined ? className : ''}`}
          ref={ref}
          {...rest}
     >
-      {children}
+      <div className='max-w-4xl mx-auto'>
+        {children}
+      </div>
     </div>
   );
 });

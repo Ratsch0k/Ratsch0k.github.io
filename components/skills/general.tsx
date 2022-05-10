@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
+import {Trans, useTranslation} from 'react-i18next';
 import {Skill} from './index';
 import InformationIcon from '../icons/InformationIcon';
 
@@ -7,7 +7,7 @@ const GeneralSkills = () => {
   const {t} = useTranslation();
   return (
     <div>
-      {t('skills.general.content')}
+      <Trans>{t('skills.general.content')}</Trans>
     </div>
   );
 };

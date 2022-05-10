@@ -9,13 +9,36 @@ import {PageComponent} from '../components/PageComponent';
 const Intro: PageComponent = ({setScrollable, firstPage}) => {
   const {t} = useTranslation();
   const [open, setOpen] = useState<boolean>(firstPage);
-  const hoverRef = useRef<HTMLDivElement | null>();
+  const hoverRef = useRef<HTMLDivElement>(null);
   const [mouseDown, setMouseDown] = useState<boolean>(false);
   const [clicked, setClicked] = useState<boolean>(false);
   const [hintClick, setHintClick] = useState<boolean>(false);
+  const animHover = useRef<Animation | null>(null);
 
   useEffect(() => {
     setScrollable(false);
+  }, []);
+
+  useEffect(() => {
+    if (hoverRef.current) {
+      animHover.current = hoverRef.current.animate(
+        [
+          {
+            transform: 'scale(1.0)'
+          },
+          {
+            transform: 'scale(1.1)',
+          },
+          {
+            transform: 'scale(1.0)',
+          }
+        ],
+        {
+          iterations: Infinity,
+          duration: 4000,
+        }
+      );
+    }
   }, []);
 
   // After 2 seconds. Hint that the user can click
@@ -32,9 +55,8 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
   }, [mouseDown, clicked]);
 
   const handleMouseDown = useCallback(() => {
-    if (hoverRef.current) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      hoverRef.current!.style.animationPlayState = 'paused';
+    if (animHover.current) {
+      animHover.current.pause();
     }
     setMouseDown(true);
   }, []);
@@ -72,14 +94,7 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
           <div
             key='logo-div'
             className='w-[20vw] h-[20vh]'
-            style={{
-              animationName: 'hover',
-              animationDuration: '4s',
-              animationTimingFunction: 'ease-in-out',
-              animationIterationCount: 'infinite',
-              animationFillMode: 'forwards',
-            }}
-            ref={(ref) => hoverRef.current = ref}
+            ref={hoverRef}
           >
             <Logo style={{width: '20vw', height: '20vh'}} />
           </div>

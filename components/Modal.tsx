@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import {CSSProperties, PropsWithChildren, useEffect, useRef} from 'react';
 
 export interface ModalProps {
-  open: boolean;
+  open?: boolean;
   noFullscreen?: boolean;
   zIndex?: number | undefined;
   style?: CSSProperties;

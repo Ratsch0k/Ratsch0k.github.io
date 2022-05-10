@@ -13,40 +13,44 @@ import convert from 'color-convert';
 import {PageComponent} from '../components/PageComponent';
 import Legal from './legal';
 import Page from '../components/Page';
+import PageTitle from '../components/PageTitle';
+import {isFirefox} from 'react-device-detect';
 
-const primaryColor = convert.hex.rgb(tailwindConfig.theme.colors.primary.DEFAULT);
+const primaryColor = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
 
 interface PageInfo {
   component: PageComponent,
   path: string;
   titleKey: string;
+  disableTitle?: boolean;
 }
 
 const initialState: PageInfo[] = [
   {
     component: Intro,
     path: '/',
-    titleKey: 'intro.pageTitle',
+    titleKey: 'intro.title',
+    disableTitle: false,
   },
   {
     component: AboutMe,
     path: '/about-me',
-    titleKey: 'aboutme.pageTitle',
+    titleKey: 'aboutme.title',
   },
   {
     component: Skills,
     path: '/skills',
-    titleKey: 'skills.pageTitle',
+    titleKey: 'skills.title',
   },
   {
     component: Projects,
     path: '/projects',
-    titleKey: 'projects.pageTitle',
+    titleKey: 'projects.title',
   },
   {
     component: Legal,
     path: '/legal',
-    titleKey: 'legal.pageTitle',
+    titleKey: 'legal.title',
   }
 ];
 
@@ -178,7 +182,7 @@ const Home = () => {
         <div
           style={{
             backdropFilter: 'blur(8px)',
-            backgroundColor: `rgba(${primaryColor[0]}, ${primaryColor[1]}, ${primaryColor[2]}, 0.5)`,
+            backgroundColor: `rgba(${primaryColor[0]}, ${primaryColor[1]}, ${primaryColor[2]}, ${isFirefox ? 1 :  0.5})`,
           }}
         >
           <div className={`p-4 flex justify-center border-primary-dark ${scrollable && 'border-t'}`}>
@@ -192,6 +196,17 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {
+        pages[currentPage].titleKey &&
+        <PageTitle
+            border={scrollable}
+            currentTitle={currentPage}
+            disabled={pages[currentPage].disableTitle}
+            titles={pages.map((p) => t(p.titleKey))}
+            onTitleClick={(id) => toPage(id)}
+        />
+      }
+
       <div className='overflow-hidden'>
         {
           pages.map((page, index) => {

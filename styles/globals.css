@@ -18,6 +18,12 @@
     @apply my-1;
     @apply font-bold;
   }
+  h4 {
+    @apply text-base;
+    @apply mt-1;
+    @apply mb-0.5;
+    @apply font-bold;
+  }
   p {
     @apply mt-2;
   }
@@ -52,13 +58,11 @@
 
 @media screen and (min-width: 640px) {
   .scrollbar::-webkit-scrollbar-button:end {
-    border-bottom: solid 66px #4E598C;
     height: 66px;
   }
 
   .scrollbar::-webkit-scrollbar-button:start {
-    border-top: solid 72px #4E598C;
-    height: 72px;
+    height: 94px;
   }
 }
 
@@ -70,13 +74,13 @@
 
 .scrollbar::-webkit-scrollbar-thumb {
   border-radius: 16px;
-  box-shadow: inset 0 0 14px 14px #3B4368;
+  box-shadow: inset 0 0 14px 14px #cbe0f2;
   border: solid 2px transparent;
 }
 
 .scrollbar-default::-webkit-scrollbar-thumb {
   border-radius: 16px;
-  box-shadow: inset 0 0 14px 14px #3B4368;
+  box-shadow: inset 0 0 14px 14px #cbe0f2;
   border: solid 2px transparent;
 }
 

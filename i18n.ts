@@ -8,21 +8,25 @@ i18n
     .use(initReactI18next)
     .use(I18nextBrowserLanguageDetector)
     .init({
-        resources: {
-            en: {
-                translation: en,
-            },
-            de: {
-                translation: de,
-            },
-        },
-        //lng: 'en',
-        fallbackLng: 'en',
-        whitelist: ['en', 'de'],
-        interpolation: {
-            escapeValue: false,
-        },
-        detection: {
-            order: ['localStorage', 'navigator']
-        },
+      resources: {
+          en: {
+              translation: en,
+          },
+          de: {
+              translation: de,
+          },
+      },
+      //lng: 'en',
+      fallbackLng: 'en',
+      whitelist: ['en', 'de'],
+      interpolation: {
+          escapeValue: false,
+      },
+      detection: {
+          order: ['localStorage', 'navigator']
+      },
+      joinArrays: '',
+      react: {
+        transKeepBasicHtmlNodesFor: ['br', 'strong', 'ul', 'li', 'p', 'i']
+      }
     });

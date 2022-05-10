@@ -54,7 +54,7 @@ const LanguageSwitch = () => {
         <div className='flex flex-col-reverse items-end'>
             <IconButton
                 onClick={() => open ? closePopup() : openPopup()} 
-                className='p-2 m-2 rounded-lg text-primary-contrast'
+                className='p-2 m-2 rounded-lg text-primary-lightest'
             >
                 <TranslateIcon/>
             </IconButton>
