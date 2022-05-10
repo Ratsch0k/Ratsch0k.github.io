@@ -1,8 +1,0 @@
-# Output directory
-out
-
-# Nextjs
-.next
-
-# Node modules
-node_modules
