@@ -15,6 +15,7 @@ import Legal from './legal';
 import Page from '../components/Page';
 import PageTitle from '../components/PageTitle';
 import {isFirefox} from 'react-device-detect';
+import CV from './cv';
 
 const primaryColor = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
 
@@ -46,6 +47,11 @@ const initialState: PageInfo[] = [
     component: Projects,
     path: '/projects',
     titleKey: 'projects.title',
+  },
+  {
+    component: CV,
+    path: '/cv',
+    titleKey: 'cv.title',
   },
   {
     component: Legal,

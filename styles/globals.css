@@ -102,6 +102,11 @@
   background-color: transparent;
 }
 
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 @keyframes bounce-up {
   from {
     r: 0;

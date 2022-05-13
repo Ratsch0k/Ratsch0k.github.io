@@ -93,6 +93,7 @@ module.exports = {
       textColor: ['disabled'],
       borderColor: ['disabled'],
     },
+    spacing: ['responsive'],
   },
   plugins: [],
 }

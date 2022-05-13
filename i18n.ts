@@ -27,6 +27,6 @@ i18n
       },
       joinArrays: '',
       react: {
-        transKeepBasicHtmlNodesFor: ['br', 'strong', 'ul', 'li', 'p', 'i']
+        transKeepBasicHtmlNodesFor: ['br', 'strong', 'ul', 'li', 'p', 'i', 'b']
       }
     });
