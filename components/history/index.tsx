@@ -266,7 +266,7 @@ export const History = (props: HistoryProps) => {
           })
         }
       </div>
-        <div style={{gridArea: '1 / 1', display: 'grid', justifyContent: 'end', alignItems: 'start'}}>
+        <div style={{gridArea: '1 / 1', display: 'grid', justifyContent: 'end', alignItems: 'start', height: 'fit-content'}}>
           <button
             className={'rounded-lg uppercase transition-all duration-200 border border-transparent hover:border-primary-contrast p-1 ' + (disableScroll ? 'opacity-0 cursor-default' : '')}
             disabled={disableScroll}

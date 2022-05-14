@@ -177,27 +177,27 @@
         "noDate": "bis heute",
         "abitur": {
             "title": "Gutenberg Gymnasium Mainz",
-            "description": "Leistungskurse:<ul><li>Mathematik: </li><li>Physik: </li><li>Englisch: </li></ul>"
+            "description": "Leistungskurse:<list><item>Mathematik</item><item>Physik</item><item>Englisch</item></list><br/>Note: <b>2,4</b>"
         },
         "moebelmartin": {
             "title": "Möbel Martin",
-            "description": "Nichts weiter als ein paar Möbel schleppen"
+            "description": "Meine Aufgabe bestand daraus, für Kunden Möbel aus dem Lager zu holen"
         },
         "bachelor": {
             "title": "TU Darmstadt",
-            "description": "Wahlbereiche: Robotik, IT-Sicherheit<br/> Abschluss: <b>1.6</b>"
+            "description": "Wahlbereiche: <list><item>Robotik</item><item>IT-Sicherheit</item><item>Web-, Knowledge- and Information Processing</item></list><br/>Note: <b>1.6</b>"
         },
         "trutzbox": {
             "title": "Comidio GmbH",
             "description": "Frontend Entwickler für das Admin Interface der TrutzBox. Veraltete Frontend wurde von mir von Grund auf in ReactJs in einem modernen Style neu aufgebaut"
         },
         "c++": {
-            "title": "HiWi an der TU Darmstadt",
-            "description": "Ich war eine studentische Hilfskraft für das Module \"C/C++ Programmierpraktikum\". In einem Team haben wir neue Übungsaufgaben erstellt um Studenten saubere Entwicklung mit C/C++ beizubringen"
+            "title": "TU Darmstadt - C/C++ Programmierpraktikum",
+            "description": "In einem Team haben wir neue Übungsaufgaben erstellt um Studenten saubere Entwicklung mit C/C++ beizubringen"
         },
         "psaf": {
-            "title": "HiWi an der HiWi an der TU Darmstadt",
-            "description": "Als studentische Hilfskraft bin ich hier Ansprechpartner für die Studenten, sowie für die Wartung und Weiterentwicklung der benutzten Autos und Software zuständig."
+            "title": "TU Darmstadt - Projektseminar Autonomes Fahren",
+            "description": "Als studentische Hilfskraft bin ich hier Ansprechpartner für die Studenten, sowie für die Wartung und Weiterentwicklung der benutzten Autos und Software zuständig. Automatisierung, Debugging, Bugfixing, und Dokumentation schreiben gehört zu meinen Aufgaben"
         },
         "master": {
             "title": "TU Darmstadt",

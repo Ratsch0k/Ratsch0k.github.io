@@ -3,6 +3,14 @@ import {useMemo} from 'react';
 import TailwindConfig from '../TailwindConfig';
 import {Trans, useTranslation} from 'react-i18next';
 
+export const VisualizeField = ({field}: {field: string | JSX.Element}): JSX.Element => {
+  if (typeof field === 'string') {
+    return <Trans i18nKey={field} />
+  } else {
+    return field;
+  }
+}
+
 /**
  * Visualizes the data of one event
  * @param event The event
@@ -11,18 +19,18 @@ export const EventContent = ({event}: {event: HistoryEvent}) => {
   const {i18n: {language}, t} = useTranslation();
 
   return (
-    <div className='border text-primary-contrast rounded-3xl border-primary-light bg-primary p-4 sm:p-8 pt-4'>
+    <div className='border text-primary-contrast rounded-3xl border-primary-light bg-primary p-4 sm:p-8 pt-4 sm:pt-4'>
       <div className='font-bold text-2xl pb-2 text-primary-lightest text-center'>
-        <Trans i18nKey={event.title} />
+        <VisualizeField field={event.type} />
       </div>
-      <div className='font-bold text-lg text-center'>
-        <Trans i18nKey={event.type} />
+      <div className='font-bold text-center leading-tight text-md sm:text-lg'>
+        <VisualizeField field={event.title} />
       </div>
-      <div className='font-bold text-lg text-center pb-8'>
+      <div className='font-bold text-lg text-center pb-8 text-md sm:text-lg'>
         {event.from.toLocaleDateString(language, {month: 'long', year: 'numeric'})} - {event.to?.toLocaleDateString(language, {month: 'long', year: 'numeric'}) || t('cv.noDate')}
       </div>
       <div>
-        <Trans i18nKey={event.description} />
+        <VisualizeField field={event.description} />
       </div>
     </div>
   );
