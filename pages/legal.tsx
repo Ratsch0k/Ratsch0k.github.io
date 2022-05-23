@@ -20,7 +20,7 @@ const Legal = () => {
   return (
     <div>
       <PageContent>
-        <div className='flex flex-col justify-center m-auto max-w-xl items-stretch'>
+        <div className='flex flex-col justify-center m-auto max-w-xs items-stretch space-y-2'>
           <Button fullWidth onClick={() => setOpenedDialog(Dialog.IMPRINT)}>
             {t('imprint.title')}
           </Button>

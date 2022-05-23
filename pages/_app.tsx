@@ -5,6 +5,7 @@ import {NextPage} from 'next'
 import '../i18n';
 import {useTranslation} from 'react-i18next'
 import {useEffect} from 'react';
+import ThemeContextProvider from '../components/context/ThemeContext';
 
 const SafeHydrate: NextPage = ({children}) => {
   return (
@@ -28,7 +29,9 @@ const MyApp = () => {
     </Head>
     <SafeHydrate>
       <div className="h-full">
-        <Home />
+        <ThemeContextProvider>
+          <Home />
+        </ThemeContextProvider>
       </div>
     </SafeHydrate>
     </>

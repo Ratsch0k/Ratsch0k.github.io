@@ -24,7 +24,7 @@ const Dialog = (props: DialogProps) => {
         }}
       >
         <div
-          className={`bg-white rounded-xl z-40 m-auto text-black p-4 ${className !== undefined ? className : ''}`}
+          className={`bg-white dark:bg-background-dark text-black dark:text-primary-contrast transition-colors rounded-xl z-40 m-auto text-black p-4 ${className !== undefined ? className : ''}`}
           {...rest}
         >
           {children}

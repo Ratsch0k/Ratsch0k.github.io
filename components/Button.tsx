@@ -14,7 +14,7 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
-      className={'text-md rounded duration-200 hover:bg-primary-lightest hover:text-primary-dark font-bold uppercase p-4 transition fit-content ' + className}
+      className={'text-md rounded-xl transition-colors text-black hover:bg-primary hover:text-primary-contrast dark:text-primary-contrast dark:hover:text-black dark:hover:bg-white font-bold uppercase p-2 fit-content ' + className}
       style={{
         width: fullWidth ? '100%' : 'fit-content',
         ...style,

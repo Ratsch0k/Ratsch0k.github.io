@@ -1,8 +1,9 @@
 import historyData from './HistoryData';
-import TailwindConfig from '../TailwindConfig';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import CVItem from './CVItem';
 import {useTranslation} from 'react-i18next';
+import Button from '../Button';
+import useTheme from '../hooks/useTheme';
 
 /**
  * Creates an svg path for an array, given its length.
@@ -122,6 +123,7 @@ export const History = (props: HistoryProps) => {
 
   const [disableScroll, setDisableScroll] = useState<boolean>(false);
 
+  const {theme} = useTheme();
   const {t} = useTranslation();
 
   /*
@@ -183,7 +185,7 @@ export const History = (props: HistoryProps) => {
   return (
     <div
       ref={ref}
-      className='scrollbar'
+      className={theme === 'dark' ? 'scrollbar-light' : 'scrollbar'}
       style={{
         height: '100vh',
         overflowY: 'auto',
@@ -205,11 +207,12 @@ export const History = (props: HistoryProps) => {
       >
       <svg
         width='100%' height={historyData.length * lineHeight}
-        stroke={TailwindConfig.theme.colors.primary.light}
+        stroke='currentColor'
         strokeWidth={lineWidth - 1}
         strokeLinecap='round'
         fill='none'
         strokeDasharray='10 20'
+        className='transition-colors text-primary-light dark:text-primary-lightest'
         style={{
           gridArea: '1 / 1',
         }}
@@ -221,11 +224,12 @@ export const History = (props: HistoryProps) => {
 
       <svg
         width='100%' height={historyData.length * lineHeight}
-        stroke={TailwindConfig.theme.colors.secondary.DEFAULT}
+        stroke='currentColor'
         strokeWidth={lineWidth}
         strokeLinecap='round'
         fill='none'
         strokeDasharray={pathRef.current?.getTotalLength()}
+        className='transition-colors text-secondary dark:text-secondary'
         style={{
           gridArea: '1 / 1',
         }}
@@ -267,13 +271,13 @@ export const History = (props: HistoryProps) => {
         }
       </div>
         <div style={{gridArea: '1 / 1', display: 'grid', justifyContent: 'end', alignItems: 'start', height: 'fit-content'}}>
-          <button
-            className={'rounded-lg uppercase transition-all duration-200 border border-transparent hover:border-primary-contrast p-1 ' + (disableScroll ? 'opacity-0 cursor-default' : '')}
+          <Button
+            className={'rounded-lg ' + (disableScroll ? 'opacity-0 cursor-default' : '')}
             disabled={disableScroll}
             onClick={handleRevealAll}
           >
             {t('cv.revealAll')}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

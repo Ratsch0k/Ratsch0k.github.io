@@ -115,7 +115,7 @@ const Page: NextPage<PageProps> = (props) => {
         key={`page-${id}`}
         className='h-full w-full overflow-y-auto overflow-x-hidden'
         style={{
-          transition: 'transform cubic-bezier(0.65, 0, 0.35, 1) 500ms, opacity linear 250ms',
+          transition: 'transform cubic-bezier(0.65, 0, 0.35, 1) 300ms, opacity linear 250ms',
           opacity: currentPage === id ? 1 : 0,
           transform: currentPage === id ? 'translateX(0)' : `translateX(${pos}%)`,
         }}

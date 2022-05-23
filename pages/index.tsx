@@ -16,8 +16,12 @@ import Page from '../components/Page';
 import PageTitle from '../components/PageTitle';
 import {isFirefox} from 'react-device-detect';
 import CV from './cv';
+import Logo from '../components/icons/Logo';
+import ThemeSwitch from '../components/ThemeSwitch';
+import useTheme from '../components/hooks/useTheme';
 
-const primaryColor = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
+const darkBackground = convert.hex.rgb('#13152c');
+const lightBackground = convert.hex.rgb('#ffffff');
 
 interface PageInfo {
   component: PageComponent,
@@ -68,6 +72,7 @@ const Home = () => {
   const [hasNavigated, setHasNavigated] = useState<boolean>(sessionStorage.getItem('hasNavigated') === 'true' || false);
   const [firstPage, setFirstPage] = useState<boolean>(true);
   const inTransition = useRef<boolean>(false);
+  const {theme} = useTheme();
 
   const getPageIndex = useCallback((path) => {
     for (let i = 0; i < pages.length; i++) {
@@ -177,29 +182,31 @@ const Home = () => {
   return (
     <div>
       <div id='modal-root'/>
+      {
+        (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
+          <IndicateSwipeMotion/>
+      }
       <div
-        className='absolute right-4 z-30 bottom-2 text-primary-dark'
+        className='absolute bottom-0 z-20 w-full pr-2 sm:pr-0 transition-colors'
+        style={{
+          backdropFilter: 'blur(8px)',
+          backgroundColor: theme === 'dark' ?
+            `rgba(${darkBackground[0]}, ${darkBackground[1]}, ${darkBackground[2]}, ${isFirefox ? 1 :  0.5})` :
+            `rgba(${lightBackground[0]}, ${lightBackground[1]}, ${lightBackground[2]}, ${isFirefox ? 1 : 0.1}`,
+        }}
       >
-        <LanguageSwitch/>
-      </div>
-      <div
-        className='absolute bottom-0 z-20 w-full pr-2 sm:pr-0'
-      >
-        <div
-          style={{
-            backdropFilter: 'blur(8px)',
-            backgroundColor: `rgba(${primaryColor[0]}, ${primaryColor[1]}, ${primaryColor[2]}, ${isFirefox ? 1 :  0.5})`,
-          }}
-        >
-          <div className={`p-4 flex justify-center border-primary-dark ${scrollable && 'border-t'}`}>
-            <div className='flex flex-col items-center px-2'>
-              {
-                (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
-                  <IndicateSwipeMotion/>
-              }
-              <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
-            </div>
+        <div className={`p-4 flex justify-center flex items-end transition-colors justify-between border-background-light dark:border-background-dark ${scrollable && 'border-t'}`}>
+          <div className='h-10 w-10 text-primary dark:text-primary-contrast transition-colors'>
+            <Logo strokeWidth={40}/>
           </div>
+          <div className='px-2'>
+            <PageIndicator len={pages.length} page={currentPage} changePage={(id) => toPage(id)}/>
+          </div>
+          <div className='flex space-x-1'>
+            <ThemeSwitch />
+            <LanguageSwitch/>
+          </div>
+
         </div>
       </div>
       {

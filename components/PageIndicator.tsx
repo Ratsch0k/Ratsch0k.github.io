@@ -1,7 +1,8 @@
 import IconButton from './IconButton';
 import ArrowLeftIcon from './icons/ArrowLeftIcon';
 import ArrowRightIcon from './icons/ArrowRightIcon';
-import Logo from './icons/Logo';
+import {useTranslation} from 'react-i18next';
+import Tooltip from './Tooltip';
 
 interface PageIndicatorProps {
     len: number;
@@ -22,15 +23,15 @@ const Circle = () => {
 
 const PageIndicator = (props: PageIndicatorProps) => {
     const {len, page, changePage} = props;
+    const {t} = useTranslation();
 
     return (
         <div className='flex flex-row items-center'>
-          <div className='absolute bottom-3 left-4 h-10 w-10'>
-            <Logo strokeWidth={40}/>
-          </div>
             <IconButton
                 onClick={() => changePage(page - 1)}
                 className='mr-2'
+                tooltip={t('previousPage')}
+                tooltipProps={{position: 'top'}}
             >
                 <ArrowLeftIcon />
             </IconButton>
@@ -40,13 +41,15 @@ const PageIndicator = (props: PageIndicatorProps) => {
 
                     for (let i = 0; i < len; i++) {
                         circles.push(
+                          <Tooltip label={t('toPage', {page: i + 1})} position='top'>
                             <div
                               key={`indicator-${i}`}
-                              className={`m-1 cursor-pointer ${i === page ? 'text-secondary' : 'text-primary-lightest hover:text-primary-contrast'}`}
+                              className={`m-1 cursor-pointer ${i === page ? 'text-secondary' : 'text-primary dark:text-primary-lightest hover:text-secondary dark:hover:text-primary-contrast'}`}
                               onClick={() => changePage(i)}
                             >
                                 <Circle />
                             </div>
+                          </Tooltip>
                         )
                     }
 
@@ -56,6 +59,8 @@ const PageIndicator = (props: PageIndicatorProps) => {
             <IconButton
                 onClick={() => changePage(page + 1)}
                 className='ml-2'
+                tooltip={t('nextPage')}
+                tooltipProps={{position: 'top'}}
             >
                 <ArrowRightIcon />
             </IconButton>

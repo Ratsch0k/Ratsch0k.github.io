@@ -7,8 +7,8 @@ const sizeMapping = {
 }
 
 const colorMapping = {
-  primary: 'bg-primary',
-  secondary: 'bg-secondary',
+  primary: 'bg-primary-lightest text-primary-dark dark:text-primary-contrast dark:bg-primary',
+  secondary: 'bg-secondary-lightest text-secondary-dark',
 }
 
 export interface ChipProps {
@@ -39,7 +39,7 @@ const Chip = (props: PropsWithChildren<ChipProps & typeof defaultProps>) => {
 
   return (
     <span
-      className={`rounded-3xl ${classColorChange} ${classSizeChange} font-bold text-secondary-contrast ${className !== undefined ? className: ''}`}
+      className={`rounded-3xl ${classColorChange} ${classSizeChange} font-bold transition-colors ${className !== undefined ? className: ''}`}
       style={{
         ...classes?.root,
       }}

@@ -2,6 +2,7 @@ import {HistoryEvent} from './HistoryData';
 import {useMemo} from 'react';
 import TailwindConfig from '../TailwindConfig';
 import {Trans, useTranslation} from 'react-i18next';
+import useTheme from '../hooks/useTheme';
 
 export const VisualizeField = ({field}: {field: string | JSX.Element}): JSX.Element => {
   if (typeof field === 'string') {
@@ -19,17 +20,22 @@ export const EventContent = ({event}: {event: HistoryEvent}) => {
   const {i18n: {language}, t} = useTranslation();
 
   return (
-    <div className='border text-primary-contrast rounded-3xl border-primary-light bg-primary p-4 sm:p-8 pt-4 sm:pt-4'>
-      <div className='font-bold text-2xl pb-2 text-primary-lightest text-center'>
+    <div
+      className='border rounded-3xl shadow-primary-xl dark:shadow-none border-gray-200 dark:border-primary-border bg-white dark:bg-primary-dark p-4 sm:p-8 pt-4 sm:pt-4'
+      style={{
+        transition: 'border-color 150ms, background-color 150ms, box-shadow 150ms',
+      }}
+    >
+      <div className='font-bold text-2xl pb-2 text-center transition-colors text-primary dark:text-secondary'>
         <VisualizeField field={event.type} />
       </div>
-      <div className='font-bold text-center leading-tight text-md sm:text-lg'>
+      <div className='font-bold text-center leading-tight text-md sm:text-lg text-primary-light dark:text-primary-lightest'>
         <VisualizeField field={event.title} />
       </div>
-      <div className='font-bold text-lg text-center pb-8 text-md sm:text-lg'>
+      <div className='font-bold text-lg text-center pb-8 text-md sm:text-lg text-primary-light dark:text-primary-lightest'>
         {event.from.toLocaleDateString(language, {month: 'long', year: 'numeric'})} - {event.to?.toLocaleDateString(language, {month: 'long', year: 'numeric'}) || t('cv.noDate')}
       </div>
-      <div>
+      <div className='transition-colors text-gray-700 dark:text-gray-200'>
         <VisualizeField field={event.description} />
       </div>
     </div>
@@ -50,6 +56,7 @@ export interface HistoryEventProps {
  */
 export const CVItem = (props: HistoryEventProps) => {
   const {event, isVisible, index, lineWidth, indicatorSize} = props;
+  const {theme} = useTheme();
 
   /*
    * Stores if the index of this component is even
@@ -76,9 +83,10 @@ export const CVItem = (props: HistoryEventProps) => {
         width={indicatorSize}
         strokeWidth={1.5}
         stroke='currentColor'
-        fill={TailwindConfig.theme.backgroundColor.primary.dark}
+        fill={theme === 'dark' ? TailwindConfig.theme.backgroundColor.primary.dark : '#ffffff'}
         style={{
           flex: '0 0 ' + indicatorSize + 'px',
+          transition: 'fill 150ms',
         }}
       >
         <circle cx={5} cy={5} r={4}/>

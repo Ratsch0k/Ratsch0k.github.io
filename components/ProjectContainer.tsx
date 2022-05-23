@@ -5,6 +5,7 @@ import ProjectTypeIndicator, {ProjectType} from './ProjectTypeIndicator';
 import Tooltip from './Tooltip';
 import {useTranslation} from 'react-i18next';
 import AnimatedDialog, {DialogState} from './AnimatedDialog';
+import useTheme from './hooks/useTheme';
 
 
 export const projectFlags = [
@@ -52,6 +53,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
   const [wasVisible, setWasVisible] = useState<boolean>(false);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [dialogState, setDialogState] = useState<DialogState>('closed');
+  const {theme} = useTheme();
 
   useEffect(() => {
     if (dialogState === 'opening') {
@@ -128,18 +130,18 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
               }}
           >
               <div
-                  className='bg-primary border border-primary-light p-2 pb-0 rounded-2xl mx-auto min-w-[300px]'
+                  className='bg-white shadow-primary-xl dark:shadow-none bg-white dark:bg-primary-dark border border-gray-200 dark:border-primary-border p-2 pb-0 rounded-2xl mx-auto min-w-[300px]'
                   style={{
                     cursor: open ? 'unset' : 'pointer',
                     height: open ? '100%' : '6.1rem',
                     width: '100%',
-                    transition: 'height, width',
-                    transitionDuration: '500ms, 500ms',
+                    transition: 'height, width, background-color, border-color, box-shadow',
+                    transitionDuration: '500ms, 500ms, 150ms, 105ms, 150ms',
                   }}
                   onClick={() => !dialogOpen && setDialogOpen(true)}
               >
                   <Tooltip
-                      className='h-20 w-20 bg-secondary rounded-xl absolute'
+                      className='h-20 w-20 transition-colors bg-primary-light dark:bg-secondary rounded-xl absolute'
                       style={{
                         transition: 'margin-left 500ms, margin-top 500ms',
                       }}
@@ -156,7 +158,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                   <div
                       className='overflow-hidden h-full w-full mr-[-4rem]'
                   >
-                      <button className={`text-white float-right transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setDialogOpen(false)}>
+                      <button className={`float-right transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setDialogOpen(false)}>
                           <CloseIcon />
                       </button>
                       <div
@@ -164,8 +166,10 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                       >
                           <div className={`w-full ml-24 transition-all duration-500 ${open ? 'mt-0' : 'mt-3'}`}>
                               <div
-                                  className={`transition-all whitespace-nowrap duration-500 font-bold ${open ? 'text-xl md:text-3xl overflow-hidden' : 'text-md md:text-xl'}`}
+                                  className={`text-gray-800 dark:text-white whitespace-nowrap font-bold ${open ? 'text-xl md:text-3xl overflow-hidden' : 'text-md md:text-xl'}`}
                                   style={{
+                                    transition: 'color, font-size',
+                                    transitionDuration: '150ms, 500ms',
                                     width: open ? 'calc(100% - 30px - 6rem)' : 'unset',
                                   }}
                               >
@@ -185,6 +189,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                                       key={`project-${index}-flag-${flag}`}
                                       size={'small'}
                                       className={'mx-0.5'}
+                                      color={theme === 'dark' ? 'secondary' : 'primary'}
                                     >
                                       {flag}
                                     </Chip>

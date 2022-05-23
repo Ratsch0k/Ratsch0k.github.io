@@ -2,8 +2,10 @@ import tailwindConfig from '../components/TailwindConfig';
 import convert from 'color-convert';
 import {FC, TouchEventHandler, useCallback, useEffect, useRef, useState} from 'react';
 import {isFirefox} from 'react-device-detect';
+import useTheme from './hooks/useTheme';
 
-const primary = convert.hex.rgb(tailwindConfig.theme.colors.primary.dark);
+const darkBackground = convert.hex.rgb('#13152c');
+const lightBackground = convert.hex.rgb('#ffffff');
 const textSm = tailwindConfig.theme.fontSize.sm[0];
 const text4xl = tailwindConfig.theme.fontSize['4xl'][0];
 const firstSansFontFamily = tailwindConfig.theme.fontFamily.sans[0];
@@ -25,6 +27,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
   const [initialSwipePos, setInitialSwipePos] = useState<number | null>(null);
   const [selectedTitle, setSelectedTitle] = useState<number | null>(null);
   const [lastPos, setLastPos] = useState<number | null>(null);
+  const {theme} = useTheme();
 
   /**
    * Get the width of the given text in pixels.
@@ -60,7 +63,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
   const calcOffset = useCallback((id: number) => {
     let offset = 0;
     for (let i = 0; i < id; i++) {
-      offset += getTextWidth(titles[i], 'normal') + 16;
+      offset += getTextWidth(titles[i], 'normal') + 24;
     }
 
     offset += getTextWidth(titles[id], 'big') / 2;
@@ -172,26 +175,31 @@ const PageTitle: FC<PageTitleProps> = (props) => {
 
   return (
     <div
-      className={`z-20 absolute top-0 pr-2 sm:pr-0 w-full h-[4rem] transition-opacity duration-500 ${disabled ? 'opacity-0' : 'opacity-1'}`}
+      className={`z-20 absolute top-0 sm:pr-0 pr-3 w-full h-[65px] overflow-y-visible overflow-x-hidden transition-opacity duration-500 ${disabled ? 'opacity-0' : 'opacity-1'}`}
 
     >
+      <div className='absolute w-full h-[2px] bottom-[1px] z-20'>
+        <div className='mx-auto border-b-2 h-[2px] border-primary dark:border-primary-contrast overflow-y-visible'
+             style={{
+               width: getTextWidth(titles[currentTitle], 'big'),
+               transition: 'width 300ms, border-color 150ms',
+               transform: 'translateY(1px)',
+             }}
+        />
+      </div>
       <div
-        className={`relative h-[4rem] text-4xl w-full text-center md:text-6xl overflow-x-hidden ${border && 'border-b'} border-primary-dark`}
+        className={`relative h-[65px] transition-colors text-4xl w-full text-center md:text-6xl border-b ${!border && 'border-transparent'} border-gray-200 dark:border-background-dark`}
        style={{
           backdropFilter: 'blur(8px)',
-          backgroundColor: `rgba(${primary[0]}, ${primary[1]}, ${primary[2]}, ${isFirefox ? 1.0 : 0.5})`,
+          overflowX: 'hidden',
+          overflowY: 'visible',
+          backgroundColor: theme === 'dark' ?
+            `rgba(${darkBackground[0]}, ${darkBackground[1]}, ${darkBackground[2]}, ${isFirefox ? 1.0 : 0.5})` :
+            `rgba(${lightBackground[0]}, ${lightBackground[1]}, ${lightBackground[2]}, ${isFirefox ? 1.0 : 0.1})`,
         }}
         ref={root}
       >
-        <div className='absolute w-full'>
-          <div className='mx-auto border-b border-primary-contrast'
-               style={{
-                 width: getTextWidth(titles[currentTitle], 'big'),
-                 transition: 'width 500ms',
-                 height: 'calc(4rem - 1px)',
-               }}
-          />
-        </div>
+
         <div
           className='absolute h-[3rem] mt-1 w-full'
           style={{
@@ -203,9 +211,9 @@ const PageTitle: FC<PageTitleProps> = (props) => {
             onTouchEnd={handleTouchEnd}
           >
             <div
-              className='text-base text-primary-lightest flex items-center h-[3rem] space-x-4'
+              className='text-base transition-colors text-primary dark:text-primary-lightest flex items-center h-[3rem] space-x-4'
               style={{
-                transition: initialSwipePos === null ? 'transform 500ms' : undefined,
+                transition: initialSwipePos === null ? 'transform 300ms' : undefined,
                 transform: `translateX(${-offset}px)`,
               }}
             >
@@ -215,7 +223,10 @@ const PageTitle: FC<PageTitleProps> = (props) => {
 
                   return (
                     <div
-                      className={'cursor-pointer font-bold ' + (isCurrentTitle ? 'text-primary-contrast text-4xl ' : 'text-sm ' + (index === selectedTitle ? 'text-primary-contrast' : 'text-primary-light'))}
+                      className={
+                        'cursor-pointer font-bold transition-colors' + (isCurrentTitle ? 'text-primary dark:text-primary-contrast text-4xl ' : 'text-sm ' + (index === selectedTitle ? 'text-primary dark:text-primary-contrast' : 'text-primary-dark dark:text-primary-light'
+                        ))
+                      }
                       onClick={(event) => {
                         event.stopPropagation();
                         event.preventDefault();
@@ -227,7 +238,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
                       style={{
                         whiteSpace: 'pre',
                         transition: 'font-size, color',
-                        transitionDuration: '500ms, 250ms',
+                        transitionDuration: '300ms, 250ms',
                       }}
                     >
                       {title}

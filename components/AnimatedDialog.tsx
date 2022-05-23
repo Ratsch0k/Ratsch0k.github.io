@@ -158,7 +158,7 @@ export const AnimatedDialog = forwardRef<HTMLDivElement, AnimatedDialogProps>((p
       <Modal
         open={state !== 'closed'}
         style={{
-          transition: 'background 500ms, backdrop-filter 500ms',
+          transition: 'background 500ms',
           backdropFilter: state === 'opening' || state === 'open' ? 'blur(12px)' : 'blur(0px)',
           background: state === 'opening' || state === 'open' ? 'rgba(0.2, 0.2, 0.2, 0.2)' : '#00000000',
         }}

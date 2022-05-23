@@ -14,7 +14,7 @@ const LanguageItem: NextPage<LanguageItemProps> = ({children, onClick, selected}
     return (
         <li
             onClick={onClick}
-            className={`transition-colors p-2 cursor-pointer hover:text-white hover:bg-primary-dark rounded-md ${selected ? 'border-primary border' : ''}`}
+            className={`transition-colors p-2 cursor-pointer hover:text-white hover:bg-primary dark:hover:bg-primary-dark rounded-md ${selected ? 'border-primary border' : ''}`}
         >
             {children}
         </li>
@@ -25,11 +25,14 @@ const LanguageSwitch = () => {
     const [open, setOpen] = useState<boolean>(false);
     const {i18n} = useTranslation();
     const popUpRef = useRef<HTMLDivElement>(null);
+    const anchorRef = useRef<HTMLButtonElement | null>(null);
+    const {t} = useTranslation();
 
     const closePopup = useCallback(() => {
         setOpen(false);
 
         if (popUpRef.current) {
+            popUpRef.current.style.opacity = '0';
             setTimeout(() => {
                 if (popUpRef.current) {
                     popUpRef.current.style.display = 'none'
@@ -40,8 +43,20 @@ const LanguageSwitch = () => {
 
     const openPopup = useCallback(() => {
         setOpen(true);
-        if (popUpRef.current) {
+        if (popUpRef.current && anchorRef.current) {
+            // First make element visible so that it will get rendered and `getBoundingClientRect` can return meaningful data
             popUpRef.current.style.display = 'unset';
+            getComputedStyle(popUpRef.current);
+
+            // Set position of element
+            const popupRect = popUpRef.current.getBoundingClientRect();
+            const anchorRect = anchorRef.current.getBoundingClientRect();
+            console.dir(popupRect);
+            const Y = - popupRect.height;
+            const X = - popupRect.width + anchorRect.width;
+            popUpRef.current.style.transform = `translate(${X}px, ${Y}px)`;
+
+            popUpRef.current.style.opacity = '1';
         }
     }, [popUpRef.current])
 
@@ -51,26 +66,25 @@ const LanguageSwitch = () => {
     }, [i18n]);
 
     return (
-        <div className='flex flex-col-reverse items-end'>
-            <IconButton
-                onClick={() => open ? closePopup() : openPopup()} 
-                className='p-2 m-2 rounded-lg text-primary-lightest'
-            >
-                <TranslateIcon/>
-            </IconButton>
+        <div>
             <ClickAwayListener onClickAway={() => open && closePopup()}>
-                <div ref={popUpRef} className={`transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className='rounded-lg shadow-xl bg-primary-lightest p-2'>
+                <div ref={popUpRef} className='absolute transition-opacity hidden opacity-0'>
+                    <div
+                      className='rounded-lg text-primary mb-2 shadow-primary-xl border border-gray-200 dark:border-primary-lightest bg-white dark:bg-primary-lightest p-2'
+                      style={{
+                          transition: 'box-shadow 150ms, border-color 150ms, background-color 150ms'
+                      }}
+                    >
                         <ol>
                             <LanguageItem
-                                onClick={() => changeLanguage('en')}
-                                selected={i18n.language === 'en'}
+                              onClick={() => changeLanguage('en')}
+                              selected={i18n.language === 'en'}
                             >
                                 English
                             </LanguageItem>
                             <LanguageItem
-                                onClick={() => changeLanguage('de')}
-                                selected={i18n.language === 'de'}
+                              onClick={() => changeLanguage('de')}
+                              selected={i18n.language === 'de'}
                             >
                                 Deutsch
                             </LanguageItem>
@@ -78,6 +92,17 @@ const LanguageSwitch = () => {
                     </div>
                 </div>
             </ClickAwayListener>
+            <IconButton
+                onClick={() => open ? closePopup() : openPopup()}
+                className='p-2 rounded-lg'
+                ref={anchorRef}
+                tooltipProps={{
+                    position: 'top',
+                }}
+                tooltip={!open ? t('changeLanguage') : undefined}
+            >
+                <TranslateIcon/>
+            </IconButton>
         </div>
     );
 };

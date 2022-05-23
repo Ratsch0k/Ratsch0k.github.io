@@ -15,8 +15,8 @@ export interface ProjectTypeIndicatorProps {
   types: ProjectType[];
 }
 
-const active = 'text-secondary-contrast';
-const inactive = 'text-secondary-dark';
+const active = 'transition-colors text-primary-contrast dark:text-secondary-contrast';
+const inactive = 'transition-colors text-primary-dark dark:text-secondary-dark';
 
 const ProjectTypeIndicator = (props: ProjectTypeIndicatorProps) => {
   const {types} = props;

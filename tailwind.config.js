@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     fontFamily: {
       sans: ['Arial'],
@@ -9,19 +9,28 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          lightest: '#cbe0f2',
-          light: '#6f98ba',
-          DEFAULT: '#1b3347',
-          dark: '#121f30',
+          lightest: '#c4d9ff',
+          light: '#7ca4ef',
+          DEFAULT: '#00398c',
+          dark: '#102141',
           contrast: '#FFFFFF',
+          border: '#204d91',
         },
         secondary: {
-          lightest: '#F9C784',
+          lightest: '#ffe5c3',
           light: '#FCAF58',
           DEFAULT: '#FF8C42',
-          dark: '#E05600',
+          dark: '#d55200',
           contrast: '#FFFFFF',
-        }
+        },
+        background: {
+          light: '#efefff',
+          dark: '#15162a',
+        },
+      },
+      boxShadow: {
+        'primary-xl': '0 0px 25px -5px rgba(0, 57, 140, 0.2), 0 10px 10px -5px rgba(0, 57, 140, 0.2)',
+        'primary-2xl': '0 0px 60px 8px rgba(0, 57, 140, 0.25)',
       },
       spacing: {
         '100-8': 'calc(100% - 2rem)',

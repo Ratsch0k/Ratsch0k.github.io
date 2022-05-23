@@ -8,10 +8,25 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="h-full m-0 overflow-hidden">
-        <Head />
-        <body className="h-full bg-primary-dark text-white m-0 p-0">
-          <Main />
+      <Html className="h-full m-0 overflow-hidden dark">
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                const theme = window.localStorage.getItem('theme');
+                
+                if (theme === 'dark' || (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              `
+            }}
+          >
+          </script>
+        </Head>
+        <body className="h-full transition-colors bg-background-light dark:bg-background-dark transition-colors text-black dark:text-white m-0 p-0">
+          <Main/>
           <NextScript />
         </body>
       </Html>

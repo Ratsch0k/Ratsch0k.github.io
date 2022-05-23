@@ -27,7 +27,7 @@ const DialogTitle = (props: DialogTitleProps) => {
         !noClose &&
         <IconButton
             onClick={close}
-            className='p-2 ml-2 !text-black hover:!bg-gray-200 float-right'
+            className='float-right'
         >
           <CloseIcon />
         </IconButton>

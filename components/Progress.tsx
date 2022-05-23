@@ -9,10 +9,11 @@ export interface ProgressProps {
   animated?: boolean;
   leftLabel?: string;
   rightLabel?: string;
+  delay?: number;
 }
 
 const Progress = (props: ProgressProps) => {
-  const {value: _value, xs, animated, leftLabel, rightLabel} = props;
+  const {value: _value, xs, animated, leftLabel, rightLabel, delay} = props;
   const [value, setValue] = useState<number>(animated ? 0 : _value);
 
   useEffect(() => {
@@ -28,13 +29,16 @@ const Progress = (props: ProgressProps) => {
         </span>
       }
       <div
-        className='w-full my-auto h-2 rounded-xl p-[1px] overflow-hidden border border-primary-lightest'
+        className='w-full my-auto h-2 rounded-xl p-[1px] overflow-hidden border transition-colors border-primary dark:border-primary-lightest'
         style={xs?.root}
       >
         <div
-          className='bg-primary-lightest h-[4px] rounded-xl transition-all duration-500'
+          className='bg-primary dark:bg-primary-lightest h-[4px] rounded-xl'
           style={{
+            transition: 'width, background',
+            transitionDuration: '500ms, 150ms',
             width: value * 100 + '%',
+            transitionDelay: (delay !== undefined ? delay : 0) + 'ms, 0ms',
             ...xs?.progress,
           }}
         />

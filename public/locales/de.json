@@ -218,6 +218,11 @@
     "privacyPolicy": {
         "title": "Datenschutzerklärung"
     },
+    "switchTheme": "Farbthema wechseln",
+    "changeLanguage": "Sprache ändern",
+    "nextPage": "Zur nächsten Seite",
+    "previousPage": "Zur vorherigen Seite",
+    "toPage": "Zu Seite {{page}}",
     "misc": {
         "swipe": "Wische zur nächsten Seite"
     }

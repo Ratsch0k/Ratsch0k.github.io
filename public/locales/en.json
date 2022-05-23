@@ -97,6 +97,11 @@
     "privacyPolicy": {
         "title": "Privacy policy"
     },
+    "switchTheme": "Switch theme",
+    "changeLanguage": "Change language",
+    "nextPage": "To next page",
+    "previousPage": "To previous page",
+    "toPage": "To page {{page}}",
     "misc": {
         "swipe": "Swipe to the next page"
     }

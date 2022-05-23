@@ -48,11 +48,7 @@ const CodingSkill = () => {
                 <Progress
                   value={rating / 5}
                   animated
-                  xs={{
-                    progress: {
-                      transitionDelay: index * 100 + 500 + 'ms',
-                    }
-                  }}
+                  delay={index * 100 + 500}
                   leftLabel={t('skills.coding.langlist.lowest')}
                   rightLabel={t('skills.coding.langlist.highest')}
                 />
