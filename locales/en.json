@@ -43,6 +43,47 @@
             "website": "Website"
         }
     },
+    "cv": {
+        "title": "CV",
+        "type": {
+            "abitur": "A levels",
+            "minijob": "Mini-job",
+            "bachelor": "B. Sc. Computer Science",
+            "master": "M. Sc. IT-Security",
+            "hiwi": "Student assistant",
+            "freelance": "Freelance"
+        },
+        "noDate": "ongoing",
+        "abitur": {
+            "title": "Gutenberg Gymnasium Mainz",
+            "description": "Advanced courses: <list><item>Mathematics</item><item>Physics</item><item>English</item></list><br/>Grade: <b>2.4</b>"
+        },
+        "moebelmartin": {
+            "title": "Möbel Martin",
+            "description": "My task was to get furniture for customers from the warehouse."
+        },
+        "bachelor": {
+            "title": "TU Darmstadt",
+            "description": "Elective Subjects: <list><item>Robotics</item><item>IT-Security</item><item>Web-, Knowledge- and Information Processing</list><br/>Grade: <b>1.6</b>"
+        },
+        "trutzbox": {
+            "title": "Comidio GmbH",
+            "description": "Frontend developer for the TrutzBox's admin interface. My job was to take the old admin interface and rewrite it in ReactJS with a modern UI"
+        },
+        "c++": {
+            "title": "TU Darmstadt - C/C++ practical programming course",
+            "description": "In a team we created new exercises to teach student how to write C/C++ code correctly and cleanly."
+        },
+        "psaf": {
+            "title": "TU Darmstadt - Project seminar autonomous driving",
+            "description": "As a student assistant my main task was to be a contact for the students, and to maintain the used cars and further develop custom made software. Automation, debugging, bugfixing, and writing documentation was also part of my job."
+        },
+        "master": {
+            "title": "TU Darmstadt",
+            "description": "My current studies. In this degree I will learn a lot about information security systems, technical system- and software security, and modern cryptography."
+        },
+        "revealAll": "Alles zeigen"
+    },
     "legal": {
         "title": "Legal"
     },
@@ -56,6 +97,11 @@
     "privacyPolicy": {
         "title": "Privacy policy"
     },
+    "switchTheme": "Switch theme",
+    "changeLanguage": "Change language",
+    "nextPage": "To next page",
+    "previousPage": "To previous page",
+    "toPage": "To page {{page}}",
     "misc": {
         "swipe": "Swipe to the next page"
     }
