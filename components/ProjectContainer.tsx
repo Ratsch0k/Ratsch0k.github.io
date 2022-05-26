@@ -6,6 +6,7 @@ import Tooltip from './Tooltip';
 import {useTranslation} from 'react-i18next';
 import AnimatedDialog, {DialogState} from './AnimatedDialog';
 import useTheme from './hooks/useTheme';
+import IconButton from './IconButton';
 
 
 export const projectFlags = [
@@ -156,11 +157,11 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                   </Tooltip>
 
                   <div
-                      className='overflow-hidden h-full w-full mr-[-4rem]'
+                      className='overflow-hidden h-full w-full mr-[-4rem] relative'
                   >
-                      <button className={`float-right transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setDialogOpen(false)}>
+                      <IconButton className={`absolute right-0 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setDialogOpen(false)}>
                           <CloseIcon />
-                      </button>
+                      </IconButton>
                       <div
                           className='h-14 mb-10'
                       >
@@ -198,7 +199,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                               </div>
                           </div>
                       </div>
-                      <div className='px-4 overflow-y-auto scrollbar-light'
+                      <div className={`px-4 overflow-y-auto ${theme === 'dark' ? 'scrollbar-light' : 'scrollbar'}`}
                            style={{
                              height: 'calc(100% - 3.5rem - 2.5rem - 1rem)'
                            }}

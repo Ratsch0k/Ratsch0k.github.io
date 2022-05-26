@@ -188,7 +188,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
         />
       </div>
       <div
-        className={`relative h-[65px] transition-colors text-4xl w-full text-center md:text-6xl border-b ${!border && 'border-transparent'} border-gray-200 dark:border-background-dark`}
+        className={`relative h-[65px] transition-colors text-4xl w-full text-center md:text-6xl border-b ${!border && 'border-transparent'} border-gray-300 dark:border-background-dark`}
        style={{
           backdropFilter: 'blur(8px)',
           overflowX: 'hidden',

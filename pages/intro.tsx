@@ -77,7 +77,7 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
     setClicked(true);
     setTimeout(() => {
       setOpen(false);
-    }, 2000);
+    }, 5000);
   }, []);
 
   return (
@@ -85,11 +85,11 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
       <Modal open={open}>
       <div
         className={
-          `absolute inset-0 bg-background-light dark:bg-background-dark flex justify-center items-center z-40 text-primary-dark dark:text-primary-contrast transition-opacity ${clicked && 'opacity-0 animate-ball-shrink'}`
+          `absolute inset-0 bg-background-light dark:bg-background-dark flex justify-center items-center z-40 text-primary dark:text-primary-lightest transition-opacity ${clicked && 'opacity-0 animate-ball-shrink'}`
         }
         style={{
-          transitionDelay: '1.2s',
-          transitionDuration: '0.8s',
+          transitionDelay: '3s',
+          transitionDuration: '1s',
         }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -120,7 +120,7 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
           }
         </div>
         <button
-          className='absolute p-4 pb-0 right-8 bottom-8 text-xs border-b-2 md:text-xl xl:text-2xl transition-all hover:border-b-8 border-primary-dark dark:border-primary-contrast disabled:opacity-0'
+          className='absolute p-4 pb-0 right-8 bottom-8 text-xs border-b-2 md:text-xl xl:text-2xl transition-all hover:border-b-8 border-primary dark:border-primary-lightest disabled:opacity-0'
           onClick={handleSkip}
           onMouseUp={handleSkip}
           onMouseDown={handleSkip}

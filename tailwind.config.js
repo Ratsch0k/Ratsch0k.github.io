@@ -91,7 +91,7 @@ module.exports = {
       animation: {
         'swipe-left': 'swipe 4s ease-in 500ms infinite',
         'hover': 'hover 4s ease-in-out infinite',
-        'ball-shrink': 'ball-shrink 0.8s ease-out 1.2s',
+        'ball-shrink': 'ball-shrink 1.5s ease-out 2.5s',
       }
     }
   },

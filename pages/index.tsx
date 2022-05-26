@@ -187,15 +187,16 @@ const Home = () => {
           <IndicateSwipeMotion/>
       }
       <div
-        className='absolute bottom-0 z-20 w-full pr-2 sm:pr-0 transition-colors'
-        style={{
-          backdropFilter: 'blur(8px)',
-          backgroundColor: theme === 'dark' ?
-            `rgba(${darkBackground[0]}, ${darkBackground[1]}, ${darkBackground[2]}, ${isFirefox ? 1 :  0.5})` :
-            `rgba(${lightBackground[0]}, ${lightBackground[1]}, ${lightBackground[2]}, ${isFirefox ? 1 : 0.1}`,
-        }}
+        className='absolute bottom-0 z-20 w-full pr-3 sm:pr-0 transition-colors'
       >
-        <div className={`p-4 flex justify-center flex items-end transition-colors justify-between border-background-light dark:border-background-dark ${scrollable && 'border-t'}`}>
+        <div className={`px-2 sm:px-4 py-4 flex justify-center flex items-end transition-colors justify-between border-background-light dark:border-background-dark ${scrollable && 'border-t'}`}
+             style={{
+               backdropFilter: 'blur(8px)',
+               backgroundColor: theme === 'dark' ?
+                 `rgba(${darkBackground[0]}, ${darkBackground[1]}, ${darkBackground[2]}, ${isFirefox ? 1 :  0.5})` :
+                 `rgba(${lightBackground[0]}, ${lightBackground[1]}, ${lightBackground[2]}, ${isFirefox ? 1 : 0.1}`,
+             }}
+        >
           <div className='h-10 w-10 text-primary dark:text-primary-contrast transition-colors'>
             <Logo strokeWidth={40}/>
           </div>

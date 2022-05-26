@@ -170,9 +170,9 @@
 }
 
 :root {
-  --bounce-duration: 200ms;
-  --bounce-delay: 50ms;
-  --unfold-duration: 250ms;
+  --bounce-duration: 150ms;
+  --bounce-delay: 150ms;
+  --unfold-duration: 400ms;
   --unfold-delay: var(--bounce-delay) + var(--bounce-duration);
   --base-delay: 50ms;
 }
@@ -184,13 +184,13 @@
 }
 
 .unfold {
-  animation: unfold var(--unfold-duration) ease-out calc(var(--unfold-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
+  animation: unfold var(--unfold-duration) ease-in calc(var(--unfold-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
 }
 
 .bounce-up {
-  animation: bounce-up var(--bounce-duration) ease-out calc(var(--bounce-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
+  animation: bounce-up var(--bounce-duration) ease-in calc(var(--bounce-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
 }
 
 .bounce-up-delayed {
-  animation: bounce-up var(--bounce-duration) ease-out calc(var(--bounce-delay) + var(--bounce-delay) * ( var(--i) + 5 ) + var(--base-delay)) 1 both;
+  animation: bounce-up var(--bounce-duration) ease-in calc(var(--bounce-delay) + var(--bounce-delay) * ( var(--i) + 3 ) + var(--base-delay)) 1 both;
 }
