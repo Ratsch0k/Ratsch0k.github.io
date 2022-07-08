@@ -7,19 +7,30 @@
     },
     "aboutme": {
         "title": "Über mich",
-        "myinfo": "Hi,<br/>Ich bin 23 und studiere zurzeit IT-Sicherheit an der Technischen Universität Darmstadt.<br/>Informatik und generell Computer sind schon lange meine Leidenschaft. Angefangen hat es in der 5. Klasse, in der ich mein erstes kleines Program mit Visual Basic programmiert habe. Über die Jahre bekam IT-Sicherheit meine Hauptinteresse, vorallem Web- und Netzwerksicherheit, aber dennoch macht mir die Software Entwicklung sehr viel Spaß. <br/><br/> Ich habe viele Projekte unterschiedlicher Größe gebaut, von Machine Learning zu Game Engines, ich habe viele Themen ausprobiert. Die folgenden Programmiersprachen habe ich mir dabei beigebracht (abnehmende Expertise): <br/><br>Ein Liste meine Projekte kannst du dir auf der nächsten Seite ansehen. <br/><br/>Obwohl ich es genieße alleine in meiner eigenen Geschwindigkeit zu arbeiten, mag ich es auch in einem motiviertem Team zu arbeiten und scheue auch nicht davor zurück das Team zu führen, wenn sonst niemand bereit ist. <br/>Ich hoffe das meine Projekte Interesse bei dir wecken."
+        "myinfo": [
+            "Hi,<br/>Ich bin 23 und studiere zurzeit M.Sc. IT-Sicherheit an der Technischen Universität Darmstadt.",
+            "<br/><br/>Informatik und generell Computer sind schon lange meine Leidenschaft und ",
+            "durch meinen Bachelor in Informatik bin ich mit vielen Bereichen der Informatik in Berührung gekommen. ",
+            "Dabei haben vor allem die Themen Sicherheit und Software Entwicklung meine Begeisterung geweckt.<br/><br/>",
+            "Bezüglich der Sicherheit faszinieren mich die technische Themen Web- und Netzwerksicherheit, und ",
+            "Kryptographie, aber auch das Thema Informationssicherheitsmanagement, das scheinbar zu ",
+            "wenige Unternehmen ernst nehmen.<br/><br/>Mit einer großen Begeisterung Neues zu lernen und mit meinen ",
+            "Interessen in der Sicherheit, so wie der Entwicklung, will ich die IT-Systeme sicherer machen."
+        ]
     },
     "skills": {
         "title": "Fähigkeiten",
         "general": {
             "title": "Allgemein",
             "content": [
-                "Mit einer großen Begeisterung für die Informatik und vorallem für Software Entwicklung ",
+                "Mit einer großen Begeisterung für die Informatik und vor allem für Software Entwicklung ",
                 "und Sicherheit habe ich mit viel Enthusiasmus mein Studium an der TU Darmstadt angefangen.<br/><br/>",
                 "Seitdem habe ich viel Wissen in den unterschiedlichen Bereichen der Informatik gelernt und ein Vielzahl",
                 " von Projekten, sowohl in der Uni, also auch persönliche, gemeistert. ",
                 "Durch diese Projekte habe ich außerdem viel Erfahrung in Themen wie <strong>git</strong>, ",
-                "<strong>Agile Entwicklung</strong>, <strong>Teamarbeit</strong> und unterschiedlichen Programmiersprachen gesammelt."
+                "<strong>Agile Entwicklung</strong>, <strong>Teamarbeit</strong> und unterschiedlichen ",
+                "Programmiersprachen gesammelt.<br/><br/>In meiner Freizeit beschäftige ich mich auch gerne mit ",
+                "Aufgaben in Hacking Events wie CTFs oder Hack-the-box und halte mich stetig auf dem laufendem."
             ]
         },
         "coding": {
@@ -40,7 +51,7 @@
         "experience": {
             "title": "Erfahrung",
             "introduction": [
-                "Durch Projekte in der Uni, aber vor allem durch eigene Projekte habe ich in vielen Programmiersprachen, Frameworks und Themen Erfahrung gesammelt<br/>",
+                "Durch Projekte in der Uni, aber vor allem durch eigene Projekte habe ich in vielen Programmiersprachen, Frameworks und Themen Erfahrung gesammelt.<br/>",
                 "Eine komplette Liste mit allen nennenswerten Projekten befinden sich auf der Seite <strong>Projekte</strong>.<br/><br/>"
             ],
             "projectTopics": {
@@ -48,7 +59,11 @@
                 "topics": [
                     "Docker",
                     "Continuous Integration",
-                    "Agile Entwicklung"
+                    "Agile Entwicklung",
+                    "DevOps",
+                    "SysAdmin",
+                    "Dokumentation",
+                    "Software Design"
                 ]
             },
             "uniTopics": {
@@ -63,7 +78,21 @@
                     "Parallelisierung",
                     "Visual Computing",
                     "Künstliche Intelligenz",
-                    "Blockchain und Smart Contract Entwicklung"
+                    "Blockchain und Smart Contract Entwicklung",
+                    "Datenbank",
+                    "Natural Language Processing",
+                    "Rechnerarchitektur"
+                ]
+            },
+            "securityTopics": {
+                "introduction": "Außerdem habe ich durch die Uni und teilweise auch eigene Recherche Wissen in den folgenden Sicherheitsthemen angereichert:",
+                "topics": [
+                    "Kryptographie",
+                    "Netzwerksicherheit",
+                    "Websicherheit",
+                    "Informationssicherheitsmanagement",
+                    "Hardwaresicherheit",
+                    "Statische Programmanalyse"
                 ]
             }
         },
@@ -162,6 +191,141 @@
                     "auf der anfänglich nur Ubuntu ist, von Grund auf aufgebaut. "
                 ]
             }
+        },
+        "trutzbox": {
+            "description": {
+                "title": "Beschreibung",
+                "content": [
+                    "<p>Das war meine erste Stelle als Entwickler. Die Firma Comidio GmbH. verkauft ein kleines Gerät ",
+                    "names TrutzBox. Mit hilfe von Content Filtern, Bearbeitung von HTTP Packeten, und anderen Tricks, ",
+                    "versucht diese die eigene Internetbenutzung möglichst weit zu anonymisieren. Der große Vorteil ",
+                    "dieses Gerätes ist, dass man mithörende Geräte wie Smart TVs daran anschließen kann und auch diese ",
+                    "teilweise kontrollieren kann. Meine Aufgabe war es, die veraltete UI der TrutzBox mit hilfe von ",
+                    "ReactJS in die heutige Zeit zu bringen. Das Projekt war mein erstes großes React Projekt und ",
+                    "ich habe dadurch viel Erfahrung in der Frontend Entwicklung mit React gesammelt.</p>",
+
+                    "<p>Da die alte Version nicht mit React geschrieben wurde, musste ich alle Seiten, die die alte ",
+                    "Benutzeroberfläche anbietet, komplett neu in React schreiben, und, da jegliche Dokumentation ",
+                    "gefehlt hat, mir selbst herleiten wie alles funktioniert. Zusätzlich sollten neue Funktionen ",
+                    "eingebaut werden und die Oberfläche intuitiver gestaltet werden. Die größten Herausforderungen ",
+                    "waren das Verwalten des Zustands, die Integration mit dem Backend, das Realisieren von einer ",
+                    "Tabelle, bei der die Daten in Echtzeit (mithilfe von Websockets) aktualisiert werden, und ",
+                    "das Einbauen von Echtzeitgraphen.</p>"
+                ]
+            }
+        },
+        "norona": {
+            "description": {
+                "title": "Beschreibung",
+                "content": [
+                    "Zwischen dem Anfang der Corona Pandemie und der weitflächigen Etablierung von staatlichen ",
+                    "Kontaktverfolgungsapps hatte ich ein Projektpraktikum des Fachbereichs \"Telekooperation\" ",
+                    "belegt. Das Thema war, eine eigene Kontaktverfolgungsapp in Kleingruppen zu entwickeln. ",
+                    "Uns wurden ein paar Grundfunktionalitäten vorgegeben, sowie die Kontaktverfolgung, oder eine ",
+                    "Kartensicht, auf der man seinen Standortverlauf sehen kann, aber ansonsten konnten ",
+                    "wir noch beliebige Funktionalitäten hinzufügen. Wir wollten eine möglichste umfangreiche App ",
+                    "entwickeln und bei uns war der Fokus vor allem auf die Privatsphäre der Benutzer."
+                ]
+            },
+            "tracing": {
+                "title": "Kontaktverfolgung",
+                "content": [
+                    "Wie vorgegeben haben wie Kontaktverfolgung in die App eingebaut. Da es zum Beginn der ",
+                    "Entwicklung noch keine offiziellen Kontaktverfolgungsapps gab, haben wir unser eigenes System ",
+                    "entwickelt, welches sogar einem ähnliches Konzept wie die \"Corona-Warn-App\" benutzt hat. Also ",
+                    "ein Gerät sendet mit Bluetooth LE in regelmäßigen Abständen eine ID, die sich auch regelmäßig ",
+                    "ändert. Wenn man erkrankt, kann man das in die App eintragen und die Liste alle eigener IDs der",
+                    "letzten 2 Wochen wird hochgeladen. Jede App speichert sich alle IDs die sie länger als 5 Minuten ",
+                    "gesehen hat und überprüft circa jeden Tag ob es einen Kontakt gab. Wir haben zusätzlich ",
+                    "noch einen Grad des Kontakt eingebaut, also wenn eine Person nur Kontakt mit einer Person hatte, ",
+                    "die Kontakt mit einer erkrankten Person hatte, dann ist der Grad des Kontakt geringer. Dadurch ",
+                    "war es sogar möglich Infizierungsketten zu sehen."
+                ]
+            },
+            "maps": {
+                "title": "Karten",
+                "content": [
+                    "Zusätzlich zu einer Karte, in der man seinen eigenen Standortsverlauf sehen konnte haben wir ",
+                    "noch zwei weitere Ansichten eingebaut. Die erste war eine Heatmap, in der dargestellt wurde, wo ",
+                    "sich gerade viele Leute befinden. Der Gedanke war, dass man so diese Gebiete umgehen kann, um ",
+                    "so einen potentiellen Kontakt zu vermeiden. Die zweite war eine Ansicht aller Supermärkte. ",
+                    "Hier wurde jeder Supermarkt markiert und wenn man drauf klickt, konnte man sich anschauen ",
+                    "welche Lebensmittel noch verfügbar sind."
+                ]
+            },
+            "giveAndReceive": {
+                "title": "Hilfe geben/bekommen",
+                "content": [
+                    "Mit dieser Funktionalität konnte man Benutzer in der Umgebung um Lebensmittel und sonstigen ",
+                    "bitten oder angeben, dass man Lebensmittel zu verschenken hat. Um die Privatsphäre zu beschützen ",
+                    "kann man nur einen Umkreis einstellen, in dem man solche Anfragen sehen kann und man weiß nicht ",
+                    "genau, wo der Benutzer ist. Den genauen Standort und weitere Sachen, konnte man dann über den ",
+                    "Realtime Messenger klären, den wir eingebaut haben."
+                ]
+            },
+            "rulesOverview": {
+                "title": "Regeln- und Nachrichtenüberblick",
+                "content": [
+                    "Vor allem am Anfang zu Corona war es schwer einen Überblick über die aktuellen Regeln und ",
+                    "Nachrichten zu bekommen. Deswegen haben wir zwei wichtige Funktionalitäten eingebaut. Die ",
+                    "erste war eine Deutschlandkarte, die einem für jedes Bundesland an die aktuelle öffentliche ",
+                    "Webseite weiterleitet. Die zweite war eine Echtzeitliste, die von unterschiedlichen ",
+                    "Nachrichtenquellen die aktuellen Coronanachrichten anzeigt."
+                ]
+            },
+            "technologies": {
+                "title": "Entwicklung & Technologien",
+                "content": [
+                    "<p>Zur Entwicklung hatten wir einen agilen Entwicklungsansatz benutzt, in dem wir in ",
+                    "zweiwöchentlichen Sprints neue Funktionalitäten entwickelt und getestet habe um am Ende ",
+                    "jedes Prints einen neuen Release zu haben.</p>",
+                    "<p>Die App hatten wir hauptsächlich mit Flutter geschrieben, wobei wir an manchen Stellen ",
+                    "mit selbst geschrieben Android Java Code mit hilfe von Channels kommunizieren mussten. ",
+                    "Den Server hatten wir mit ExpressJS geschrieben und mussten Authentifizierung einbauen, ",
+                    "sowie mit Websockets und dem Datenbanksystem MongoDB arbeiten.</p>"
+                ]
+            }
+        },
+        "webide": {
+            "description": {
+                "title": "Beschreibung",
+                "content": [
+                    "Dieses Projekt entstand im Kontext des Moduls \"Bachelor Praktikum\" für die wissenschaftliche ",
+                    "Projekt <0>ETA-Fabrik</0> der TU-Darmstadt. Ein sehr interessantes Projekt, in dem geforscht ",
+                    "wurde, wie man eine Fabrik durch verbinden der Maschinen effizienter gestalten kann. Da dort ",
+                    "mit einer großen Menge an Daten gearbeitet wurde, haben die Mitarbeiter viel mit Python und ",
+                    "Bibliotheken wie <1>Matplotlib</1> gearbeitet. Um deren Arbeit zu beschleunigen, war es die ",
+                    "Aufgabe von meiner Gruppe und mir eine Python Web IDE zu bauen, welche genutzt werden kann ",
+                    "um lange, aufwendige oder wiederkehrende Programme auszuführen, und auch um diese zu schreiben. ",
+                    "Somit musste unsere IDE die Programme ausführen können, native Unterstützung für Matplotlib haben ",
+                    "und das Einrichten von regelmäßigen Jobs unterstützen."
+                ]
+            },
+            "functionalities": {
+                "title": "Funktionalitäten",
+                "content": [
+                    "Die Web IDE hatte einen Editor mit Syntaxhighlighting, Autovervollständigung und Unterstützung ",
+                    "für Snippets, die per Drag-and-Drop eingefügt werden konnten. Wie oben erwähnt, war es möglich",
+                    "den Code direkt im Browser auszuführen, regelmäßig laufende Jobs einzustellen und Bilder, die ",
+                    "von Matplotlib erstellt wurden, direkt anzuzeigen."
+                ]
+            },
+            "technologies": {
+                "title": "Entwicklung & Technologien",
+                "content": [
+                    "<p>Wir hatten für das Projekt einen agilen Entwicklungsansatz benutzt, in dem wir uns alle zwei Wochen ",
+                    "mit Mitarbeitern der ETA-Fabrik getroffen, unseren aktuellen Stand gezeigt und ",
+                    "User Stories geplant und priorisiert hatten. Wir hatten unser Gruppe in zwei Teams aufgeteilt, ",
+                    "eins für das Frontend und eins für das Backend, ich war im Backend Team.</p>",
+                    "<p>Das Frontend wurde mit Angular geschrieben und hatte zusätzlich Typescript genutzt. Das ",
+                    "Backend hatte wir mit <0>Spring Boot</0> geschrieben. Gerade im Backend kamen ein paar sehr ",
+                    "interessante Technologien in Einsatz um die gewünschten Funktionalitäten möglich zu machen. ",
+                    "Zum Beispiel wurde der Python Code nicht auf der Clientseite ausgeführt, sondern vom Server ",
+                    "in ein Dockercontainer mit dem richtigen Image geladen, dann ausgeführt, und die ",
+                    "Programmausgaben mit Websockets an den Client zurückgesendet. Dadurch war es uns möglich ",
+                    "unterschiedliche Python Versionen und beliebigen Bibliotheken zu unterstützen.</p>"
+                ]
+            }
         }
     },
     "cv": {
@@ -185,7 +349,7 @@
         },
         "bachelor": {
             "title": "TU Darmstadt",
-            "description": "Wahlbereiche: <list><item>Robotik</item><item>IT-Sicherheit</item><item>Web-, Knowledge- and Information Processing</item></list><br/>Note: <b>1.6</b>"
+            "description": "Wahlbereiche: <list><item>Robotik</item><item>IT-Sicherheit</item><item>Web-, Knowledge- and Information Processing</item></list><br/><b>Thema der Bachelorarbeit:</b> Erstellung eines IT-Sicherheit Web Corpus<br/><b>Note:</b> 1.6"
         },
         "trutzbox": {
             "title": "Comidio GmbH",
@@ -204,6 +368,10 @@
             "description": "Mein derzeitiges Studium über IT-Sicherheit. Hier lerne ich von Informationssicherheitssystemen, über technische System und Softwaresicherheit bis zu moderner Kryptographie, eine Menge über IT-Sicherheit."
         },
         "revealAll": "Alles zeigen"
+    },
+    "links": {
+        "github": "GitHub",
+        "group-car": "Schau dir das Projekt an"
     },
     "legal": {
         "title": "Legales"

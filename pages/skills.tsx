@@ -32,9 +32,9 @@ export const Skills: PageComponent = ({setScrollable}) => {
 
   return (
     <div className='h-full flex flex-col'>
-      <PageContent>
+      <PageContent id='skills-page'>
         <div
-          className='flex flex-col p-8 pt-0 items-center justify-center w-full mb-16'
+          className='flex flex-col p-4 sm:p-8 pt-0 items-center justify-center w-full mb-16'
           ref={(ref) => contentRef.current = ref}
         >
           {

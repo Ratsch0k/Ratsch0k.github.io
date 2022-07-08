@@ -41,9 +41,8 @@ const PageIndicator = (props: PageIndicatorProps) => {
 
                     for (let i = 0; i < len; i++) {
                         circles.push(
-                          <Tooltip label={t('toPage', {page: i + 1})} position='top'>
+                          <Tooltip key={`indicator-${i}`} label={t('toPage', {page: i + 1})} position='top'>
                             <div
-                              key={`indicator-${i}`}
                               className={`m-1 cursor-pointer ${i === page ? 'text-secondary' : 'text-primary dark:text-primary-lightest hover:text-secondary dark:hover:text-primary-contrast'}`}
                               onClick={() => changePage(i)}
                             >

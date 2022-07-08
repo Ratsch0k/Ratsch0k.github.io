@@ -4,6 +4,7 @@ export interface TopicContainerProps {
   title: string;
   icon?: ReactElement;
   pos: number;
+  visibilityThreshold?: number;
 }
 
 const SkillContainer: FC<TopicContainerProps> = (props) => {
@@ -13,7 +14,7 @@ const SkillContainer: FC<TopicContainerProps> = (props) => {
   return (
     <div
       ref={ref}
-      className={`${pos > 0 && 'mt-10'} border border-gray-200 dark:border-primary-border relative p-2 sm:p-6 rounded-2xl flex flex-col justify-start items-center w-full shadow-primary-xl dark:shadow-none bg-white dark:bg-primary-dark`}
+      className={`${pos > 0 && 'mt-10'} border border-gray-300 dark:border-primary-border relative p-2 sm:p-6 rounded-2xl flex flex-col justify-start items-center w-full shadow-primary-xl dark:shadow-none bg-white dark:bg-primary-dark`}
       style={{
         animation: `appear-from-below 500ms ease-in-out ${pos * 200}ms both`,
         transition: 'background-color, box-shadow, border-color',
@@ -42,7 +43,7 @@ const SkillContainer: FC<TopicContainerProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className='flex-1 p-2'>
+      <div className='flex-1 p-2 w-full'>
         {children}
       </div>
     </div>

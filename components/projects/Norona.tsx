@@ -1,10 +1,16 @@
 import {Project} from './index';
+import Section from '../Section';
 
 export const NoronaProject = () => {
   return (
-    <div>
-      Project about making a Corona App
-    </div>
+      <>
+        <Section i18nKey='projects.norona.description' />
+        <Section i18nKey='projects.norona.tracing' />
+        <Section i18nKey='projects.norona.maps' />
+        <Section i18nKey='projects.norona.giveAndReceive' />
+        <Section i18nKey='projects.norona.maps' />
+        <Section i18nKey='projects.norona.technologies'/>
+      </>
   );
 };
 

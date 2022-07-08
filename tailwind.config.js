@@ -12,7 +12,7 @@ module.exports = {
           lightest: '#c4d9ff',
           light: '#7ca4ef',
           DEFAULT: '#00398c',
-          dark: '#102141',
+          dark: '#14284f',
           contrast: '#FFFFFF',
           border: '#204d91',
         },
@@ -24,7 +24,7 @@ module.exports = {
           contrast: '#FFFFFF',
         },
         background: {
-          light: '#efefff',
+          light: '#e3e3ff',
           dark: '#15162a',
         },
       },

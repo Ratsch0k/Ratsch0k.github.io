@@ -31,4 +31,19 @@ export const myGroupCar: Project = {
   flags: ['Typescript', 'ReactJS', 'NodeJS', 'ExpressJS', 'Postgresql', 'REST'],
   content: MyGroupCarProject,
   types: ['Website', 'Server'],
+  links: [
+      {
+         href: 'https://my-group-car.de',
+         label: 'links.group-car',
+         translate: true,
+      },
+      {
+          href: 'https://github.com/Ratsch0k/group-car',
+          label: 'GitHub - Frontend'
+      },
+      {
+          href: 'https://github.com/Ratsch0k/group-car-api',
+          label: 'GitHub - Backend'
+      }
+  ]
 };

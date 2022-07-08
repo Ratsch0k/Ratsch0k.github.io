@@ -123,6 +123,14 @@ export const History = (props: HistoryProps) => {
 
   const [disableScroll, setDisableScroll] = useState<boolean>(false);
 
+  useEffect(() => {
+    const scroll = parseInt(window.sessionStorage.getItem('cv-page') || '', 10);
+
+    if (!isNaN(scroll)) {
+      ref.current?.scroll(0, scroll);
+    }
+  }, []);
+
   const {theme} = useTheme();
   const {t} = useTranslation();
 
@@ -170,6 +178,8 @@ export const History = (props: HistoryProps) => {
     if (!disableScroll) {
       setScrollPercentage(getScrollPercentageFromDiv(element));
     }
+
+    window.sessionStorage.setItem('cv-page', element.scrollTop.toString());
   }, [disableScroll]);
 
   const handleRevealAll = useCallback(() => {

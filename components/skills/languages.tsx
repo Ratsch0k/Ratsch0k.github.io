@@ -1,15 +1,11 @@
 import React from 'react';
-import {Trans, useTranslation} from 'react-i18next'
+import {Trans} from 'react-i18next'
 import {Skill} from './index';
 import TranslateIcon from '../icons/TranslateIcon';
 
 const LanguagesSkills = () => {
-  const {t} = useTranslation();
-
   return (
-    <Trans>
-      {t('skills.languages.content')}
-    </Trans>
+    <Trans i18nKey='skills.languages.content'/>
   );
 };
 

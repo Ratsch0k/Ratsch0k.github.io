@@ -12,12 +12,12 @@ interface LanguageItemProps {
 
 const LanguageItem: NextPage<LanguageItemProps> = ({children, onClick, selected}) => {
     return (
-        <li
+        <div
             onClick={onClick}
             className={`transition-colors p-2 cursor-pointer hover:text-white hover:bg-primary dark:hover:bg-primary-dark rounded-md ${selected ? 'border-primary border' : ''}`}
         >
             {children}
-        </li>
+        </div>
     );
 }
 
@@ -51,7 +51,6 @@ const LanguageSwitch = () => {
             // Set position of element
             const popupRect = popUpRef.current.getBoundingClientRect();
             const anchorRect = anchorRef.current.getBoundingClientRect();
-            console.dir(popupRect);
             const Y = - popupRect.height;
             const X = - popupRect.width + anchorRect.width;
             popUpRef.current.style.transform = `translate(${X}px, ${Y}px)`;
@@ -75,7 +74,7 @@ const LanguageSwitch = () => {
                           transition: 'box-shadow 150ms, border-color 150ms, background-color 150ms'
                       }}
                     >
-                        <ol>
+                        <div className='flex flex-col space-y-2'>
                             <LanguageItem
                               onClick={() => changeLanguage('en')}
                               selected={i18n.language === 'en'}
@@ -88,7 +87,7 @@ const LanguageSwitch = () => {
                             >
                                 Deutsch
                             </LanguageItem>
-                        </ol>
+                        </div>
                     </div>
                 </div>
             </ClickAwayListener>

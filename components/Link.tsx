@@ -7,9 +7,9 @@ import {ComponentPropsWithoutRef} from 'react';
 const Link = (props: ComponentPropsWithoutRef<'a'>) => {
   return (
     <a
-      target='_blank<'
+      target='_blank'
       rel='noreferrer'
-      className='font-bold text-primary-contrast hover:underline hover:visited:text-primary-lightest visited:text-primary-lightest' {...props}
+      className='font-bold hover:underline hover:visited:text-primary visited:text-primary dark:hover:visited:text-primary-lightest dark:visited:text-primary-lightest' {...props}
     />
   );
 };

@@ -1,10 +1,11 @@
 import {Project} from './index';
+import Section from '../Section';
 
 const TrutzBoxProject = () => {
   return (
-    <div>
-      TrutzBox
-    </div>
+      <>
+        <Section i18nKey='projects.trutzbox.description'/>
+      </>
   );
 };
 

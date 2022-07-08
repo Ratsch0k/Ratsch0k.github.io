@@ -1,9 +1,9 @@
 import {Trans} from 'react-i18next';
 
 export interface HistoryEvent {
-  title: string | JSX.Element;
-  type: string | JSX.Element;
-  description: string | JSX.Element;
+  title: string | (() => JSX.Element);
+  type: string | (() => JSX.Element);
+  description: string | (() => JSX.Element);
   from: Date;
   to?: Date;
 }
@@ -29,7 +29,7 @@ const BachelorDescription = (): JSX.Element => {
 export const historyData: HistoryEvent[] = [
   {
     title: 'cv.abitur.title',
-    description: <AbiturDescription />,
+    description: AbiturDescription,
     type: 'cv.type.abitur',
     from: new Date('2013'),
     to: new Date('2017')
@@ -43,7 +43,7 @@ export const historyData: HistoryEvent[] = [
   },
   {
     title: 'cv.bachelor.title',
-    description: <BachelorDescription/>,
+    description: BachelorDescription,
     type: 'cv.type.bachelor',
     from: new Date('2017'),
     to: new Date('2021'),

@@ -200,7 +200,7 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
    */
   const tooltip = (
     <div
-      className='z-[70] absolute border border-gray-200 text-gray-700 dark:text-primary-contrast dark:border-primary-border bg-white dark:bg-primary-dark p-2 rounded-2xl shadow-primary-xl max-w-xs'
+      className='z-[70] absolute border border-gray-300 text-gray-700 dark:text-primary-contrast dark:border-primary-border bg-white dark:bg-primary-dark p-2 rounded-2xl shadow-primary-xl max-w-xs'
       style={{
         top: pos[0],
         left: pos[1],

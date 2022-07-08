@@ -25,7 +25,7 @@ class MyDocument extends Document {
           >
           </script>
         </Head>
-        <body className="h-full transition-colors bg-background-light dark:bg-background-dark transition-colors text-black dark:text-white m-0 p-0">
+        <body className="h-full transition-colors bg-background-light dark:bg-background-dark transition-colors text-primary-dark dark:text-white m-0 p-0">
           <Main/>
           <NextScript />
         </body>

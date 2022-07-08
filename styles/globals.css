@@ -98,6 +98,18 @@
   background-color: transparent;
 }
 
+.scrollbar-default-light::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  box-shadow: inset 0 0 14px 14px #c4d9ff;
+  border: solid 2px transparent;
+}
+
+.scrollbar-default-light::-webkit-scrollbar {
+  height: 0.7rem;
+  width: 0.7rem;
+  background-color: transparent;
+}
+
 .scrollbar-light::-webkit-scrollbar-thumb {
   border-radius: 16px;
   box-shadow: inset 0 0 14px 14px #c4d9ff;
@@ -172,7 +184,7 @@
 :root {
   --bounce-duration: 150ms;
   --bounce-delay: 150ms;
-  --unfold-duration: 400ms;
+  --unfold-duration: 1000ms;
   --unfold-delay: var(--bounce-delay) + var(--bounce-duration);
   --base-delay: 50ms;
 }
@@ -185,6 +197,7 @@
 
 .unfold {
   animation: unfold var(--unfold-duration) ease-in calc(var(--unfold-delay) + var(--bounce-delay) * var(--i) + var(--base-delay)) 1 both;
+  animation-timing-function: cubic-bezier(0.150, 0.000, 0.210, 1.010);
 }
 
 .bounce-up {

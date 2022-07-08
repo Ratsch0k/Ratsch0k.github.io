@@ -38,10 +38,6 @@ const AnimatedContainer = (props: PropsWithChildren<GrowableContainerProps & typ
     }
   }, [normalRef.current, state]);
 
-  useEffect(() => {
-    console.dir(rect);
-  },[rect]);
-
   return (
     <>
       <Modal

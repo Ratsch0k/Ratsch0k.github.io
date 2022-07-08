@@ -6,12 +6,19 @@ import portfolio from './Portfolio';
 import trutzBox from './TrutzBox';
 import {ProjectType} from '../ProjectTypeIndicator';
 
+export interface ProjectLink {
+  icon?: JSX.Element;
+  href: string;
+  label: string;
+  translate?: boolean;
+}
 
 export interface Project {
   name: string;
   flags: ProjectFlag[];
   content: () => JSX.Element;
   types: ProjectType[];
+  links?: ProjectLink[];
 }
 
 const projects: Project[] = [

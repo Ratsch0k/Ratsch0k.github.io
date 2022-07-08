@@ -4,11 +4,12 @@ import TailwindConfig from '../TailwindConfig';
 import {Trans, useTranslation} from 'react-i18next';
 import useTheme from '../hooks/useTheme';
 
-export const VisualizeField = ({field}: {field: string | JSX.Element}): JSX.Element => {
+export const VisualizeField = ({field}: {field: string | (() => JSX.Element)}): JSX.Element => {
   if (typeof field === 'string') {
     return <Trans i18nKey={field} />
   } else {
-    return field;
+    const Field = field;
+    return <Field/>;
   }
 }
 
@@ -21,7 +22,7 @@ export const EventContent = ({event}: {event: HistoryEvent}) => {
 
   return (
     <div
-      className='border rounded-3xl shadow-primary-xl dark:shadow-none border-gray-200 dark:border-primary-border bg-white dark:bg-primary-dark p-4 sm:p-8 pt-4 sm:pt-4'
+      className='border rounded-3xl shadow-primary-xl dark:shadow-none border-gray-300 dark:border-primary-border bg-white dark:bg-primary-dark p-4 sm:p-8 pt-4 sm:pt-4'
       style={{
         transition: 'border-color 150ms, background-color 150ms, box-shadow 150ms',
       }}
@@ -83,7 +84,7 @@ export const CVItem = (props: HistoryEventProps) => {
         width={indicatorSize}
         strokeWidth={1.5}
         stroke='currentColor'
-        fill={theme === 'dark' ? TailwindConfig.theme.backgroundColor.primary.dark : '#ffffff'}
+        fill={theme === 'dark' ? TailwindConfig.theme.backgroundColor.primary.dark : '#e3e3ff'}
         style={{
           flex: '0 0 ' + indicatorSize + 'px',
           transition: 'fill 150ms',

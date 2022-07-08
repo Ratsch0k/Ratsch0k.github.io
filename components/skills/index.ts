@@ -11,9 +11,9 @@ export interface Skill {
 
 const skills = [
   general,
-  coding,
   experience,
   languages,
+  coding,
 ];
 
 export default skills;

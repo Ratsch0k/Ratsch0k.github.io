@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Skill} from './index';
 import CodeIcon from '../icons/CodeIcon';
@@ -33,9 +33,26 @@ const languages = [
 
 const CodingSkill = () => {
   const {t} = useTranslation();
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      const isIntersecting = entry.isIntersecting;
+
+      if (!visible && isIntersecting) {
+        setVisible(true);
+      }
+    });
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+  });
 
   return (
-    <>
+    <div ref={ref}>
       <div>
       {t('skills.coding.content')}
       </div>
@@ -46,7 +63,7 @@ const CodingSkill = () => {
               <div key={`coding-${name}`}>
                 <li>{t(`skills.coding.langlist.${name}`)}</li>
                 <Progress
-                  value={rating / 5}
+                  value={visible ? rating / 5 : 0}
                   animated
                   delay={index * 100 + 500}
                   leftLabel={t('skills.coding.langlist.lowest')}
@@ -57,7 +74,7 @@ const CodingSkill = () => {
           })
         }
       </ul>
-    </>
+    </div>
   );
 };
 

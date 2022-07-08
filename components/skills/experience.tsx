@@ -23,6 +23,9 @@ const ExperienceSkills = () => {
         {t('skills.experience.uniTopics.introduction')}
       </Trans>
       <TranslatedList translationKey={'skills.experience.uniTopics.topics'} htmlKey={'experience-uni-topic'} />
+      <br/><br/>
+      <Trans i18nKey='skills.experience.securityTopics.introduction' />
+      <TranslatedList translationKey='skills.experience.securityTopics.topics' htmlKey='experience-security-topics'/>
     </>
   );
 };

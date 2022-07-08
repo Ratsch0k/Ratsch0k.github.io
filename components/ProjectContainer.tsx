@@ -1,12 +1,14 @@
 import {FC, RefObject, useCallback, useEffect, useRef, useState} from 'react';
 import CloseIcon from './icons/CloseIcon';
 import Chip from './Chip';
-import ProjectTypeIndicator, {ProjectType} from './ProjectTypeIndicator';
+import ProjectTypeIndicator from './ProjectTypeIndicator';
 import Tooltip from './Tooltip';
 import {useTranslation} from 'react-i18next';
 import AnimatedDialog, {DialogState} from './AnimatedDialog';
 import useTheme from './hooks/useTheme';
 import IconButton from './IconButton';
+import {useRouter} from 'next/dist/client/router';
+import {Project, ProjectLink} from './projects';
 
 
 export const projectFlags = [
@@ -33,20 +35,63 @@ export type ProjectFlag = typeof projectFlags[number];
 
 export interface ProjectContainer {
   index: number;
-  title: string | JSX.Element;
-  flags: ProjectFlag[];
   scrollTop: number;
-  types: ProjectType[];
+  project: Project;
   open: boolean;
   setOpen(value: boolean): void;
   scrollRef: RefObject<HTMLDivElement>;
+}
+
+export interface ProjectLinkProps {
+  link: ProjectLink;
+}
+
+export const VisualizeProjectLink = (props: ProjectLinkProps) => {
+  const {link} = props;
+  const {href, label, translate, icon} = link;
+  const {t} = useTranslation();
+
+  return (
+      <a
+          href={href}
+          target='_blank'
+          rel='noreferrer'
+      >
+        {icon}
+        {
+          translate ? t(label) : label
+        }
+      </a>
+  );
+};
+
+export interface VisualizeProjectLinksProps {
+  links: ProjectLink[];
+}
+
+export const VisualizeProjectLinks = (props: VisualizeProjectLinksProps) => {
+  const {links} = props;
+
+  return (
+      <div className='flex flex-row space-x-2 font-bold'>
+        {links.map((link) =>
+            <div
+                className='inline border-2 border-primary dark:text-white text-primary dark:border-white rounded-xl p-1 px-2 transition-all hover:bg-primary dark:hover:bg-white hover:text-white dark:hover:text-primary-dark cursor-pointer' key={`link-${link.href}`}
+            >
+              <VisualizeProjectLink link={link}/>
+            </div>
+        )}
+      </div>
+  );
 }
 
 export const BASE_OFFSET = '7rem';
 export const OFFSET = '8rem';
 
 const ProjectContainer: FC<ProjectContainer> = (props) => {
-  const {children, index, title, flags, types, open, setOpen, scrollRef} = props;
+  const {index, project, open, setOpen, scrollRef} = props;
+  const {name, flags, types, content, links} = project;
+  const Content = content;
   const {t} = useTranslation();
   const root = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState<boolean | null>(null);
@@ -54,7 +99,9 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
   const [wasVisible, setWasVisible] = useState<boolean>(false);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [dialogState, setDialogState] = useState<DialogState>('closed');
+  const [forcedOpen, setForcedOpen] = useState<boolean>(false);
   const {theme} = useTheme();
+  const router = useRouter();
 
   useEffect(() => {
     if (dialogState === 'opening') {
@@ -63,6 +110,15 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
       setOpen(false);
     }
   }, [dialogState]);
+
+  useEffect(() => {
+    const basePath = router.asPath.replace('/projects/', '');
+
+    if (typeof name === 'string' &&  decodeURI(basePath) === name) {
+      setForcedOpen(true);
+      setDialogOpen(true);
+    }
+  }, [router.asPath]);
 
   const handleIntersect: IntersectionObserverCallback = useCallback((entries) => {
     const isIntersecting = entries[0].isIntersecting;
@@ -127,11 +183,11 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
           <div
               className='w-full h-full'
               style={{
-                animation: !wasVisible ? `appear-from-below 500ms ease-in-out ${(initialVisibility ? index : 0) * 200}ms both` : undefined,
+                animation: (!wasVisible && !forcedOpen) ? `appear-from-below 500ms ease-in-out ${(initialVisibility ? index : 0) * 200}ms both` : undefined,
               }}
           >
               <div
-                  className='bg-white shadow-primary-xl dark:shadow-none bg-white dark:bg-primary-dark border border-gray-200 dark:border-primary-border p-2 pb-0 rounded-2xl mx-auto min-w-[300px]'
+                  className='bg-white shadow-primary-xl dark:shadow-none bg-white dark:bg-primary-dark border border-gray-300 dark:border-primary-border p-2 pb-0 rounded-2xl mx-auto min-w-[300px]'
                   style={{
                     cursor: open ? 'unset' : 'pointer',
                     height: open ? '100%' : '6.1rem',
@@ -147,7 +203,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                         transition: 'margin-left 500ms, margin-top 500ms',
                       }}
                       label={
-                        t('projects.type.title') +
+                        t('projects.type.name') +
                         ': ' +
                         types.map((type) =>
                           t('projects.type.' + type.toLowerCase())).join(', ')
@@ -174,7 +230,7 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                                     width: open ? 'calc(100% - 30px - 6rem)' : 'unset',
                                   }}
                               >
-                                {title}
+                                {name}
                               </div>
                               <div className='scrollbar-light h-[2rem] overflow-x-auto overflow-y-hidden'
                                    style={{
@@ -199,12 +255,15 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                               </div>
                           </div>
                       </div>
-                      <div className={`px-4 overflow-y-auto ${theme === 'dark' ? 'scrollbar-light' : 'scrollbar'}`}
+                      <div>
+                        {links && <VisualizeProjectLinks links={links}/>}
+                      </div>
+                      <div className={`px-4 overflow-y-auto ${theme === 'dark' ? 'scrollbar-default-light' : 'scrollbar-default'}`}
                            style={{
                              height: 'calc(100% - 3.5rem - 2.5rem - 1rem)'
                            }}
                       >
-                        {children}
+                        <Content/>
                       </div>
                   </div>
               </div>

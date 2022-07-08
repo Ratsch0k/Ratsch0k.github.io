@@ -5,7 +5,7 @@ import {isFirefox} from 'react-device-detect';
 import useTheme from './hooks/useTheme';
 
 const darkBackground = convert.hex.rgb('#13152c');
-const lightBackground = convert.hex.rgb('#ffffff');
+const lightBackground = convert.hex.rgb('#e3e3ff');
 const textSm = tailwindConfig.theme.fontSize.sm[0];
 const text4xl = tailwindConfig.theme.fontSize['4xl'][0];
 const firstSansFontFamily = tailwindConfig.theme.fontFamily.sans[0];
@@ -63,7 +63,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
   const calcOffset = useCallback((id: number) => {
     let offset = 0;
     for (let i = 0; i < id; i++) {
-      offset += getTextWidth(titles[i], 'normal') + 24;
+      offset += getTextWidth(titles[i], 'normal') + 22;
     }
 
     offset += getTextWidth(titles[id], 'big') / 2;
@@ -83,7 +83,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
 
   const adjustInitialOffset = useCallback(() => {
     if (root.current !== null) {
-      setInitialOffset(root.current.clientWidth / 2);
+      setInitialOffset((root.current.clientWidth / 2));
     }
   }, []);
 
@@ -134,6 +134,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
         nextPos = offset + swipeDelta;
       }
 
+      // Calculate which title is most in the middle
       let sum = 0;
       for (let i = 0; i < titles.length; i++) {
         const iTitleWidth = getTextWidth(titles[i], i === currentTitle ? 'big' : 'normal');
@@ -143,7 +144,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
           break;
         }
 
-        sum += iTitleWidth + 16;
+        sum += iTitleWidth + 22;
       }
 
       setLastPos(touchPos);
@@ -170,7 +171,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
    */
   useEffect(() => {
     updateOffset();
-  }, [currentTitle]);
+  }, [currentTitle, titles]);
 
 
   return (
@@ -179,11 +180,10 @@ const PageTitle: FC<PageTitleProps> = (props) => {
 
     >
       <div className='absolute w-full h-[2px] bottom-[1px] z-20'>
-        <div className='mx-auto border-b-2 h-[2px] border-primary dark:border-primary-contrast overflow-y-visible'
+        <div className='mx-auto border-b-2 h-[2px] border-primary dark:border-primary-contrast overflow-y-visible transform translate-y-px -translate-x-1.5 sm:translate-x-0'
              style={{
                width: getTextWidth(titles[currentTitle], 'big'),
                transition: 'width 300ms, border-color 150ms',
-               transform: 'translateY(1px)',
              }}
         />
       </div>
@@ -224,7 +224,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
                   return (
                     <div
                       className={
-                        'cursor-pointer font-bold transition-colors' + (isCurrentTitle ? 'text-primary dark:text-primary-contrast text-4xl ' : 'text-sm ' + (index === selectedTitle ? 'text-primary dark:text-primary-contrast' : 'text-primary-dark dark:text-primary-light'
+                        'cursor-pointer font-bold transition-colors' + (isCurrentTitle ? 'text-primary dark:text-primary-contrast text-4xl ' : 'text-sm ' + (index === selectedTitle ? 'text-primary-light dark:text-primary-contrast' : 'text-primary-dark dark:text-primary-light'
                         ))
                       }
                       onClick={(event) => {

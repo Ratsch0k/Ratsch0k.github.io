@@ -19,9 +19,10 @@ import CV from './cv';
 import Logo from '../components/icons/Logo';
 import ThemeSwitch from '../components/ThemeSwitch';
 import useTheme from '../components/hooks/useTheme';
+import Head from 'next/head';
 
 const darkBackground = convert.hex.rgb('#13152c');
-const lightBackground = convert.hex.rgb('#ffffff');
+const lightBackground = convert.hex.rgb('#e3e3ff');
 
 interface PageInfo {
   component: PageComponent,
@@ -74,9 +75,9 @@ const Home = () => {
   const inTransition = useRef<boolean>(false);
   const {theme} = useTheme();
 
-  const getPageIndex = useCallback((path) => {
-    for (let i = 0; i < pages.length; i++) {
-      if (pages[i].path === path) {
+  const getPageIndex = useCallback((path: string) => {
+    for (let i = 1; i < pages.length; i++) {
+      if (path.startsWith(pages[i].path)) {
         return i;
       }
     }
@@ -131,7 +132,8 @@ const Home = () => {
       }
 
       const nextPage = pages[pageId];
-      window.history.pushState(nextPage.path, t(nextPage.titleKey), nextPage.path)
+      router.push(nextPage.path);
+
     }
 
     return () => {
@@ -181,14 +183,18 @@ const Home = () => {
 
   return (
     <div>
+      <Head>
+        <title>Simon Kurz - {t(pages[currentPage].titleKey)}</title>
+      </Head>
       <div id='modal-root'/>
-      {
-        (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
-          <IndicateSwipeMotion/>
-      }
+
       <div
         className='absolute bottom-0 z-20 w-full pr-3 sm:pr-0 transition-colors'
       >
+        {
+          (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
+            <IndicateSwipeMotion/>
+        }
         <div className={`px-2 sm:px-4 py-4 flex justify-center flex items-end transition-colors justify-between border-background-light dark:border-background-dark ${scrollable && 'border-t'}`}
              style={{
                backdropFilter: 'blur(8px)',
