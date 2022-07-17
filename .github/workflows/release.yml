@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: ./scripts/release.sh
+      - name: Run release script
+        run: ./scripts/release.sh
         env:
           KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
