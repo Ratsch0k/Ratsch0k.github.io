@@ -9,6 +9,7 @@ import useTheme from './hooks/useTheme';
 import IconButton from './IconButton';
 import {useRouter} from 'next/dist/client/router';
 import {Project, ProjectLink} from './projects';
+import ExternalLinkIcon from "./icons/ExternalLinkIcon";
 
 
 export const projectFlags = [
@@ -73,11 +74,14 @@ export const VisualizeProjectLinks = (props: VisualizeProjectLinksProps) => {
   const {links} = props;
 
   return (
-      <div className='flex flex-row space-x-2 font-bold'>
+      <div className='flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 font-bold'>
         {links.map((link) =>
             <div
-                className='inline border-2 border-primary dark:text-white text-primary dark:border-white rounded-xl p-1 px-2 transition-all hover:bg-primary dark:hover:bg-white hover:text-white dark:hover:text-primary-dark cursor-pointer' key={`link-${link.href}`}
+                className='inline dark:text-white dark:border-white hover:underline
+                rounded-xl p-1 px-2 transition-all cursor-pointer flex flex-row space-x-1'
+                key={`link-${link.href}`}
             >
+              <ExternalLinkIcon />
               <VisualizeProjectLink link={link}/>
             </div>
         )}
@@ -255,15 +259,20 @@ const ProjectContainer: FC<ProjectContainer> = (props) => {
                               </div>
                           </div>
                       </div>
-                      <div>
-                        {links && <VisualizeProjectLinks links={links}/>}
-                      </div>
-                      <div className={`px-4 overflow-y-auto ${theme === 'dark' ? 'scrollbar-default-light' : 'scrollbar-default'}`}
-                           style={{
-                             height: 'calc(100% - 3.5rem - 2.5rem - 1rem)'
-                           }}
+                      <div
+                          className={`overflow-y-auto ${theme === 'dark' ? 'scrollbar-default-light' : 'scrollbar-default'}`}
+                         style={{
+                           height: 'calc(100% - 3.5rem - 2.5rem - 1rem)'
+                         }}
                       >
-                        <Content/>
+                        <div>
+                          {links && <VisualizeProjectLinks links={links}/>}
+                        </div>
+                        <div
+                            className='px-4'
+                        >
+                          <Content/>
+                        </div>
                       </div>
                   </div>
               </div>

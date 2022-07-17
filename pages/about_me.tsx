@@ -105,9 +105,9 @@ const AboutMe: PageComponent = ({setScrollable}) => {
             {
               myLinks.map(({href, label, icon}) =>
                 <a href={href} target='_blank' referrerPolicy='no-referrer' key={`link-${label}`} rel="noreferrer">
-                  <div className='flex flex-row space-x-1 justify-between'>
+                  <div className='flex flex-row space-x-1 justify-between hover:underline p-2 rounded-xl transition-colors dark:bg-primary-lightest dark:text-background-dark'>
                     {icon}
-                    <div className='hover:underline font-bold'>
+                    <div className='font-bold'>
                       {t(label)}
                     </div>
                   </div>
