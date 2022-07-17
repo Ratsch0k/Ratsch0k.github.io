@@ -1,4 +1,4 @@
-name: deploy-release
+name: Deploy a new release
 on:
   release:
     types:
@@ -9,6 +9,7 @@ jobs:
   release:
     name: Release the new version
     runs-on: ubuntu-latest
+    environment: release
     steps:
       - uses: actions/checkout@v3
       - run: ./scripts/release.sh
