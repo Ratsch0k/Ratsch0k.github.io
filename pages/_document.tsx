@@ -3,27 +3,31 @@ import Document, {Html, Head, Main, NextScript, DocumentContext} from 'next/docu
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    return {...initialProps}
   }
 
   render() {
     return (
-      <Html className="h-full m-0" >
+      <Html className="h-full m-0 overflow-hidden dark">
         <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                const theme = window.localStorage.getItem('theme');
+                
+                if (theme === 'dark' || (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              `
+            }}
+          >
+          </script>
         </Head>
-        <body className="h-full bg-primary text-white m-0 p-0">
-          <Main />
+        <body className="h-full transition-colors bg-background-light dark:bg-background-dark transition-colors text-primary-dark dark:text-white m-0 p-0">
+          <Main/>
           <NextScript />
-          <style jsx global>
-            {
-              `
-              #__next {
-                height: 100%;
-              }
-              `
-            }
-          </style>
         </body>
       </Html>
     )

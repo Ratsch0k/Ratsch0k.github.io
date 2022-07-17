@@ -1,0 +1,179 @@
+{
+    "intro": {
+        "info": "Student, Developer, Future IT-Security expert",
+        "skip": "Skip",
+        "hintClick": "Click me!",
+        "title": "Intro"
+    },
+    "aboutme": {
+        "title": "About me",
+        "myinfo": [
+            "Hello there,<br/>",
+            "I am 23 years old and am currently studying M.Sc. IT-Security at the Technical University Darmstadt.<br/><br/>",
+            "Computer science and computers generally have been my passion for a long time and I learned a lot about ",
+            "the various fields of computer science in my during by bachelor in computer science. During this time, ",
+            "I developed a stark interest in software development and IT-Security.<br/><br/>",
+            "Regarding security, especially the technical topics web- and network security, and cryptography as well as,",
+            "the topic Information security management have really peaked my interest.<br/><br/>",
+            "With great enthusiasm in learning new things and my interest in security as wells as development, I want to ",
+            "help make IT systems more secure."
+        ]
+    },
+    "skills": {
+        "title": "Skills",
+        "general": {
+            "title": "General",
+            "content": [
+                "In 2017 I started my bachelors degree with great amount of fascination in software development ",
+                "and Cybersecurity at the TU Darmstadt.<br/><br/>Since then I have gained many skills and much ",
+                "knowledge in the various disciplines of computer science through my studies but also through ",
+                "personal and university projects. Especially through those project, I have gained much knowledge ",
+                "in topics like <strong>git</strong>, <strong>agile development</strong>, <strong>team work</strong>, ",
+                "and a variety of programming languages and frameworks.<br/><br/>In my free time I also like to ",
+                "indulge in solving tasks in CTFs or Hack-the-box und am continuously keeping me up to date."
+            ]
+        },
+        "coding": {
+            "title": "Programming languages",
+            "content": "The following list contains most of the programming languages I can use, in decreasing amount of expertise:",
+            "langlist": {
+                "javascript": "JavaScript (standard, ReactJS, NodeJS)",
+                "python": "Python (used in my bachelor's thesis)",
+                "c++": "C++ (taught this as a HiWi)",
+                "java": "Java",
+                "rust": "Rust",
+                "bash": "Bash",
+                "brainfuck": "Brainfuck",
+                "lowest": "Beginner",
+                "highest": "Expert"
+            }
+        },
+        "experience": {
+            "title": "Experience",
+            "introduction": [
+                "I have gained in many programming languages, frameworks and topics experience through projects during my studies and especially through personal projects.<br/>",
+                "A complete list of all my noteworthy projects can be found on the <b>Projects</b> page.<br/><br/>"
+            ],
+            "projectTopics": {
+                "introduction": "In those projects, I have gained much experience in the following topics:",
+                "topics": [
+                    "Docker",
+                    "Continuous Integration",
+                    "Agile development",
+                    "DevOps",
+                    "SysAdmin",
+                    "Documentation",
+                    "Software Design"
+                ]
+            },
+            "uniTopics": {
+                "introduction": "Outside those projects, I have gained experience and knowledge in the following topics:",
+                "topics": [
+                    "Algorithmus",
+                    "Robotics",
+                    "Cryptography",
+                    "Hardware programming (System Verilog & Bluespec Verilog)",
+                    "Compiler",
+                    "Information security management",
+                    "Parallel programming",
+                    "Visual computing",
+                    "Artificial intelligence",
+                    "Blockchain and Smart Contract development",
+                    "Databases",
+                    "Natural Language Processing",
+                    "Computer architecture"
+                ]
+            },
+            "securityTopics": {
+                "introduction": "Furthermore, through my studies and partially through my own research I have learned much about the following security related topics:",
+                "topics": [
+                    "Cryptography",
+                    "Network security",
+                    "Web security",
+                    "Information security management",
+                    "Hardware security",
+                    "Statical programm analysis"
+                ]
+            }
+        },
+        "languages":  {
+            "title": "Languages",
+            "content": [
+                "<strong>German</strong>: native<br/>",
+                "<strong>English</strong>: fluent (advanced course in my A levels)<br/>",
+                "<strong>Japanese</strong>: Beginner (visited two courses in my university)"
+            ]
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "type": {
+            "title": "Project scope",
+            "app": "App",
+            "server": "Server",
+            "website": "Website"
+        }
+    },
+    "cv": {
+        "title": "CV",
+        "type": {
+            "abitur": "A levels",
+            "minijob": "Mini-job",
+            "bachelor": "B. Sc. Computer Science",
+            "master": "M. Sc. IT-Security",
+            "hiwi": "Student assistant",
+            "freelance": "Freelance"
+        },
+        "noDate": "ongoing",
+        "abitur": {
+            "title": "Gutenberg Gymnasium Mainz",
+            "description": "Advanced courses: <list><item>Mathematics</item><item>Physics</item><item>English</item></list><br/>Grade: <b>2.4</b>"
+        },
+        "moebelmartin": {
+            "title": "Möbel Martin",
+            "description": "My task was to get furniture for customers from the warehouse."
+        },
+        "bachelor": {
+            "title": "TU Darmstadt",
+            "description": "Elective Subjects: <list><item>Robotics</item><item>IT-Security</item><item>Web-, Knowledge- and Information Processing</item></list><br/><b>Topic of my thesis:</b> Creating a cybersecurity web corpus<br/><b>Grade:</b> 1.6"
+        },
+        "trutzbox": {
+            "title": "Comidio GmbH",
+            "description": "Frontend developer for the TrutzBox's admin interface. My job was to take the old admin interface and rewrite it in ReactJS with a modern UI"
+        },
+        "c++": {
+            "title": "TU Darmstadt - C/C++ practical programming course",
+            "description": "In a team we created new exercises to teach student how to write C/C++ code correctly and cleanly."
+        },
+        "psaf": {
+            "title": "TU Darmstadt - Project seminar autonomous driving",
+            "description": "As a student assistant my main task was to be a contact for the students, and to maintain the used cars and further develop custom made software. Automation, debugging, bugfixing, and writing documentation was also part of my job."
+        },
+        "master": {
+            "title": "TU Darmstadt",
+            "description": "My current studies. In this degree I will learn a lot about information security systems, technical system- and software security, and modern cryptography."
+        },
+        "revealAll": "Alles zeigen"
+    },
+    "legal": {
+        "title": "Legal"
+    },
+    "imprint": {
+        "title": "Imprint",
+        "phone": "Phone",
+        "telefax": "Telefax",
+        "mail": "Email",
+        "contact": "Contact"
+    },
+    "privacyPolicy": {
+        "title": "Privacy policy"
+    },
+    "switchTheme": "Switch theme",
+    "changeLanguage": "Change language",
+    "nextPage": "To next page",
+    "previousPage": "To previous page",
+    "toPage": "To page {{page}}",
+    "misc": {
+        "swipe": "Swipe to the next page"
+    }
+}
