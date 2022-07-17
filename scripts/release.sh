@@ -7,15 +7,13 @@ echo "Generating static html files"
 yarn export
 
 echo "Preparing ssh connection"
-printf "  - Setup known hosts file [ ]\r"
-echo "$KNOWN_HOSTS" >> ~/.ssh/known_hosts
-printf "  - Setup known hosts file [x]"
+echo "Setup known hosts file"
+echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
 
-printf "  - Prepare ssh private key [ ]\r"
+echo "Prepare ssh private key"
 echo "$PRIVATE_KEY" > ~/.ssh/id_"${PRIVATE_KEY_FORMAT}"
-printf "  - Setup known hosts file [x]"
 
 
-printf "Uploading release"
-export SSHPASS=$PRIVATE_KEY_PASSPHRASE
-rsync -e "sshpass -e -P assphrase ssh -l $REMOTE_USER" -a ./out/ -P simonkurz.de:"${REMOTE_PATH}"
+echo "Uploading release"
+export SSHPASS="$PRIVATE_KEY_PASSPHRASE"
+rsync -e -n "sshpass -e -P assphrase ssh -l $REMOTE_USER" -a ./out/ -P simonkurz.de:"${REMOTE_PATH}"
