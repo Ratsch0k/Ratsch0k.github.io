@@ -27,7 +27,6 @@ const PageContent = forwardRef<HTMLDivElement, PageContentProps>((props, ref) =>
 
   useEffect(() => {
     const scroll = parseInt(window.sessionStorage.getItem(rest.id) || '', 10);
-    console.log(scroll);
     if (!isNaN(scroll)) {
       if (ownRef.current) {
         ownRef.current?.scrollTo(0, scroll);

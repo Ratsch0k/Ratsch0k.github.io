@@ -211,7 +211,7 @@ const PageTitle: FC<PageTitleProps> = (props) => {
             onTouchEnd={handleTouchEnd}
           >
             <div
-              className='text-base transition-colors text-primary dark:text-primary-lightest flex items-center h-[3rem] space-x-4'
+              className='text-base transition-colors text-primary dark:text-primary-lightest flex items-center h-[3rem] space-x-[16px]'
               style={{
                 transition: initialSwipePos === null ? 'transform 300ms' : undefined,
                 transform: `translateX(${-offset}px)`,
