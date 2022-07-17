@@ -9,7 +9,13 @@ jobs:
   release:
     name: Release the new version
     runs-on: ubuntu-latest
-    environment: release
     steps:
       - uses: actions/checkout@v3
       - run: ./scripts/release.sh
+        env:
+          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PRIVATE_KEY_FORMAT: ${{ secrets.PRIVATE_KEY_FORMAT }}
+          PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
