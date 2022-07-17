@@ -24,4 +24,4 @@ chmod 600 "$KEY_PATH"
 
 echo "Uploading release"
 export SSHPASS="$PRIVATE_KEY_PASSPHRASE"
-rsync -e -n "sshpass -e -P assphrase ssh -l $REMOTE_USER" -a ./out/ -P simonkurz.de:"${REMOTE_PATH}"
+rsync -n -e "sshpass -e -P assphrase ssh -l $REMOTE_USER" -a ./out/ -P simonkurz.de:"${REMOTE_PATH}"
