@@ -14,8 +14,14 @@ jobs:
       pages: write
     steps:
       - uses: actions/checkout@v3
-      - name: Run publishing script
-        env:
-          URL: "git@github.com:${{ github.repository }}"
-          PAGES_BRANCH: gh-pages
-        run: ./scripts/publish-to-gh-pages.sh
+      - name: Build project
+        run: |
+          yarn install
+          yarn build
+          yarn export
+      - name: Prepare for deplyoment
+        run: touch "out/.nojekyll"
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
