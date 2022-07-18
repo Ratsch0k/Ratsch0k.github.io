@@ -17,3 +17,4 @@ jobs:
         env:
           URL: ${{ github.repositoryUrl }}
           PAGES_BRANCH: gh-pages
+        run: ./scripts/publish-to-gh-pages.sh
