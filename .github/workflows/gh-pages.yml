@@ -1,0 +1,19 @@
+name: Publish current state to gh-pages
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  release:
+    name: Publish branch to gh-pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run publishing script
+        env:
+          URL: ${{ github.repositoryUrl }}
+          PAGES_BRANCH: gh-pages
