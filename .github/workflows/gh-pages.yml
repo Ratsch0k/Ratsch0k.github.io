@@ -10,8 +10,6 @@ jobs:
   release:
     name: Publish branch to gh-pages
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
     steps:
       - uses: actions/checkout@v3
       - name: Build project
