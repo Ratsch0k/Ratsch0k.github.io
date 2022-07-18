@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run publishing script
         env:
-          URL: ${{ github.repositoryUrl }}
+          URL: "${{ github.server_url }}/${{ github.repository }}"
           PAGES_BRANCH: gh-pages
         run: ./scripts/publish-to-gh-pages.sh
