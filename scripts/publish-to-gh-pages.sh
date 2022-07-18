@@ -13,6 +13,7 @@ echo "Prepare for publishing"
 # This file is necessary to prevent github to any modification
 touch ./out/.nojekyll
 
+echo "Clone $URL"
 git clone "$URL" target
 cd target
 git checkout "$PAGES_BRANCH"
