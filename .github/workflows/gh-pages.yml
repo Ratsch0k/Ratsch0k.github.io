@@ -1,0 +1,24 @@
+name: Publish current state to gh-pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: Publish branch to gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build project
+        run: |
+          yarn install
+          yarn build
+          yarn export
+      - name: Prepare for deplyoment
+        run: touch "out/.nojekyll"
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
