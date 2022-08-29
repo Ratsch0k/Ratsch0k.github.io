@@ -371,7 +371,10 @@
     },
     "links": {
         "github": "GitHub",
-        "group-car": "Schau dir das Projekt an"
+        "group-car": "Schau dir das Projekt an",
+        "linkedin": "LinkedIn",
+        "xing": "Xing",
+        "title": "Meine Links"
     },
     "legal": {
         "title": "Legales"
