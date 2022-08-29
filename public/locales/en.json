@@ -168,6 +168,12 @@
     "privacyPolicy": {
         "title": "Privacy policy"
     },
+    "links": {
+        "title": "My links",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "xing": "Xing"
+    },
     "switchTheme": "Switch theme",
     "changeLanguage": "Change language",
     "nextPage": "To next page",

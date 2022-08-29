@@ -4,6 +4,7 @@ import {PageComponent} from '../components/PageComponent';
 import PageContent from '../components/PageContent';
 import {Blob, blobPath} from '../components/Blob';
 import GitHubLogo from '../components/icons/GitHubLogo';
+import { LinkedInIcon } from '../components/icons/LinkedInIcon';
 
 interface Link {
   href: string;
@@ -16,6 +17,16 @@ const myLinks: Link[] = [
     href: 'https://github.com/Ratsch0k',
     label: 'links.github',
     icon: <GitHubLogo />,
+  },
+  {
+    href: 'https://linkedin.com/in/simon-kurz-888304142',
+    label: 'links.linkedin',
+    icon: <LinkedInIcon />
+  },
+  {
+    href: 'https://www.xing.com/profile/Simon_Kurz8',
+    label: 'links.xing',
+    icon: <div></div>
   }
 ]
 
@@ -101,11 +112,14 @@ const AboutMe: PageComponent = ({setScrollable}) => {
               <Trans i18nKey='aboutme.myinfo' t={t}/>
             </div>
           </div>
-          <div className='grid justify-center text-lg mb-32'>
+          <div className='text-lg sm:text-xl font-bold mx-auto mt-2 mb-4'>
+            {t('links.title')}
+          </div>
+          <div className='flex flex-col items-center sm:justify-center w-full sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 sm:text-lg mb-32'>
             {
               myLinks.map(({href, label, icon}) =>
                 <a href={href} target='_blank' referrerPolicy='no-referrer' key={`link-${label}`} rel="noreferrer">
-                  <div className='flex flex-row space-x-1 justify-between hover:underline p-2 rounded-xl transition-colors dark:bg-primary-lightest dark:text-background-dark'>
+                  <div className='flex flex-row space-x-2 justify-between hover:underline p-2 rounded-xl transition-colors dark:text-white text-background-dark'>
                     {icon}
                     <div className='font-bold'>
                       {t(label)}
