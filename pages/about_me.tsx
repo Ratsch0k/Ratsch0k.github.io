@@ -4,7 +4,7 @@ import {PageComponent} from '../components/PageComponent';
 import PageContent from '../components/PageContent';
 import {Blob, blobPath} from '../components/Blob';
 import GitHubLogo from '../components/icons/GitHubLogo';
-import { LinkedInIcon } from '../components/icons/LinkedInIcon';
+import {LinkedInIcon} from '../components/icons/LinkedInIcon';
 
 interface Link {
   href: string;
