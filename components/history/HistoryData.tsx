@@ -53,6 +53,7 @@ export const historyData: HistoryEvent[] = [
     description: 'cv.trutzbox.description',
     type: 'cv.type.freelance',
     from: new Date('2018'),
+    to: new Date('2022'),
   },
   {
     title: 'cv.c++.title',
@@ -65,7 +66,8 @@ export const historyData: HistoryEvent[] = [
     title: 'cv.psaf.title',
     description: 'cv.psaf.description',
     type: 'cv.type.hiwi',
-    from: new Date('2021')
+    from: new Date('2021'),
+    to: new Date('2022'),
   },
   {
     title: 'cv.master.title',
@@ -73,6 +75,12 @@ export const historyData: HistoryEvent[] = [
     type: 'cv.type.master',
     from: new Date('2021'),
     to: new Date('2023')
+  },
+  {
+    title: 'cv.usd.title',
+    description: 'cv.usd.description',
+    type: 'cv.type.workingstudent',
+    from: new Date('2022'),
   }
 ];
 

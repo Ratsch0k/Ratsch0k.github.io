@@ -122,7 +122,8 @@
             "bachelor": "B. Sc. Computer Science",
             "master": "M. Sc. IT-Security",
             "hiwi": "Student assistant",
-            "freelance": "Freelance"
+            "freelance": "Freelance",
+            "workingstudent": "Working student"
         },
         "noDate": "ongoing",
         "abitur": {
@@ -152,6 +153,10 @@
         "master": {
             "title": "TU Darmstadt",
             "description": "My current studies. In this degree I will learn a lot about information security systems, technical system- and software security, and modern cryptography."
+        },
+        "usd": {
+            "title": "usd AG - HeroLab",
+            "description": "At usd AG I am currently a working student and the <b>Penetration Testing</b> department. My main responsibility is to develop and maintain internal tools that support penetration tester during their work. Through this work and the company's efforts to integrate working students more into consultation projects, I gain an insight into the penetration testing process as well as into other facets of real-world IT security."
         },
         "revealAll": "Alles zeigen"
     },

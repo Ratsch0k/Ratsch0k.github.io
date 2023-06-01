@@ -336,7 +336,8 @@
             "bachelor": "B. Sc. Informatik",
             "master": "M. Sc. IT-Sicherheit",
             "hiwi": "Studentische Hilfskraft",
-            "freelance": "Freiberuflich"
+            "freelance": "Freiberuflich",
+            "workingstudent": "Werkstudent"
         },
         "noDate": "bis heute",
         "abitur": {
@@ -366,6 +367,10 @@
         "master": {
             "title": "TU Darmstadt",
             "description": "Mein derzeitiges Studium über IT-Sicherheit. Hier lerne ich von Informationssicherheitssystemen, über technische System und Softwaresicherheit bis zu moderner Kryptographie, eine Menge über IT-Sicherheit."
+        },
+        "usd": {
+            "title": "usd AG - HeroLab",
+            "description": "Hier arbeite ich als Werkstudent in der <b>Penetration Testing</b> Abteilung. Meine Hauptverantwortung ist Weiterentwicklung und Wartung von internen Tools die Penetration Tester in ihren Projekten unterstützen. Durch diese Arbeit und die Bemühungen des Unternehmen Werkstudent mehr in Beratungsprojekte zu integrieren, bekomme ich einen guten Einblick in den Penetrationg Testing Prozess, sowie andere Facetten der IT-Security."
         },
         "revealAll": "Alles zeigen"
     },
