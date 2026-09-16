@@ -77,10 +77,17 @@ export const historyData: HistoryEvent[] = [
     to: new Date('2023')
   },
   {
-    title: 'cv.usd.title',
-    description: 'cv.usd.description',
+    title: 'cv.usd.workingstudent.title',
+    description: 'cv.usd.workingstudent.description',
     type: 'cv.type.workingstudent',
     from: new Date('2022'),
+    to: new Date('2024-07-31')
+  },
+  {
+    title: 'cv.usd.fulltime.title',
+    description: 'cv.usd.fulltime.description',
+    type: 'cv.type.fulltime',
+    from: new Date('2024-08-01'),
   }
 ];
 

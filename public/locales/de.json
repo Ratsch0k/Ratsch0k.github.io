@@ -1,21 +1,23 @@
 {
     "intro": {
         "title": "Start",
-        "info": "Student, Entwickler, Zukünftiger IT-Sicherheit Experte",
+        "info": "Senior Consultant IT-Security, Entwickler",
         "skip": "Überspringen",
         "hintClick": "Klick mich!"
     },
     "aboutme": {
         "title": "Über mich",
         "myinfo": [
-            "Hi,<br/>Ich bin 24 und studiere zurzeit M.Sc. IT-Sicherheit an der Technischen Universität Darmstadt.",
-            "<br/><br/>Informatik und generell Computer sind schon lange meine Leidenschaft und ",
-            "durch meinen Bachelor in Informatik bin ich mit vielen Bereichen der Informatik in Berührung gekommen. ",
-            "Dabei haben vor allem die Themen Sicherheit und Software Entwicklung meine Begeisterung geweckt.<br/><br/>",
-            "Bezüglich der Sicherheit faszinieren mich die technische Themen Web- und Netzwerksicherheit, und ",
-            "Kryptographie, aber auch das Thema Informationssicherheitsmanagement, das scheinbar zu ",
-            "wenige Unternehmen ernst nehmen.<br/><br/>Mit einer großen Begeisterung Neues zu lernen und mit meinen ",
-            "Interessen in der Sicherheit, so wie der Entwicklung, will ich die IT-Systeme sicherer machen."
+            "Hi,<br/>Ich bin 28 und arbeite nach meinem erfolgreich abgeschlossenen Masterstudium in der ",
+            "IT-Sicherheit an der Technischen Universität Darmstadt festangestellt als ",
+            "<b>Senior Consultant IT-Security</b> bei der usd AG.",
+            "<br/><br/>Als Pentester ",
+            "analysiere ich Webanwendungen, Systeme, mobile Anwendungen und SAP-Umgebungen auf Schwachstellen, ",
+            "leite mittelgroße Projekte und berate Unternehmen von Startups bis zu Großkonzernen. Daneben gestalte ",
+            "ich unsere Fachleistungen mit und helfe in der Leitung unserer internen Toolentwicklung, wodurch ich meine zwei Leidenschaften, Sicherheit und ",
+            "Softwareentwicklung miteinander verbinden kann.<br/><br/>",
+            "Auch in meiner Freizeit entwickle ich eigene Tools rund um das Thema Sicherheit und lerne dabei ",
+            "immer wieder neue Techniken und Technologien kennen."
         ]
     },
     "skills": {
@@ -337,7 +339,8 @@
             "master": "M. Sc. IT-Sicherheit",
             "hiwi": "Studentische Hilfskraft",
             "freelance": "Freiberuflich",
-            "workingstudent": "Werkstudent"
+            "workingstudent": "Werkstudent",
+            "fulltime": "Festangestellt"
         },
         "noDate": "bis heute",
         "abitur": {
@@ -366,11 +369,17 @@
         },
         "master": {
             "title": "TU Darmstadt",
-            "description": "Mein derzeitiges Studium über IT-Sicherheit. Hier lerne ich von Informationssicherheitssystemen, über technische System und Softwaresicherheit bis zu moderner Kryptographie, eine Menge über IT-Sicherheit."
+            "description": "Mein erfolgreich abgeschlossenes Masterstudium über IT-Sicherheit. Hier habe ich von Informationssicherheitssystemen, über technische System- und Softwaresicherheit bis zu moderner Kryptographie, eine Menge über IT-Sicherheit gelernt."
         },
         "usd": {
-            "title": "usd AG - HeroLab",
-            "description": "Hier arbeite ich als Werkstudent in der <b>Penetration Testing</b> Abteilung. Meine Hauptverantwortung ist Weiterentwicklung und Wartung von internen Tools die Penetration Tester in ihren Projekten unterstützen. Durch diese Arbeit und die Bemühungen des Unternehmen Werkstudent mehr in Beratungsprojekte zu integrieren, bekomme ich einen guten Einblick in den Penetrationg Testing Prozess, sowie andere Facetten der IT-Security."
+          "workingstudent": {
+            "title": "usd AG - HeroLab (Werkstudent)",
+            "description": "Hier arbeitete ich als Werkstudent in der <b>Penetration Testing</b> Abteilung. Meine Hauptverantwortung war die Weiterentwicklung und Wartung von internen Tools, die Penetration Tester in ihren Projekten unterstützen. Durch diese Arbeit und die Bemühungen des Unternehmens Werkstudenten mehr in Beratungsprojekte zu integrieren, bekam ich einen guten Einblick in den Penetration Testing Prozess, sowie andere Facetten der IT-Security."
+          },
+          "fulltime": {
+            "title": "usd AG - HeroLab (Senior Consultant IT Security)",
+            "description": "Als Pentester und technischer IT-Sicherheitsberater analysiere ich vielfältige Kundenassets auf Schwachstellen, von Webanwendungen und Systemen über mobile Anwendungen bis hin zu SAP-Systemen. In der Leitung mittelgroßer Projekte berate ich Unternehmen von Startups bis zu Großkonzernen. Durch zahlreiche Penetrationstests habe ich umfangreiche Erfahrung in technischer Analyse und Beraterkompetenz aufgebaut. Darüber hinaus gestalte ich die Weiterentwicklung unserer Fachleistungen mit und beteilige mich in der Leitung der internen Toolentwicklung, um Effizienz und Qualität unserer Arbeit kontinuierlich zu steigern."
+          }
         },
         "revealAll": "Alles zeigen"
     },
