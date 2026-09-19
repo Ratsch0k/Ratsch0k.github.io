@@ -20,18 +20,13 @@ export interface ChipProps {
   className?: string;
 }
 
-const defaultProps = {
-  color: 'secondary',
-  size: 'medium',
-};
-
 /**
  * ## Chip
  * A small component to show or categorize some component.
  * @param props Props
  */
-const Chip = (props: PropsWithChildren<ChipProps & typeof defaultProps>) => {
-  const {color, size, children, classes, className} = props;
+const Chip = (props: PropsWithChildren<ChipProps>) => {
+  const {color = 'secondary', size = 'medium', children, classes, className} = props;
 
   // Get styles dependent on props
   const classSizeChange = sizeMapping[size];
@@ -48,7 +43,5 @@ const Chip = (props: PropsWithChildren<ChipProps & typeof defaultProps>) => {
     </span>
   );
 }
-
-Chip.defaultProps = defaultProps;
 
 export default Chip;

@@ -1,5 +1,4 @@
 import {ReactNode, TouchEventHandler, useEffect, useState, WheelEventHandler} from 'react';
-import {NextPage} from 'next';
 
 export interface PageProps {
   /**
@@ -45,7 +44,7 @@ export interface PageProps {
  * @param props Props.
  * @returns The component
  */
-const Page: NextPage<PageProps> = (props) => {
+const Page = (props: PageProps) => {
   const {
     children,
     currentPage,

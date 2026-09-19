@@ -1,21 +1,8 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
-  target: 'serverless',
-  async rewrites() {
-    return [
-      {
-        source: '/:any*',
-        destination: '/',
-      },
-    ];
+  output: 'export',
+  reactStrictMode: true,
+  images: {
+    unoptimized: true,
   },
-  webpack: (config, options) => {
-    config.node = {
-      fs: 'empty',
-      module: 'empty',
-    };
-
-    return config;
-  },
-  useFileSystemPublicRoutes: false,
-  important: true,
-}
+};

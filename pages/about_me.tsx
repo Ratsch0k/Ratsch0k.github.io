@@ -1,5 +1,5 @@
 import {Trans, useTranslation} from 'react-i18next';
-import {useEffect, useRef} from 'react';
+import {JSX, useEffect, useRef} from 'react';
 import {PageComponent} from '../components/PageComponent';
 import PageContent from '../components/PageContent';
 import {Blob, blobPath} from '../components/Blob';
@@ -58,7 +58,7 @@ const AboutMe: PageComponent = ({setScrollable}) => {
       <PageContent contentClassname='w-full h-full' id='about-me-page'>
         <div
           className='w-full overflow-auto mt-[-24px] grid content-center justify-center'
-          ref={(ref) => contentRef.current = ref}
+          ref={(ref) => {contentRef.current = ref}}
         >
         <div className='flex flex-col lg:space-x-10 lg:flex-row items-center lg:justify-center overflow-visible mb-8'>
             <div

@@ -1,14 +1,14 @@
-import tailwindConfig from '../components/TailwindConfig';
 import convert from 'color-convert';
 import {FC, TouchEventHandler, useCallback, useEffect, useRef, useState} from 'react';
 import {isFirefox} from 'react-device-detect';
 import useTheme from './hooks/useTheme';
+import {fontFamily, fontSize} from './theme';
 
 const darkBackground = convert.hex.rgb('#13152c');
 const lightBackground = convert.hex.rgb('#e3e3ff');
-const textSm = tailwindConfig.theme.fontSize.sm[0];
-const text4xl = tailwindConfig.theme.fontSize['4xl'][0];
-const firstSansFontFamily = tailwindConfig.theme.fontFamily.sans[0];
+const textSm = fontSize.sm;
+const text4xl = fontSize['4xl'];
+const firstSansFontFamily = fontFamily.sans[0];
 
 export interface PageTitleProps {
   border?: boolean;

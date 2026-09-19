@@ -1,6 +1,6 @@
-import {defaultIconProps, IconProps} from './Icon';
+import {IconProps} from './Icon';
 
-const CircuitBoardIcon = ({className, id}: IconProps & typeof defaultIconProps) => {
+const CircuitBoardIcon = ({className, id}: IconProps) => {
   return (
     <svg
       className={className}
@@ -374,7 +374,5 @@ const CircuitBoardIcon = ({className, id}: IconProps & typeof defaultIconProps) 
     </svg>
   );
 };
-
-CircuitBoardIcon.defaultProps = defaultIconProps;
 
 export default CircuitBoardIcon;

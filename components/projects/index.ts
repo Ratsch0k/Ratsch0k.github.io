@@ -1,3 +1,4 @@
+import {JSX} from 'react';
 import {ProjectFlag} from '../ProjectContainer';
 import {norona} from './Norona';
 import {myGroupCar} from './MyGroupCar';

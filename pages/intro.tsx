@@ -1,15 +1,15 @@
 import styles from '../styles/Home.module.css'
 import {useTranslation} from 'react-i18next';
-import {useCallback, useRef, useState, useEffect} from 'react';
+import {SyntheticEvent, useCallback, useRef, useState, useEffect} from 'react';
 import Logo from '../components/icons/Logo';
 import Modal from '../components/Modal';
 import CircuitBoardIcon from '../components/icons/CircuitBoardIcon';
 import {PageComponent} from '../components/PageComponent';
-import TailwindConfig from '../components/TailwindConfig';
 import useTheme from '../components/hooks/useTheme';
+import {colors} from '../components/theme';
 
-const primaryContrast = TailwindConfig.theme.colors.primary.contrast;
-const primary = TailwindConfig.theme.colors.primary.DEFAULT;
+const primaryContrast = colors.primary.contrast;
+const primary = colors.primary.DEFAULT;
 
 const Intro: PageComponent = ({setScrollable, firstPage}) => {
   const {t} = useTranslation();
@@ -67,7 +67,7 @@ const Intro: PageComponent = ({setScrollable, firstPage}) => {
     setMouseDown(true);
   }, []);
 
-  const handleSkip = useCallback((event) => {
+  const handleSkip = useCallback((event: SyntheticEvent) => {
     setOpen(false);
     event.stopPropagation();
   }, [])

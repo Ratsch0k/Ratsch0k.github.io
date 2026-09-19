@@ -6,7 +6,7 @@ import PageIndicator from '../components/PageIndicator';
 import AboutMe from './about_me';
 import Intro from './intro';
 import Projects from './projects';
-import tailwindConfig from '../components/TailwindConfig';
+import {screens} from '../components/theme';
 import IndicateSwipeMotion from '../components/IndicateSwipeMotion';
 import Skills from './skills';
 import convert from 'color-convert';
@@ -70,7 +70,10 @@ const Home = () => {
   const [initialPos, setInitialPos] = useState<{x: number, y: number}>();
   const router = useRouter();
   const [pages, setPages] = useState<PageInfo[]>(initialState);
-  const [hasNavigated, setHasNavigated] = useState<boolean>(sessionStorage.getItem('hasNavigated') === 'true' || false);
+  const [hasNavigated, setHasNavigated] = useState<boolean>(
+    () => typeof window !== 'undefined' && window.sessionStorage.getItem('hasNavigated') === 'true',
+  );
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [firstPage, setFirstPage] = useState<boolean>(true);
   const inTransition = useRef<boolean>(false);
   const {theme} = useTheme();
@@ -111,6 +114,18 @@ const Home = () => {
   useEffect(() => {
     setCurrentPage(getPageIndex(router.asPath));
   }, [router.asPath]);
+
+  useEffect(() => {
+    const media = window.matchMedia(`(max-width: ${screens.lg})`);
+    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => setIsSmallScreen(event.matches);
+
+    handleChange(media);
+    media.addEventListener('change', handleChange);
+
+    return () => {
+      media.removeEventListener('change', handleChange);
+    }
+  }, []);
 
   const toPage = useCallback((pageId: number) => {
     let transId: NodeJS.Timeout | undefined = undefined;
@@ -192,7 +207,7 @@ const Home = () => {
         className='absolute bottom-0 z-20 w-full pr-3 sm:pr-0 transition-colors'
       >
         {
-          (!hasNavigated && window.innerWidth <= Number.parseInt(tailwindConfig.theme.screens.lg, 10)) &&
+          (!hasNavigated && isSmallScreen) &&
             <IndicateSwipeMotion/>
         }
         <div className={`px-2 sm:px-4 py-4 flex justify-center flex items-end transition-colors justify-between border-background-light dark:border-background-dark ${scrollable && 'border-t'}`}

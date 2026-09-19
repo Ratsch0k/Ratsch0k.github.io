@@ -1,5 +1,5 @@
-import React, {ComponentProps, useCallback, useEffect, useRef, useState} from 'react';
-import ReactDOM from 'react-dom';
+import React, {ComponentProps, JSX, useCallback, useEffect, useRef, useState} from 'react';
+import {createPortal} from 'react-dom';
 
 export type Position = 'top' | 'bottom' | 'right' | 'left';
 
@@ -22,14 +22,16 @@ export interface TooltipProps extends ComponentProps<'div'> {
   disappearTimeout?: number;
 }
 
-const defaultProps = {
-  position: 'bottom',
-  spacing: 4,
-  disappearTimeout: 250,
-};
-
-const Tooltip = (props: TooltipProps & typeof defaultProps) => {
-  const {children, label, position, spacing, disappearTimeout, style, ...rest} = props;
+const Tooltip = (props: TooltipProps) => {
+  const {
+    children,
+    label,
+    position = 'bottom',
+    spacing = 4,
+    disappearTimeout = 250,
+    style,
+    ...rest
+  } = props;
   // Visibility states
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
@@ -229,11 +231,9 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
       >
         {children}
       </div>
-      {tooltipRoot.current && ReactDOM.createPortal(tooltip, tooltipRoot.current)}
+      {tooltipRoot.current && createPortal(tooltip, tooltipRoot.current)}
     </>
   );
 };
-
-Tooltip.defaultProps = defaultProps;
 
 export default Tooltip;

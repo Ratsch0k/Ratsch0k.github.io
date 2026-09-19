@@ -18,7 +18,7 @@ i18n
       },
       //lng: 'en',
       fallbackLng: 'de',
-      whitelist: ['en', 'de'],
+      supportedLngs: ['en', 'de'],
       interpolation: {
           escapeValue: false,
       },

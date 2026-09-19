@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 export const SunIcon = (props: IconProps) => {
-  const {size, ...rest} = props;
+  const {size = defaultIconSize, ...rest} = props;
   const dimension = sizes[size];
 
   return (
@@ -20,7 +20,5 @@ export const SunIcon = (props: IconProps) => {
     </svg>
   );
 };
-
-SunIcon.defaultProps = defaultIconProps;
 
 export default SunIcon;

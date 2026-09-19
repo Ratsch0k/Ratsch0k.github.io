@@ -92,13 +92,13 @@ export const pathForArray = (N: number, width = 200, lineLength = 400, elongateE
 
 
 export interface HistoryProps {
-  lineHeight: number;
-  lineWidth: number;
-  indicatorSize: number;
+  lineHeight?: number;
+  lineWidth?: number;
+  indicatorSize?: number;
 }
 
 export const History = (props: HistoryProps) => {
-  const {lineHeight, lineWidth, indicatorSize} = props;
+  const {lineHeight = 500, lineWidth = 4, indicatorSize = 24} = props;
 
   // Reference to the root component
   const ref = useRef<HTMLDivElement | null>(null);
@@ -293,11 +293,5 @@ export const History = (props: HistoryProps) => {
     </div>
   );
 };
-
-History.defaultProps = {
-  lineHeight: 500,
-  lineWidth: 4,
-  indicatorSize: 24,
-}
 
 export default History;

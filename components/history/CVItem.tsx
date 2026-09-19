@@ -1,8 +1,8 @@
 import {HistoryEvent} from './HistoryData';
-import {useMemo} from 'react';
-import TailwindConfig from '../TailwindConfig';
+import {JSX, useMemo} from 'react';
 import {Trans, useTranslation} from 'react-i18next';
 import useTheme from '../hooks/useTheme';
+import {colors} from '../theme';
 
 export const VisualizeField = ({field}: {field: string | (() => JSX.Element)}): JSX.Element => {
   if (typeof field === 'string') {
@@ -84,7 +84,7 @@ export const CVItem = (props: HistoryEventProps) => {
         width={indicatorSize}
         strokeWidth={1.5}
         stroke='currentColor'
-        fill={theme === 'dark' ? TailwindConfig.theme.backgroundColor.primary.dark : '#e3e3ff'}
+        fill={theme === 'dark' ? colors.primary.dark : '#e3e3ff'}
         style={{
           flex: '0 0 ' + indicatorSize + 'px',
           transition: 'fill 150ms',

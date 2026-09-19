@@ -1,3 +1,5 @@
+import {JSX} from 'react';
+
 /**
  * Props of the contents of a page.
  */

@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 export const ExternalLinkIcon = (props: IconProps) => {
-    const {size, ...rest} = props;
+    const {size = defaultIconSize, ...rest} = props;
     const dimension = sizes[size];
 
     return (
@@ -24,7 +24,5 @@ export const ExternalLinkIcon = (props: IconProps) => {
 
     )
 }
-
-ExternalLinkIcon.defaultProps = defaultIconProps;
 
 export default ExternalLinkIcon;

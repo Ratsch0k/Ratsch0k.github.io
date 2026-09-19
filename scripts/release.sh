@@ -3,11 +3,8 @@
 # Installing libraries
 yarn install
 
-echo "Building project"
+echo "Building project and generating static html files"
 yarn build
-
-echo "Generating static html files"
-yarn export
 
 echo "Preparing ssh connection"
 mkdir "$HOME/.ssh"

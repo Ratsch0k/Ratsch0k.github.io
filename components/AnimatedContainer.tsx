@@ -7,12 +7,8 @@ export interface GrowableContainerProps {
   duration?: number;
 }
 
-const defaultProps = {
-  duration: 500,
-}
-
-const AnimatedContainer = (props: PropsWithChildren<GrowableContainerProps & typeof defaultProps>) => {
-  const {children, open, newStyle, duration} = props;
+const AnimatedContainer = (props: PropsWithChildren<GrowableContainerProps>) => {
+  const {children, open, newStyle, duration = 500} = props;
   const normalRef = useRef<HTMLDivElement | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [state, setState] = useState<'closed' | 'beforeopening' | 'opening' | 'open' | 'closing'>('closed');
@@ -73,7 +69,5 @@ const AnimatedContainer = (props: PropsWithChildren<GrowableContainerProps & typ
     </>
   )
 };
-
-AnimatedContainer.defaultProps = defaultProps;
 
 export default AnimatedContainer;

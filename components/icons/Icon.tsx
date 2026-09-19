@@ -8,7 +8,7 @@ export type Sizes = 'small' | 'medium' | 'large';
 /**
  * Props for Icons.
  */
-export interface IconPropsNoDefault extends ComponentPropsWithoutRef<'svg'> {
+export interface IconProps extends ComponentPropsWithoutRef<'svg'> {
   size?: Sizes;
 }
 
@@ -22,10 +22,6 @@ export const sizes = {
 }
 
 /**
- * Default props for icons.
+ * Size used by every icon that doesn't get an explicit one.
  */
-export const defaultIconProps = {
-  size: 'medium',
-}
-
-export type IconProps = IconPropsNoDefault & typeof defaultIconProps;
+export const defaultIconSize: Sizes = 'medium';

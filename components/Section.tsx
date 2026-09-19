@@ -9,14 +9,15 @@ export interface SectionProps {
   noSpacing?: boolean;
 }
 
-export const defaultProps = {
-  HeaderElement: 'h3',
-  titleKey: 'title',
-  contentKey: 'content',
-}
-
-const Section = (props: SectionProps & typeof defaultProps) => {
-  const {i18nKey, HeaderElement, titleKey, contentKey, components, noSpacing} = props;
+const Section = (props: SectionProps) => {
+  const {
+    i18nKey,
+    HeaderElement = 'h3',
+    titleKey = 'title',
+    contentKey = 'content',
+    components,
+    noSpacing,
+  } = props;
   const {t} = useTranslation();
   
   return (
@@ -33,7 +34,5 @@ const Section = (props: SectionProps & typeof defaultProps) => {
     </>
   )
 };
-
-Section.defaultProps = defaultProps;
 
 export default Section;

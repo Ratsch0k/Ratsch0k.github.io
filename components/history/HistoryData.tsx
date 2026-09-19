@@ -1,3 +1,4 @@
+import {JSX} from 'react';
 import {Trans} from 'react-i18next';
 
 export interface HistoryEvent {

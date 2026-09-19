@@ -7,10 +7,15 @@ on:
 jobs:
   release:
     name: Release the new version
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment: release
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
       - name: Run release script
         run: ./scripts/release.sh
         env:

@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="h-full m-0 overflow-hidden dark">
+      <Html className="h-full m-0 overflow-hidden">
         <Head>
           <script
             dangerouslySetInnerHTML={{
