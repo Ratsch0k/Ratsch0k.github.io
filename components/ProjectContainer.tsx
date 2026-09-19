@@ -9,7 +9,7 @@ import useTheme from './hooks/useTheme';
 import IconButton from './IconButton';
 import {useRouter} from 'next/dist/client/router';
 import {Project, ProjectLink} from './projects';
-import ExternalLinkIcon from "./icons/ExternalLinkIcon";
+import ExternalLinkIcon from './icons/ExternalLinkIcon';
 
 
 export const projectFlags = [

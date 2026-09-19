@@ -17,7 +17,7 @@ i18n
           },
       },
       //lng: 'en',
-      fallbackLng: 'en',
+      fallbackLng: 'de',
       whitelist: ['en', 'de'],
       interpolation: {
           escapeValue: false,
