@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[950],{2184:(_,n,s)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/skills",function(){return s(349)}])}},_=>{_.O(0,[636,593,792],()=>_(_.s=2184)),_N_E=_.O()}]);

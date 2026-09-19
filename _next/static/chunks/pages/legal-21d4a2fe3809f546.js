@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[899],{3124:(_,n,e)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/legal",function(){return e(605)}])}},_=>{_.O(0,[636,593,792],()=>_(_.s=3124)),_N_E=_.O()}]);

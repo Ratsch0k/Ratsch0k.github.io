@@ -1,6 +1,6 @@
 {
     "intro": {
-        "info": "Student, Developer, Future IT-Security expert",
+        "info": "Senior Consultant IT-Security, Developer",
         "skip": "Skip",
         "hintClick": "Click me!",
         "title": "Intro"
@@ -9,14 +9,15 @@
         "title": "About me",
         "myinfo": [
             "Hello there,<br/>",
-            "I am 23 years old and am currently studying M.Sc. IT-Security at the Technical University Darmstadt.<br/><br/>",
-            "Computer science and computers generally have been my passion for a long time and I learned a lot about ",
-            "the various fields of computer science in my during by bachelor in computer science. During this time, ",
-            "I developed a stark interest in software development and IT-Security.<br/><br/>",
-            "Regarding security, especially the technical topics web- and network security, and cryptography as well as,",
-            "the topic Information security management have really peaked my interest.<br/><br/>",
-            "With great enthusiasm in learning new things and my interest in security as wells as development, I want to ",
-            "help make IT systems more secure."
+            "I am 28 years old and work full-time as a <b>Senior Consultant IT-Security</b> at usd AG, ",
+            "after successfully completing my master's degree in IT-Security at the Technical University Darmstadt.<br/><br/>",
+            "As a penetration tester at usd AG ",
+            "I analyse web applications, systems, mobile applications, and SAP environments for vulnerabilities, ",
+            "lead medium-sized projects, and advise organisations from startups to large enterprises. Next to that, ",
+            "I support in improving our technical service offerings and help lead our internal tool development, which lets me combine my two passions, ",
+            "security and software development.<br/><br/>",
+            "In my free time I also develop security related tools of my own, which keeps me exploring new ",
+            "techniques and technologies."
         ]
     },
     "skills": {
@@ -122,7 +123,9 @@
             "bachelor": "B. Sc. Computer Science",
             "master": "M. Sc. IT-Security",
             "hiwi": "Student assistant",
-            "freelance": "Freelance"
+            "freelance": "Freelance",
+            "workingstudent": "Working student",
+            "fulltime": "Full-time"
         },
         "noDate": "ongoing",
         "abitur": {
@@ -151,7 +154,17 @@
         },
         "master": {
             "title": "TU Darmstadt",
-            "description": "My current studies. In this degree I will learn a lot about information security systems, technical system- and software security, and modern cryptography."
+            "description": "My master's degree, which I completed successfully. In this degree I learned a lot about information security systems, technical system- and software security, and modern cryptography."
+        },
+        "usd": {
+            "workingstudent": {
+                "title": "usd AG - HeroLab (Working student)",
+                "description": "At usd AG I worked as a student in the <b>Penetration Testing</b> department. My main responsibility was to develop and maintain internal tools that support penetration testers during their work. Through this work and the company's efforts to integrate working students more into consultation projects, I gained an insight into the penetration testing process as well as into other facets of real-world IT security."
+            },
+            "fulltime": {
+                "title": "usd AG - HeroLab (Senior Consultant IT Security)",
+                "description": "As a penetration tester and technical IT security consultant, I analyze a wide range of customer assets for vulnerabilities, from web applications and systems to mobile applications and SAP systems. Leading medium-sized projects, I advise organizations from startups to large enterprises. Through numerous penetration tests, I have built extensive experience in both technical analysis and client consulting. I also contribute to advancing our service offerings and help lead internal tool development to continuously improve the efficiency and quality of our work."
+            }
         },
         "revealAll": "Alles zeigen"
     },
@@ -167,6 +180,12 @@
     },
     "privacyPolicy": {
         "title": "Privacy policy"
+    },
+    "links": {
+        "title": "My links",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "xing": "Xing"
     },
     "switchTheme": "Switch theme",
     "changeLanguage": "Change language",
