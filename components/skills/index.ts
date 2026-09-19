@@ -1,3 +1,4 @@
+import {JSX} from 'react';
 import coding from './coding';
 import experience from './experience';
 import general from './general';

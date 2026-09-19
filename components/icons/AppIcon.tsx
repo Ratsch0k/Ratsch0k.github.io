@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 const AppIcon = (props: IconProps) => {
-  const {size, ...rest} = props;
+  const {size = defaultIconSize, ...rest} = props;
   const dimensions = sizes[size];
 
   return (
@@ -14,7 +14,5 @@ const AppIcon = (props: IconProps) => {
 
   );
 };
-
-AppIcon.defaultProps = defaultIconProps;
 
 export default AppIcon;

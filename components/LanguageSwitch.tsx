@@ -1,5 +1,4 @@
-import {NextPage} from 'next';
-import {useCallback, useRef, useState} from 'react';
+import {PropsWithChildren, useCallback, useRef, useState} from 'react';
 import TranslateIcon from './icons/TranslateIcon';
 import ClickAwayListener from 'react-click-away-listener';
 import {useTranslation} from 'react-i18next';
@@ -10,7 +9,7 @@ interface LanguageItemProps {
     selected: boolean;
 }
 
-const LanguageItem: NextPage<LanguageItemProps> = ({children, onClick, selected}) => {
+const LanguageItem = ({children, onClick, selected}: PropsWithChildren<LanguageItemProps>) => {
     return (
         <div
             onClick={onClick}

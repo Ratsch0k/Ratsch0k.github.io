@@ -1,4 +1,4 @@
-import {FC, ReactElement, useRef} from 'react';
+import {PropsWithChildren, ReactElement, useRef} from 'react';
 
 export interface TopicContainerProps {
   title: string;
@@ -7,7 +7,7 @@ export interface TopicContainerProps {
   visibilityThreshold?: number;
 }
 
-const SkillContainer: FC<TopicContainerProps> = (props) => {
+const SkillContainer = (props: PropsWithChildren<TopicContainerProps>) => {
   const {title, pos, icon, children} = props;
   const ref = useRef<HTMLDivElement>(null);
 

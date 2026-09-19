@@ -35,7 +35,7 @@ export const Skills: PageComponent = ({setScrollable}) => {
       <PageContent id='skills-page'>
         <div
           className='flex flex-col p-4 sm:p-8 pt-0 items-center justify-center w-full mb-16'
-          ref={(ref) => contentRef.current = ref}
+          ref={(ref) => {contentRef.current = ref}}
         >
           {
             skills.map((skill, index) => (

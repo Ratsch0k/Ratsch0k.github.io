@@ -1,32 +1,18 @@
-module.exports = {
-  mode: 'jit',
-  purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
-  darkMode: 'class', // or 'media' or 'class'
+import type {Config} from 'tailwindcss';
+import {colors, fontFamily} from './components/theme';
+
+const config: Config = {
+  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  darkMode: 'class',
   theme: {
     fontFamily: {
-      sans: ['Arial'],
+      sans: [...fontFamily.sans],
     },
     extend: {
       colors: {
-        primary: {
-          lightest: '#c4d9ff',
-          light: '#7ca4ef',
-          DEFAULT: '#00398c',
-          dark: '#14284f',
-          contrast: '#FFFFFF',
-          border: '#204d91',
-        },
-        secondary: {
-          lightest: '#ffe5c3',
-          light: '#FCAF58',
-          DEFAULT: '#FF8C42',
-          dark: '#d55200',
-          contrast: '#FFFFFF',
-        },
-        background: {
-          light: '#e3e3ff',
-          dark: '#15162a',
-        },
+        primary: {...colors.primary},
+        secondary: {...colors.secondary},
+        background: {...colors.background},
       },
       boxShadow: {
         'primary-xl': '0 0px 25px -5px rgba(0, 57, 140, 0.2), 0 10px 10px -5px rgba(0, 57, 140, 0.2)',
@@ -39,25 +25,25 @@ module.exports = {
         swipe: {
           '0%': {
             transform: 'translateX(100%)',
-            opacity: 0,
+            opacity: '0',
           },
           '10%, 37%': {
             transform: 'translateX(100%)',
-            opacity: 1,
+            opacity: '1',
           },
           '44%, 100%': {
             transform: 'translateX(-100%)',
-            opacity: 0,
+            opacity: '0',
           }
         },
         'appear-from-below': {
           '0%': {
             transform: 'translateY(200px)',
-            opacity: 0,
+            opacity: '0',
           },
           '100%': {
             transform: 'translateY(0px)',
-            opacity: 1,
+            opacity: '1',
           }
         },
         hover: {
@@ -95,14 +81,7 @@ module.exports = {
       }
     }
   },
-  variants: {
-    borderWidth: ['responsive', 'hover'],
-    fontWeight: ['responsive', 'hover'],
-    extend: {
-      textColor: ['disabled'],
-      borderColor: ['disabled'],
-    },
-    spacing: ['responsive'],
-  },
   plugins: [],
-}
+};
+
+export default config;

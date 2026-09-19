@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 export const LinkedInIcon = (icon: IconProps) => {
-    const {size} = icon;
+    const {size = defaultIconSize} = icon;
     const dimension = sizes[size];
 
     return (
@@ -15,8 +15,5 @@ export const LinkedInIcon = (icon: IconProps) => {
         />
     );
 }
-
-
-LinkedInIcon.defaultProps = defaultIconProps;
 
 export default LinkedInIcon;

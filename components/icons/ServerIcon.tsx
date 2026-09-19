@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 const ServerIcon = (props: IconProps) => {
-  const {size, ...rest} = props;
+  const {size = defaultIconSize, ...rest} = props;
   const dimensions = sizes[size];
 
   return (
@@ -16,7 +16,5 @@ const ServerIcon = (props: IconProps) => {
     </svg>
   );
 };
-
-ServerIcon.defaultProps = defaultIconProps;
 
 export default ServerIcon;

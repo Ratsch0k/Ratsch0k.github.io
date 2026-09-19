@@ -3,11 +3,8 @@
 echo "Install npm packages"
 yarn install
 
-echo "Build project"
+echo "Build project and generate static html files"
 yarn build
-
-echo "Generate static html files"
-yarn export
 
 echo "Prepare for publishing"
 # This file is necessary to prevent github to any modification

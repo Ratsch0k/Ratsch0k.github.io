@@ -3,6 +3,12 @@ Personal portfolio website that I use to show off myself, my projects, and my ac
 
 
 ## How to develop
+This project requires **Node.js 24** (see `.nvmrc`). Any version from 20.9 upwards works, but the CI pipeline and the
+development setup are built around Node 24.
+```bash
+nvm use
+```
+
 First, install all project dependencies with:
 ```bash
 yarn install
@@ -42,7 +48,10 @@ The webpage has a builtin dark mode that can be toggled with a button on the bot
 The dark mode is implemented using tailwindcss styling and some code detecting and handling mode changes.
 Ensures that your styling looks good in both light and dark mode.
 To change the style only in dark mode use the `dark:` prefix in your tailwindcss class names.
-Read more about this [here](https://v2.tailwindcss.com/docs/dark-mode)
+Read more about this [here](https://v3.tailwindcss.com/docs/dark-mode)
+
+Colours and the font family are defined once in `components/theme.ts`. `tailwind.config.ts` feeds them into Tailwind,
+and the few components that need the raw values at runtime import them from there directly.
 
 ### Changes to the client side router
 Due to how I implemented the custom page transitions I also had to implement a custom client-side router.
@@ -66,4 +75,5 @@ This version is automatically build and deployed to [simonkurz.de](simonkurz.de)
 If a version is released, the GitHub workflow **release** is triggered.
 This workflow will configure some variables and fetch secrets and will run a small script located at `scripts/release.sh`.
 
-This script installs the project dependencies, build the project, generate a static site from it, and upload it to [simonkurz.de](simonkurz.de).
+This script installs the project dependencies, builds the project (`next build` writes the static site to `out/` because
+of `output: 'export'` in `next.config.js`), and uploads it to [simonkurz.de](simonkurz.de).

@@ -40,7 +40,7 @@ export interface ProjectContainer {
   project: Project;
   open: boolean;
   setOpen(value: boolean): void;
-  scrollRef: RefObject<HTMLDivElement>;
+  scrollRef: RefObject<HTMLDivElement | null>;
 }
 
 export interface ProjectLinkProps {

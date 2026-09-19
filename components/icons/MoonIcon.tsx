@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 export const MoonIcon = (props: IconProps) => {
-  const {size, ...rest} = props;
+  const {size = defaultIconSize, ...rest} = props;
   const dimension = sizes[size];
 
   return (
@@ -11,7 +11,5 @@ export const MoonIcon = (props: IconProps) => {
 
   );
 };
-
-MoonIcon.defaultProps = defaultIconProps;
 
 export default MoonIcon;

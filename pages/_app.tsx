@@ -1,16 +1,25 @@
 import '../styles/globals.css'
 import Head from 'next/head'
 import Home from './index'
-import {NextPage} from 'next'
 import '../i18n';
 import {useTranslation} from 'react-i18next'
-import {useEffect} from 'react';
+import {PropsWithChildren, useEffect, useState} from 'react';
 import ThemeContextProvider from '../components/context/ThemeContext';
 
-const SafeHydrate: NextPage = ({children}) => {
+/**
+ * The whole site depends on browser APIs during render, so nothing is rendered
+ * until after the first client-side commit.
+ */
+const SafeHydrate = ({children}: PropsWithChildren) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div suppressHydrationWarning className='h-full'>
-      {typeof window === 'undefined' ? null : children}
+      {mounted ? children : null}
     </div>
   );
 };

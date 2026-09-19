@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDetectTheme} from '../hooks/useTheme';
 
 export type Theme = 'dark' | 'light';
@@ -19,16 +19,24 @@ export interface ThemeContextProviderProps {
   children: React.ReactNode;
 }
 
+function applyThemeClass(theme: Theme) {
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+}
+
 export function ThemeContextProvider({children}: ThemeContextProviderProps) {
   const detectTheme = useDetectTheme();
   const [theme, setTheme] = useState<Theme>(detectTheme());
 
-  const changeTheme = useCallback((theme) => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+  useEffect(() => {
+    applyThemeClass(theme);
+  }, [theme]);
+
+  const changeTheme = useCallback((theme: Theme) => {
+    applyThemeClass(theme);
     window.localStorage.setItem('theme', theme);
     setTheme(theme);
   }, []);

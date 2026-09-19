@@ -1,7 +1,7 @@
-import {defaultIconProps, IconProps, sizes} from './Icon';
+import {defaultIconSize, IconProps, sizes} from './Icon';
 
 const WebsiteIcon = (props: IconProps) => {
-  const {size, ...rest} = props;
+  const {size = defaultIconSize, ...rest} = props;
   const dimension = sizes[size];
 
   return (
@@ -17,7 +17,5 @@ const WebsiteIcon = (props: IconProps) => {
 
   );
 };
-
-WebsiteIcon.defaultProps = defaultIconProps;
 
 export default WebsiteIcon;
