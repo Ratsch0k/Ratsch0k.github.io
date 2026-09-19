@@ -8,7 +8,9 @@ on:
 jobs:
   release:
     name: Publish branch to gh-pages
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - uses: actions/checkout@v3
       - name: Build project
